@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>剑桥雅思听力考点词 179</title>
+<style>
+:root{
+  --ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e;
+  --line:#e6e2da; --line-2:#efece5;
+  --paper:#fdfcf9; --paper-2:#f7f4ee;
+  --accent:#0f766e; --accent-2:#0d5f59;
+  --mark:#fdf6e3; --mark-2:#f6e7c8;
+  --syn:#8a4b16;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.65; font-size:15px;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px 80px}
+header.top{
+  padding:52px 0 30px; border-bottom:1px solid var(--line);
+  display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px 28px;
+}
+header.top h1{
+  margin:0; font-size:30px; letter-spacing:.01em; font-weight:700;
+  font-family:"Songti SC","Source Han Serif SC",Georgia,serif;
+}
+header.top .sub{color:var(--ink-2);font-size:13.5px;margin-top:6px}
+.stats{margin-left:auto;display:flex;gap:26px}
+.stat{text-align:right}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:11.5px;color:var(--ink-3);letter-spacing:.08em}
+
+.toolbar{
+  position:sticky; top:0; z-index:20; background:rgba(253,252,249,.94);
+  backdrop-filter:saturate(180%) blur(8px);
+  border-bottom:1px solid var(--line);
+  padding:12px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.search{
+  flex:1 1 260px; display:flex; align-items:center; gap:8px;
+  background:#fff; border:1px solid var(--line); border-radius:9px; padding:8px 12px;
+}
+.search input{
+  border:0; outline:0; font-size:14px; width:100%; background:transparent; color:var(--ink);
+  font-family:inherit;
+}
+.search svg{flex:0 0 16px;opacity:.45}
+.hint{font-size:12px;color:var(--ink-3)}
+.toggle{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-2);cursor:pointer;user-select:none}
+.toggle input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+
+section.cls{margin-top:46px}
+.cls-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.cls-head h2{
+  margin:0;font-size:21px;font-weight:700;
+  font-family:"Songti SC","Source Han Serif SC",Georgia,serif;
+}
+.cls-head .numb{font-size:12px;color:var(--accent);border:1px solid #cfe3df;background:#f0f8f6;
+  padding:1px 8px;border-radius:99px;letter-spacing:.05em}
+.cls-head .gap{margin-left:auto;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.cls-desc{margin:0 0 16px;color:var(--ink-2);font-size:13.5px}
+
+table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+thead th{
+  text-align:left;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ink-2);
+  background:var(--paper-2);padding:10px 12px;border-bottom:1px solid var(--line);
+}
+thead{display:table-header-group}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;font-size:14px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#fcfbf7}
+td.num{color:var(--ink-3);font-size:12px;font-variant-numeric:tabular-nums;text-align:center;
+  padding-top:12px;width:56px}
+td.w{font-weight:600;font-size:15px;word-break:break-word;overflow-wrap:anywhere}
+td.w .phon{display:block;font-weight:400;color:var(--ink-3);font-size:12px;
+  font-family:"SF Mono",Menlo,Consolas,monospace;margin-top:3px;letter-spacing:.01em}
+td.m{color:var(--ink-2);font-size:13.5px}
+.syn{display:inline-block;margin:2px 14px 2px 0;line-height:1.5}
+.syn b{font-weight:600;color:var(--ink);font-size:14px}
+.syn i{font-style:normal;color:var(--syn);font-size:12.5px;background:var(--mark);
+  border-radius:4px;padding:0 5px;margin-left:5px}
+.note{display:block;margin-top:6px;font-size:12px;color:var(--ink-3)}
+.empty{color:var(--ink-3);font-size:13px}
+body.bare .syn i{display:none}
+body.hide-mean td.m{display:none}
+body.hide-mean .mean{display:none!important}
+mark{background:var(--mark-2);color:inherit;border-radius:3px;padding:0 1px}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:12px;display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--accent);text-decoration:none}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.nav a{font-size:13px;color:var(--accent-2);text-decoration:none;border:1px solid #d9e6e3;
+  background:#f4faf9;padding:6px 12px;border-radius:8px}
+.nav a:hover{background:#e9f5f3}
+@media print{
+  .toolbar,.nav,footer{display:none}
+  body{background:#fff;font-size:11pt}
+  table{page-break-inside:auto}
+  tr{page-break-inside:avoid}
+}
+@media (max-width:720px){
+  .wrap{padding:0 14px 56px}
+  header.top{padding:28px 0 18px}
+  header.top h1{font-size:22px}
+  header.top .sub{font-size:12.5px}
+  .stats{margin-left:0;gap:18px}
+  .toolbar{padding:10px 0;gap:10px}
+  .search{flex:1 1 100%}
+  .hint{font-size:11.5px}
+  .cls-head h2{font-size:19px}
+}
+@media (max-width:620px){
+  table{display:block;border:0;background:transparent;border-radius:0}
+  colgroup,thead{display:none}
+  tbody{display:block}
+  tbody tr{display:block;position:relative;background:#fff;border:1px solid var(--line);
+    border-radius:10px;padding:11px 13px 12px;margin-bottom:9px}
+  tbody tr:hover td{background:transparent}
+  tbody td{display:block;border:0;padding:0}
+  td.num{position:absolute;left:13px;top:13px;width:auto;text-align:left;
+    color:var(--ink-3);font-size:11.5px;letter-spacing:.02em}
+  td.w{padding-left:24px;font-size:15px;margin-bottom:3px}
+  td.w .phon{font-size:11.5px;margin-top:2px}
+  td.m{font-size:12.5px;padding-left:24px}
+  td.s{margin-top:7px;padding-left:0}
+  .syn{display:inline;margin:0}
+  .syn b,.syn i{display:inline;white-space:normal;font-size:13.5px}
+  .syn i{font-size:12px}
+  .syn{margin-right:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>剑桥雅思听力考点词 179</h1>
+    <div class="sub">179 个考点词 + 495 个同义替换 = 674 词条 · 去重后 653 个不同单词 · 同义替换全部补中文释义</div>
+  </div>
+  <div class="stats"></div>
+</header>
+<div class="toolbar">
+  <div class="search">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+    <input id="q" type="search" placeholder="搜索单词 / 中文释义 / 同义替换（按 / 聚焦）" autocomplete="off">
+  </div>
+  <label class="toggle"><input type="checkbox" id="mean">隐藏词义</label>
+  <label class="toggle"><input type="checkbox" id="bare">隐藏替换释义</label>
+  <span class="hint" id="count">179 条</span>
+</div><section class="cls">
+<div class="cls-head"><h2>剑桥雅思听力考点词</h2>
+<span class="numb">179 词</span>
+<span class="gap">179 / 179 条</span></div>
+<p class="cls-desc">按真题出场顺序排列。左列为考点词（含音标与中文词义），右列为真题同义替换并标注释义——听到替换词要能立刻反应到考点词。</p>
+<table>
+<colgroup><col style="width:56px"><col style="width:280px"><col></colgroup>
+<thead><tr><th>序</th><th>考点词</th><th>真题同义替换 · 释义</th></tr></thead>
+<tbody>
+<tr data-k="reserve 预订 book [rɪˈzɜːv]">
+<td class="num">1</td>
+<td class="w"><b style="font-weight:600">reserve</b><span class="phon">[rɪˈzɜːv]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">预订</span></td>
+<td class="s"><span class="syn"><b>book</b><i>预订；书</i></span></td>
+</tr><tr data-k="in advance 提前 ahead, before ">
+<td class="num">2</td>
+<td class="w"><b style="font-weight:600">in advance</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">提前</span></td>
+<td class="s"><span class="syn"><b>ahead</b><i>提前，在前面</i></span><span class="syn"><b>before</b><i>在……之前</i></span></td>
+</tr><tr data-k="have to 必须 must, should, need, require, necessary, be supposed to, demand, order ">
+<td class="num">3</td>
+<td class="w"><b style="font-weight:600">have to</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">必须</span></td>
+<td class="s"><span class="syn"><b>must</b><i>必须</i></span><span class="syn"><b>should</b><i>应该</i></span><span class="syn"><b>need</b><i>需要</i></span><span class="syn"><b>require</b><i>需要</i></span><span class="syn"><b>necessary</b><i>必要的</i></span><span class="syn"><b>be supposed to</b><i>应该</i></span><span class="syn"><b>demand</b><i>要求，需求</i></span><span class="syn"><b>order</b><i>顺序；命令；订购</i></span></td>
+</tr><tr data-k="adjust 调整；改变 change, alter, modify, shift, revert [əˈdʒʌst]">
+<td class="num">4</td>
+<td class="w"><b style="font-weight:600">adjust</b><span class="phon">[əˈdʒʌst]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">调整；改变</span></td>
+<td class="s"><span class="syn"><b>change</b><i>改变</i></span><span class="syn"><b>alter</b><i>改变</i></span><span class="syn"><b>modify</b><i>修改</i></span><span class="syn"><b>shift</b><i>转变；轮班</i></span><span class="syn"><b>revert</b><i>恢复，回复</i></span></td>
+</tr><tr data-k="and 和 and also, as well as, with, in addition [ənd]">
+<td class="num">5</td>
+<td class="w"><b style="font-weight:600">and</b><span class="phon">[ənd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">和</span></td>
+<td class="s"><span class="syn"><b>and also</b><i>以及</i></span><span class="syn"><b>as well as</b><i>以及</i></span><span class="syn"><b>with</b><i>带有，和</i></span><span class="syn"><b>in addition</b><i>此外</i></span></td>
+</tr><tr data-k="but 但是 however, yet, instead [bət]">
+<td class="num">6</td>
+<td class="w"><b style="font-weight:600">but</b><span class="phon">[bət]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">但是</span></td>
+<td class="s"><span class="syn"><b>however</b><i>然而</i></span><span class="syn"><b>yet</b><i>然而；还</i></span><span class="syn"><b>instead</b><i>代替，反而</i></span></td>
+</tr><tr data-k="because 因为 why, as a result, therefore, cause [bɪˈkɒz]">
+<td class="num">7</td>
+<td class="w"><b style="font-weight:600">because</b><span class="phon">[bɪˈkɒz]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">因为</span></td>
+<td class="s"><span class="syn"><b>why</b><i>为什么</i></span><span class="syn"><b>as a result</b><i>结果</i></span><span class="syn"><b>therefore</b><i>因此</i></span><span class="syn"><b>cause</b><i>引起；原因</i></span></td>
+</tr><tr data-k="diversity 多样性 a variety of, a number of, a range of, various, different [daɪˈvɜːsətɪ]">
+<td class="num">8</td>
+<td class="w"><b style="font-weight:600">diversity</b><span class="phon">[daɪˈvɜːsətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">多样性</span></td>
+<td class="s"><span class="syn"><b>a variety of</b><i>各种各样的</i></span><span class="syn"><b>a number of</b><i>若干，许多</i></span><span class="syn"><b>a range of</b><i>一系列</i></span><span class="syn"><b>various</b><i>各种各样的</i></span><span class="syn"><b>different</b><i>不同的</i></span></td>
+</tr><tr data-k="fee 费用，花销 money, cost, price, expense, budget, fund, financial, economic [fiː]">
+<td class="num">9</td>
+<td class="w"><b style="font-weight:600">fee</b><span class="phon">[fiː]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">费用，花销</span></td>
+<td class="s"><span class="syn"><b>money</b><i>钱</i></span><span class="syn"><b>cost</b><i>花费，成本</i></span><span class="syn"><b>price</b><i>价格</i></span><span class="syn"><b>expense</b><i>费用</i></span><span class="syn"><b>budget</b><i>预算</i></span><span class="syn"><b>fund</b><i>资金</i></span><span class="syn"><b>financial</b><i>财务的</i></span><span class="syn"><b>economic</b><i>经济的</i></span></td>
+</tr><tr data-k="establish 建造 build, create, construct, set up, install [ɪˈstæblɪʃ]">
+<td class="num">10</td>
+<td class="w"><b style="font-weight:600">establish</b><span class="phon">[ɪˈstæblɪʃ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">建造</span></td>
+<td class="s"><span class="syn"><b>build</b><i>建造</i></span><span class="syn"><b>create</b><i>创造</i></span><span class="syn"><b>construct</b><i>建造</i></span><span class="syn"><b>set up</b><i>建立</i></span><span class="syn"><b>install</b><i>安装</i></span></td>
+</tr><tr data-k="transfer 搬，移动 move, relocate [trænsˈfɜː(r)]">
+<td class="num">11</td>
+<td class="w"><b style="font-weight:600">transfer</b><span class="phon">[trænsˈfɜː(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">搬，移动</span></td>
+<td class="s"><span class="syn"><b>move</b><i>移动</i></span><span class="syn"><b>relocate</b><i>搬迁</i></span></td>
+</tr><tr data-k="habitat 栖息地 live, territory [ˈhæbɪtæt]">
+<td class="num">12</td>
+<td class="w"><b style="font-weight:600">habitat</b><span class="phon">[ˈhæbɪtæt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">栖息地</span></td>
+<td class="s"><span class="syn"><b>live</b><i>居住；现场的</i></span><span class="syn"><b>territory</b><i>领地</i></span></td>
+</tr><tr data-k="international 国际的 countries, continents, global [ˌɪntəˈnæʃnəl]">
+<td class="num">13</td>
+<td class="w"><b style="font-weight:600">international</b><span class="phon">[ˌɪntəˈnæʃnəl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">国际的</span></td>
+<td class="s"><span class="syn"><b>countries</b><i>国家</i></span><span class="syn"><b>continents</b><i>大洲</i></span><span class="syn"><b>global</b><i>全球的</i></span></td>
+</tr><tr data-k="export 出口 abroad, overseas [ɪkˈspɔːt]">
+<td class="num">14</td>
+<td class="w"><b style="font-weight:600">export</b><span class="phon">[ɪkˈspɔːt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">出口</span></td>
+<td class="s"><span class="syn"><b>abroad</b><i>在国外</i></span><span class="syn"><b>overseas</b><i>海外的</i></span></td>
+</tr><tr data-k="vegetation 植被 plant, tree, forest, botanic [ˌvedʒəˈteɪʃn]">
+<td class="num">15</td>
+<td class="w"><b style="font-weight:600">vegetation</b><span class="phon">[ˌvedʒəˈteɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">植被</span></td>
+<td class="s"><span class="syn"><b>plant</b><i>植物；种植</i></span><span class="syn"><b>tree</b><i>树</i></span><span class="syn"><b>forest</b><i>森林</i></span><span class="syn"><b>botanic</b><i>植物的</i></span></td>
+</tr><tr data-k="animal 动物 mammal, wildlife, creature, species [ˈænɪml]">
+<td class="num">16</td>
+<td class="w"><b style="font-weight:600">animal</b><span class="phon">[ˈænɪml]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">动物</span></td>
+<td class="s"><span class="syn"><b>mammal</b><i>哺乳动物</i></span><span class="syn"><b>wildlife</b><i>野生动物</i></span><span class="syn"><b>creature</b><i>生物</i></span><span class="syn"><b>species</b><i>物种</i></span></td>
+</tr><tr data-k="feature 特点 characteristic, trait, property [ˈfiːtʃə(r)]">
+<td class="num">17</td>
+<td class="w"><b style="font-weight:600">feature</b><span class="phon">[ˈfiːtʃə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">特点</span></td>
+<td class="s"><span class="syn"><b>characteristic</b><i>特征</i></span><span class="syn"><b>trait</b><i>特征</i></span><span class="syn"><b>property</b><i>财产；特性</i></span></td>
+</tr><tr data-k="emigrate 迁徙 move, go away [ˈemɪgreɪt]">
+<td class="num">18</td>
+<td class="w"><b style="font-weight:600">emigrate</b><span class="phon">[ˈemɪgreɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">迁徙</span></td>
+<td class="s"><span class="syn"><b>move</b><i>移动</i></span><span class="syn"><b>go away</b><i>离开</i></span></td>
+</tr><tr data-k="food 食物 feed on, eat [fuːd]">
+<td class="num">19</td>
+<td class="w"><b style="font-weight:600">food</b><span class="phon">[fuːd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">食物</span></td>
+<td class="s"><span class="syn"><b>feed on</b><i>以……为食</i></span><span class="syn"><b>eat</b><i>吃</i></span></td>
+</tr><tr data-k="allergic 过敏的 can’t eat [əˈlɜːdʒɪk]">
+<td class="num">20</td>
+<td class="w"><b style="font-weight:600">allergic</b><span class="phon">[əˈlɜːdʒɪk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">过敏的</span></td>
+<td class="s"><span class="syn"><b>can’t eat</b><i>不能吃（过敏）</i></span></td>
+</tr><tr data-k="fitness 健康 health, medical, sickness, illness, gym [ˈfɪtnəs]">
+<td class="num">21</td>
+<td class="w"><b style="font-weight:600">fitness</b><span class="phon">[ˈfɪtnəs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">健康</span></td>
+<td class="s"><span class="syn"><b>health</b><i>健康</i></span><span class="syn"><b>medical</b><i>医疗的</i></span><span class="syn"><b>sickness</b><i>疾病</i></span><span class="syn"><b>illness</b><i>疾病</i></span><span class="syn"><b>gym</b><i>健身房</i></span></td>
+</tr><tr data-k="tradition 传统 custom, convention, local culture, lifestyle [trəˈdɪʃn]">
+<td class="num">22</td>
+<td class="w"><b style="font-weight:600">tradition</b><span class="phon">[trəˈdɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">传统</span></td>
+<td class="s"><span class="syn"><b>custom</b><i>习俗</i></span><span class="syn"><b>convention</b><i>惯例；大会</i></span><span class="syn"><b>local culture</b><i>本地文化</i></span><span class="syn"><b>lifestyle</b><i>生活方式</i></span></td>
+</tr><tr data-k="entertainment 娱乐 recreation, leisure [ˌentəˈteɪnmənt]">
+<td class="num">23</td>
+<td class="w"><b style="font-weight:600">entertainment</b><span class="phon">[ˌentəˈteɪnmənt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">娱乐</span></td>
+<td class="s"><span class="syn"><b>recreation</b><i>娱乐</i></span><span class="syn"><b>leisure</b><i>休闲</i></span></td>
+</tr><tr data-k="press 媒体 media, TV, newspaper, radio [pres]">
+<td class="num">24</td>
+<td class="w"><b style="font-weight:600">press</b><span class="phon">[pres]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">媒体</span></td>
+<td class="s"><span class="syn"><b>media</b><i>媒体</i></span><span class="syn"><b>TV</b><i>电视</i></span><span class="syn"><b>newspaper</b><i>报纸</i></span><span class="syn"><b>radio</b><i>收音机</i></span></td>
+</tr><tr data-k="online 网络 Internet, website [ˌɒnˈlaɪn]">
+<td class="num">25</td>
+<td class="w"><b style="font-weight:600">online</b><span class="phon">[ˌɒnˈlaɪn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">网络</span></td>
+<td class="s"><span class="syn"><b>Internet</b><i>互联网</i></span><span class="syn"><b>website</b><i>网站</i></span></td>
+</tr><tr data-k="publicity 宣传 website, media, news, marketing [pʌbˈlɪsətɪ]">
+<td class="num">26</td>
+<td class="w"><b style="font-weight:600">publicity</b><span class="phon">[pʌbˈlɪsətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">宣传</span></td>
+<td class="s"><span class="syn"><b>website</b><i>网站</i></span><span class="syn"><b>media</b><i>媒体</i></span><span class="syn"><b>news</b><i>新闻</i></span><span class="syn"><b>marketing</b><i>营销</i></span></td>
+</tr><tr data-k="picture 照片 photo, photograph, camera, image [ˈpɪktʃə(r)]">
+<td class="num">27</td>
+<td class="w"><b style="font-weight:600">picture</b><span class="phon">[ˈpɪktʃə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">照片</span></td>
+<td class="s"><span class="syn"><b>photo</b><i>照片</i></span><span class="syn"><b>photograph</b><i>照片</i></span><span class="syn"><b>camera</b><i>相机</i></span><span class="syn"><b>image</b><i>图像</i></span></td>
+</tr><tr data-k="jewellery 珠宝 rings, bracelets, necklaces, precious stones, gem, diamond, luxurious [ˈdʒuːəlrɪ]">
+<td class="num">28</td>
+<td class="w"><b style="font-weight:600">jewellery</b><span class="phon">[ˈdʒuːəlrɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">珠宝</span></td>
+<td class="s"><span class="syn"><b>rings</b><i>戒指</i></span><span class="syn"><b>bracelets</b><i>手镯</i></span><span class="syn"><b>necklaces</b><i>项链</i></span><span class="syn"><b>precious stones</b><i>宝石</i></span><span class="syn"><b>gem</b><i>宝石</i></span><span class="syn"><b>diamond</b><i>钻石</i></span><span class="syn"><b>luxurious</b><i>奢华的</i></span></td>
+</tr><tr data-k="artwork 艺术品 painting, drawing, craft [ˈɑːtwɜːk]">
+<td class="num">29</td>
+<td class="w"><b style="font-weight:600">artwork</b><span class="phon">[ˈɑːtwɜːk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">艺术品</span></td>
+<td class="s"><span class="syn"><b>painting</b><i>绘画</i></span><span class="syn"><b>drawing</b><i>绘画</i></span><span class="syn"><b>craft</b><i>工艺，手工艺</i></span></td>
+</tr><tr data-k="statue 雕像 sculpture, carving [ˈstætʃuː]">
+<td class="num">30</td>
+<td class="w"><b style="font-weight:600">statue</b><span class="phon">[ˈstætʃuː]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">雕像</span></td>
+<td class="s"><span class="syn"><b>sculpture</b><i>雕塑</i></span><span class="syn"><b>carving</b><i>雕刻</i></span></td>
+</tr><tr data-k="movie 电影 film, documentary, cinema [ˈmuːvɪ]">
+<td class="num">31</td>
+<td class="w"><b style="font-weight:600">movie</b><span class="phon">[ˈmuːvɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">电影</span></td>
+<td class="s"><span class="syn"><b>film</b><i>电影</i></span><span class="syn"><b>documentary</b><i>纪录片</i></span><span class="syn"><b>cinema</b><i>电影院</i></span></td>
+</tr><tr data-k="geology 地质学； 地质情况 cliff, fossil, rock, landscape [dʒɪˈɒlədʒɪ]">
+<td class="num">32</td>
+<td class="w"><b style="font-weight:600">geology</b><span class="phon">[dʒɪˈɒlədʒɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">地质学； 地质情况</span></td>
+<td class="s"><span class="syn"><b>cliff</b><i>悬崖</i></span><span class="syn"><b>fossil</b><i>化石</i></span><span class="syn"><b>rock</b><i>岩石</i></span><span class="syn"><b>landscape</b><i>风景</i></span></td>
+</tr><tr data-k="countryside 乡村的 rural area [ˈkʌntrɪsaɪd]">
+<td class="num">33</td>
+<td class="w"><b style="font-weight:600">countryside</b><span class="phon">[ˈkʌntrɪsaɪd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">乡村的</span></td>
+<td class="s"><span class="syn"><b>rural area</b><i>乡村地区</i></span></td>
+</tr><tr data-k="urban 城市的 city, metropolitan [ˈɜːbən]">
+<td class="num">34</td>
+<td class="w"><b style="font-weight:600">urban</b><span class="phon">[ˈɜːbən]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">城市的</span></td>
+<td class="s"><span class="syn"><b>city</b><i>城市</i></span><span class="syn"><b>metropolitan</b><i>大都市的</i></span></td>
+</tr><tr data-k="coastline 海岸线 shore, seaside [ˈkjuːstlaɪn]">
+<td class="num">35</td>
+<td class="w"><b style="font-weight:600">coastline</b><span class="phon">[ˈkjuːstlaɪn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">海岸线</span></td>
+<td class="s"><span class="syn"><b>shore</b><i>海岸</i></span><span class="syn"><b>seaside</b><i>海边</i></span></td>
+</tr><tr data-k="environment 周围环境 neighbourhood, surrounding [ɪnˈvaɪrənmənt]">
+<td class="num">36</td>
+<td class="w"><b style="font-weight:600">environment</b><span class="phon">[ɪnˈvaɪrənmənt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">周围环境</span></td>
+<td class="s"><span class="syn"><b>neighbourhood</b><i>社区</i></span><span class="syn"><b>surrounding</b><i>周围环境</i></span></td>
+</tr><tr data-k="noisy 吵闹的 disturbing, not quiet [ˈnɔɪzɪ]">
+<td class="num">37</td>
+<td class="w"><b style="font-weight:600">noisy</b><span class="phon">[ˈnɔɪzɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">吵闹的</span></td>
+<td class="s"><span class="syn"><b>disturbing</b><i>令人不安的</i></span><span class="syn"><b>not quiet</b><i>不安静的</i></span></td>
+</tr><tr data-k="capacity 容量 volume, room, space, size [kəˈpæsətɪ]">
+<td class="num">38</td>
+<td class="w"><b style="font-weight:600">capacity</b><span class="phon">[kəˈpæsətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">容量</span></td>
+<td class="s"><span class="syn"><b>volume</b><i>体积，音量</i></span><span class="syn"><b>room</b><i>房间；空间</i></span><span class="syn"><b>space</b><i>空间</i></span><span class="syn"><b>size</b><i>大小</i></span></td>
+</tr><tr data-k="outdoor 户外的 gardens, park, open air [ˈaʊtdɔː(r)]">
+<td class="num">39</td>
+<td class="w"><b style="font-weight:600">outdoor</b><span class="phon">[ˈaʊtdɔː(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">户外的</span></td>
+<td class="s"><span class="syn"><b>gardens</b><i>花园</i></span><span class="syn"><b>park</b><i>公园；停车</i></span><span class="syn"><b>open air</b><i>户外</i></span></td>
+</tr><tr data-k="accommodation 住宿 living, dwelling, dorm [əˌkɒməˈdeɪʃn]">
+<td class="num">40</td>
+<td class="w"><b style="font-weight:600">accommodation</b><span class="phon">[əˌkɒməˈdeɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">住宿</span></td>
+<td class="s"><span class="syn"><b>living</b><i>居住；生计</i></span><span class="syn"><b>dwelling</b><i>住所</i></span><span class="syn"><b>dorm</b><i>宿舍</i></span></td>
+</tr><tr data-k="place 地点 where, spot, location, area [pleɪs]">
+<td class="num">41</td>
+<td class="w"><b style="font-weight:600">place</b><span class="phon">[pleɪs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">地点</span></td>
+<td class="s"><span class="syn"><b>where</b><i>哪里</i></span><span class="syn"><b>spot</b><i>地点；发现</i></span><span class="syn"><b>location</b><i>位置</i></span><span class="syn"><b>area</b><i>区域</i></span></td>
+</tr><tr data-k="near 附近的 close, not far from, nearby [nɪə(r)]">
+<td class="num">42</td>
+<td class="w"><b style="font-weight:600">near</b><span class="phon">[nɪə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">附近的</span></td>
+<td class="s"><span class="syn"><b>close</b><i>近的；关闭</i></span><span class="syn"><b>not far from</b><i>离……不远</i></span><span class="syn"><b>nearby</b><i>附近的</i></span></td>
+</tr><tr data-k="remote 偏远的 isolated, distant [rɪˈmjuːt]">
+<td class="num">43</td>
+<td class="w"><b style="font-weight:600">remote</b><span class="phon">[rɪˈmjuːt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">偏远的</span></td>
+<td class="s"><span class="syn"><b>isolated</b><i>孤立的</i></span><span class="syn"><b>distant</b><i>遥远的</i></span></td>
+</tr><tr data-k="advantage 优点 benefit, positive, good thing, strength [ədˈvɑːntɪdʒ]">
+<td class="num">44</td>
+<td class="w"><b style="font-weight:600">advantage</b><span class="phon">[ədˈvɑːntɪdʒ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">优点</span></td>
+<td class="s"><span class="syn"><b>benefit</b><i>益处</i></span><span class="syn"><b>positive</b><i>积极的，正面的</i></span><span class="syn"><b>good thing</b><i>好处</i></span><span class="syn"><b>strength</b><i>力量，优势</i></span></td>
+</tr><tr data-k="disadvantage 缺点 drawback, shortcoming, negative, problem [ˌdɪsədˈvɑːntɪdʒ]">
+<td class="num">45</td>
+<td class="w"><b style="font-weight:600">disadvantage</b><span class="phon">[ˌdɪsədˈvɑːntɪdʒ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">缺点</span></td>
+<td class="s"><span class="syn"><b>drawback</b><i>缺点</i></span><span class="syn"><b>shortcoming</b><i>缺点</i></span><span class="syn"><b>negative</b><i>负面的</i></span><span class="syn"><b>problem</b><i>问题</i></span></td>
+</tr><tr data-k="education 教育 schools, colleges, institution [ˌedʒʊˈkeɪʃn]">
+<td class="num">46</td>
+<td class="w"><b style="font-weight:600">education</b><span class="phon">[ˌedʒʊˈkeɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">教育</span></td>
+<td class="s"><span class="syn"><b>schools</b><i>学校</i></span><span class="syn"><b>colleges</b><i>学院</i></span><span class="syn"><b>institution</b><i>机构</i></span></td>
+</tr><tr data-k="ordinary people 公众 people, inhabitants, the public, men and women ">
+<td class="num">47</td>
+<td class="w"><b style="font-weight:600">ordinary people</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">公众</span></td>
+<td class="s"><span class="syn"><b>people</b><i>人们</i></span><span class="syn"><b>inhabitants</b><i>居民</i></span><span class="syn"><b>the public</b><i>公众</i></span><span class="syn"><b>men and women</b><i>男女</i></span></td>
+</tr><tr data-k="student 学生 pupil, undergraduate, postgraduate [ˈstjuːdnt]">
+<td class="num">48</td>
+<td class="w"><b style="font-weight:600">student</b><span class="phon">[ˈstjuːdnt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">学生</span></td>
+<td class="s"><span class="syn"><b>pupil</b><i>学生；瞳孔</i></span><span class="syn"><b>undergraduate</b><i>本科生</i></span><span class="syn"><b>postgraduate</b><i>研究生</i></span></td>
+</tr><tr data-k="purpose 目标 aim, goal, target, key areas [ˈpɜːpəs]">
+<td class="num">49</td>
+<td class="w"><b style="font-weight:600">purpose</b><span class="phon">[ˈpɜːpəs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">目标</span></td>
+<td class="s"><span class="syn"><b>aim</b><i>目标</i></span><span class="syn"><b>goal</b><i>目标</i></span><span class="syn"><b>target</b><i>目标</i></span><span class="syn"><b>key areas</b><i>关键领域</i></span></td>
+</tr><tr data-k="learn 学习 acquire, get, obtain [lɜːn]">
+<td class="num">50</td>
+<td class="w"><b style="font-weight:600">learn</b><span class="phon">[lɜːn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">学习</span></td>
+<td class="s"><span class="syn"><b>acquire</b><i>获得，学到</i></span><span class="syn"><b>get</b><i>得到</i></span><span class="syn"><b>obtain</b><i>获得</i></span></td>
+</tr><tr data-k="structure 结构大纲 outline, framework [ˈstrʌktʃə(r)]">
+<td class="num">51</td>
+<td class="w"><b style="font-weight:600">structure</b><span class="phon">[ˈstrʌktʃə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">结构大纲</span></td>
+<td class="s"><span class="syn"><b>outline</b><i>大纲</i></span><span class="syn"><b>framework</b><i>框架</i></span></td>
+</tr><tr data-k="reference materials 参考资料 books, journals, magazines ">
+<td class="num">52</td>
+<td class="w"><b style="font-weight:600">reference materials</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">参考资料</span></td>
+<td class="s"><span class="syn"><b>books</b><i>书籍</i></span><span class="syn"><b>journals</b><i>期刊</i></span><span class="syn"><b>magazines</b><i>杂志</i></span></td>
+</tr><tr data-k="extensive 广泛 comprehensive, a lot of, many [ɪkˈstensɪv]">
+<td class="num">53</td>
+<td class="w"><b style="font-weight:600">extensive</b><span class="phon">[ɪkˈstensɪv]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">广泛</span></td>
+<td class="s"><span class="syn"><b>comprehensive</b><i>全面的</i></span><span class="syn"><b>a lot of</b><i>许多</i></span><span class="syn"><b>many</b><i>许多</i></span></td>
+</tr><tr data-k="expertise 能力，专长 ability, skill [ˌekspɜːˈtiːz]">
+<td class="num">54</td>
+<td class="w"><b style="font-weight:600">expertise</b><span class="phon">[ˌekspɜːˈtiːz]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">能力，专长</span></td>
+<td class="s"><span class="syn"><b>ability</b><i>能力</i></span><span class="syn"><b>skill</b><i>技能</i></span></td>
+</tr><tr data-k="group 团队 team [gruːp]">
+<td class="num">55</td>
+<td class="w"><b style="font-weight:600">group</b><span class="phon">[gruːp]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">团队</span></td>
+<td class="s"><span class="syn"><b>team</b><i>团队</i></span></td>
+</tr><tr data-k="associate 与……相关 relate to, connect, link [əˈsjuːʃɪeɪt]">
+<td class="num">56</td>
+<td class="w"><b style="font-weight:600">associate</b><span class="phon">[əˈsjuːʃɪeɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">与……相关</span></td>
+<td class="s"><span class="syn"><b>relate to</b><i>与……相关</i></span><span class="syn"><b>connect</b><i>连接</i></span><span class="syn"><b>link</b><i>联系</i></span></td>
+</tr><tr data-k="approach 方法 way, how, method [əˈprjuːtʃ]">
+<td class="num">57</td>
+<td class="w"><b style="font-weight:600">approach</b><span class="phon">[əˈprjuːtʃ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">方法</span></td>
+<td class="s"><span class="syn"><b>way</b><i>方式，道路</i></span><span class="syn"><b>how</b><i>如何</i></span><span class="syn"><b>method</b><i>方法</i></span></td>
+</tr><tr data-k="motivate 鼓励，促进 encourage, stimulate, keep active, boost, help [ˈmjuːtɪveɪt]">
+<td class="num">58</td>
+<td class="w"><b style="font-weight:600">motivate</b><span class="phon">[ˈmjuːtɪveɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">鼓励，促进</span></td>
+<td class="s"><span class="syn"><b>encourage</b><i>鼓励</i></span><span class="syn"><b>stimulate</b><i>刺激，激励</i></span><span class="syn"><b>keep active</b><i>保持活跃</i></span><span class="syn"><b>boost</b><i>促进，提升</i></span><span class="syn"><b>help</b><i>帮助</i></span></td>
+</tr><tr data-k="improve 提升 develop, promote [ɪmˈpruːv]">
+<td class="num">59</td>
+<td class="w"><b style="font-weight:600">improve</b><span class="phon">[ɪmˈpruːv]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">提升</span></td>
+<td class="s"><span class="syn"><b>develop</b><i>发展</i></span><span class="syn"><b>promote</b><i>促进</i></span></td>
+</tr><tr data-k="overlook 低估 underestimate, neglect [ˌjuːvəˈlʊk]">
+<td class="num">60</td>
+<td class="w"><b style="font-weight:600">overlook</b><span class="phon">[ˌjuːvəˈlʊk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">低估</span></td>
+<td class="s"><span class="syn"><b>underestimate</b><i>低估</i></span><span class="syn"><b>neglect</b><i>忽视</i></span></td>
+</tr><tr data-k="omit 省掉 leave out, cancel [əˈmɪt]">
+<td class="num">61</td>
+<td class="w"><b style="font-weight:600">omit</b><span class="phon">[əˈmɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">省掉</span></td>
+<td class="s"><span class="syn"><b>leave out</b><i>省略</i></span><span class="syn"><b>cancel</b><i>取消</i></span></td>
+</tr><tr data-k="find 发现 discover, detect, spot, see, sight [faɪnd]">
+<td class="num">62</td>
+<td class="w"><b style="font-weight:600">find</b><span class="phon">[faɪnd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">发现</span></td>
+<td class="s"><span class="syn"><b>discover</b><i>发现</i></span><span class="syn"><b>detect</b><i>发现，检测</i></span><span class="syn"><b>spot</b><i>地点；发现</i></span><span class="syn"><b>see</b><i>看见</i></span><span class="syn"><b>sight</b><i>视力，景象</i></span></td>
+</tr><tr data-k="opportunity 机会 chance, odds, hope [ˌɒpəˈtjuːnətɪ]">
+<td class="num">63</td>
+<td class="w"><b style="font-weight:600">opportunity</b><span class="phon">[ˌɒpəˈtjuːnətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">机会</span></td>
+<td class="s"><span class="syn"><b>chance</b><i>机会</i></span><span class="syn"><b>odds</b><i>可能性</i></span><span class="syn"><b>hope</b><i>希望</i></span></td>
+</tr><tr data-k="difficult 困难的 problem, hard, not easy, not simple [ˈdɪfɪkəlt]">
+<td class="num">64</td>
+<td class="w"><b style="font-weight:600">difficult</b><span class="phon">[ˈdɪfɪkəlt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">困难的</span></td>
+<td class="s"><span class="syn"><b>problem</b><i>问题</i></span><span class="syn"><b>hard</b><i>困难的；硬的</i></span><span class="syn"><b>not easy</b><i>不容易</i></span><span class="syn"><b>not simple</b><i>不简单</i></span></td>
+</tr><tr data-k="prevent 阻止，避免 avoid, stop, escape, forbid, out of bounds [prɪˈvent]">
+<td class="num">65</td>
+<td class="w"><b style="font-weight:600">prevent</b><span class="phon">[prɪˈvent]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">阻止，避免</span></td>
+<td class="s"><span class="syn"><b>avoid</b><i>避免</i></span><span class="syn"><b>stop</b><i>停止</i></span><span class="syn"><b>escape</b><i>逃脱</i></span><span class="syn"><b>forbid</b><i>禁止</i></span><span class="syn"><b>out of bounds</b><i>禁止进入</i></span></td>
+</tr><tr data-k="misunderstand 理解错误 wrong idea, confuse, puzzle, perplex [ˌmɪsʌndəˈstænd]">
+<td class="num">66</td>
+<td class="w"><b style="font-weight:600">misunderstand</b><span class="phon">[ˌmɪsʌndəˈstænd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">理解错误</span></td>
+<td class="s"><span class="syn"><b>wrong idea</b><i>错误的想法</i></span><span class="syn"><b>confuse</b><i>使困惑</i></span><span class="syn"><b>puzzle</b><i>谜；使困惑</i></span><span class="syn"><b>perplex</b><i>使困惑</i></span></td>
+</tr><tr data-k="try hard 努力 make efforts, hard working ">
+<td class="num">67</td>
+<td class="w"><b style="font-weight:600">try hard</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">努力</span></td>
+<td class="s"><span class="syn"><b>make efforts</b><i>努力</i></span><span class="syn"><b>hard working</b><i>勤奋的</i></span></td>
+</tr><tr data-k="feedback 反馈 response, reaction, reply [ˈfɪ;dbæk]">
+<td class="num">68</td>
+<td class="w"><b style="font-weight:600">feedback</b><span class="phon">[ˈfɪ;dbæk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">反馈</span></td>
+<td class="s"><span class="syn"><b>response</b><i>回应</i></span><span class="syn"><b>reaction</b><i>反应</i></span><span class="syn"><b>reply</b><i>回复</i></span></td>
+</tr><tr data-k="affect 影响 impact, influence, effect [əˈfekt]">
+<td class="num">69</td>
+<td class="w"><b style="font-weight:600">affect</b><span class="phon">[əˈfekt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">影响</span></td>
+<td class="s"><span class="syn"><b>impact</b><i>影响</i></span><span class="syn"><b>influence</b><i>影响</i></span><span class="syn"><b>effect</b><i>影响，效果</i></span></td>
+</tr><tr data-k="analysis 分析，认知 perspective, understand, perceive, know [əˈnæləsɪs]">
+<td class="num">70</td>
+<td class="w"><b style="font-weight:600">analysis</b><span class="phon">[əˈnæləsɪs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">分析，认知</span></td>
+<td class="s"><span class="syn"><b>perspective</b><i>视角</i></span><span class="syn"><b>understand</b><i>理解</i></span><span class="syn"><b>perceive</b><i>察觉，认为</i></span><span class="syn"><b>know</b><i>知道</i></span></td>
+</tr><tr data-k="result 结果 outcome, consequence, conclusion [rɪˈzʌlt]">
+<td class="num">71</td>
+<td class="w"><b style="font-weight:600">result</b><span class="phon">[rɪˈzʌlt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">结果</span></td>
+<td class="s"><span class="syn"><b>outcome</b><i>结果</i></span><span class="syn"><b>consequence</b><i>结果，后果</i></span><span class="syn"><b>conclusion</b><i>结论</i></span></td>
+</tr><tr data-k="handle 处理 deal with, cope with, figure out, work out, take care of [ˈhændl]">
+<td class="num">72</td>
+<td class="w"><b style="font-weight:600">handle</b><span class="phon">[ˈhændl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">处理</span></td>
+<td class="s"><span class="syn"><b>deal with</b><i>处理</i></span><span class="syn"><b>cope with</b><i>应对</i></span><span class="syn"><b>figure out</b><i>弄明白</i></span><span class="syn"><b>work out</b><i>计算出，解决</i></span><span class="syn"><b>take care of</b><i>照顾，处理</i></span></td>
+</tr><tr data-k="support 帮助 help, assistance, aid, tip [səˈpɔːt]">
+<td class="num">73</td>
+<td class="w"><b style="font-weight:600">support</b><span class="phon">[səˈpɔːt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">帮助</span></td>
+<td class="s"><span class="syn"><b>help</b><i>帮助</i></span><span class="syn"><b>assistance</b><i>协助</i></span><span class="syn"><b>aid</b><i>帮助，援助</i></span><span class="syn"><b>tip</b><i>小费；提示</i></span></td>
+</tr><tr data-k="ideal 完美的 perfect [aɪˈdiːəl]">
+<td class="num">74</td>
+<td class="w"><b style="font-weight:600">ideal</b><span class="phon">[aɪˈdiːəl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">完美的</span></td>
+<td class="s"><span class="syn"><b>perfect</b><i>完美的</i></span></td>
+</tr><tr data-k="rigorous 严格的 strict, demanding [ˈrɪgərəs]">
+<td class="num">75</td>
+<td class="w"><b style="font-weight:600">rigorous</b><span class="phon">[ˈrɪgərəs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">严格的</span></td>
+<td class="s"><span class="syn"><b>strict</b><i>严格的</i></span><span class="syn"><b>demanding</b><i>要求高的</i></span></td>
+</tr><tr data-k="restrict 限制 limit, not permit [rɪˈstrɪkt]">
+<td class="num">76</td>
+<td class="w"><b style="font-weight:600">restrict</b><span class="phon">[rɪˈstrɪkt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">限制</span></td>
+<td class="s"><span class="syn"><b>limit</b><i>限制</i></span><span class="syn"><b>not permit</b><i>不允许</i></span></td>
+</tr><tr data-k="similar 相似的 like, compare [ˈsɪmələ(r)]">
+<td class="num">77</td>
+<td class="w"><b style="font-weight:600">similar</b><span class="phon">[ˈsɪmələ(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">相似的</span></td>
+<td class="s"><span class="syn"><b>like</b><i>像；喜欢</i></span><span class="syn"><b>compare</b><i>比较</i></span></td>
+</tr><tr data-k="particular 特别的 special, in particular, especially [pəˈtɪkjələ(r)]">
+<td class="num">78</td>
+<td class="w"><b style="font-weight:600">particular</b><span class="phon">[pəˈtɪkjələ(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">特别的</span></td>
+<td class="s"><span class="syn"><b>special</b><i>特别的</i></span><span class="syn"><b>in particular</b><i>尤其</i></span><span class="syn"><b>especially</b><i>尤其</i></span></td>
+</tr><tr data-k="copy 重复 repeat, reproduce [ˈkɒpɪ]">
+<td class="num">79</td>
+<td class="w"><b style="font-weight:600">copy</b><span class="phon">[ˈkɒpɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">重复</span></td>
+<td class="s"><span class="syn"><b>repeat</b><i>重复</i></span><span class="syn"><b>reproduce</b><i>繁殖，复制</i></span></td>
+</tr><tr data-k="statistics 统计学 data, figure [stəˈtɪstɪks]">
+<td class="num">80</td>
+<td class="w"><b style="font-weight:600">statistics</b><span class="phon">[stəˈtɪstɪks]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">统计学</span></td>
+<td class="s"><span class="syn"><b>data</b><i>数据</i></span><span class="syn"><b>figure</b><i>数字；体形</i></span></td>
+</tr><tr data-k="maximum 最大值 up to, at most [ˈmæksɪməm]">
+<td class="num">81</td>
+<td class="w"><b style="font-weight:600">maximum</b><span class="phon">[ˈmæksɪməm]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">最大值</span></td>
+<td class="s"><span class="syn"><b>up to</b><i>多达</i></span><span class="syn"><b>at most</b><i>最多</i></span></td>
+</tr><tr data-k="minimum 最小值 at least [ˈmɪnɪməm]">
+<td class="num">82</td>
+<td class="w"><b style="font-weight:600">minimum</b><span class="phon">[ˈmɪnɪməm]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">最小值</span></td>
+<td class="s"><span class="syn"><b>at least</b><i>至少</i></span></td>
+</tr><tr data-k="initial 最初的，开始的 at first, start, begin, early on, premiere [ɪˈnɪʃl]">
+<td class="num">83</td>
+<td class="w"><b style="font-weight:600">initial</b><span class="phon">[ɪˈnɪʃl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">最初的，开始的</span></td>
+<td class="s"><span class="syn"><b>at first</b><i>起初</i></span><span class="syn"><b>start</b><i>开始</i></span><span class="syn"><b>begin</b><i>开始</i></span><span class="syn"><b>early on</b><i>早期</i></span><span class="syn"><b>premiere</b><i>首演</i></span></td>
+</tr><tr data-k="limited 少量的 just a few, a little, small, a small number of, not many, miniature [ˈlɪmɪtɪd]">
+<td class="num">84</td>
+<td class="w"><b style="font-weight:600">limited</b><span class="phon">[ˈlɪmɪtɪd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">少量的</span></td>
+<td class="s"><span class="syn"><b>just a few</b><i>仅有几个</i></span><span class="syn"><b>a little</b><i>一点</i></span><span class="syn"><b>small</b><i>小的</i></span><span class="syn"><b>a small number of</b><i>少量</i></span><span class="syn"><b>not many</b><i>不多</i></span><span class="syn"><b>miniature</b><i>微型的</i></span></td>
+</tr><tr data-k="shorten 截短 cut down [ˈʃɔːtn]">
+<td class="num">85</td>
+<td class="w"><b style="font-weight:600">shorten</b><span class="phon">[ˈʃɔːtn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">截短</span></td>
+<td class="s"><span class="syn"><b>cut down</b><i>削减，砍倒</i></span></td>
+</tr><tr data-k="decrease 降低 lower, reduce, fewer, drop, fall, decrease [dɪˈkriːs]">
+<td class="num">86</td>
+<td class="w"><b style="font-weight:600">decrease</b><span class="phon">[dɪˈkriːs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">降低</span></td>
+<td class="s"><span class="syn"><b>lower</b><i>较低的；降低</i></span><span class="syn"><b>reduce</b><i>减少</i></span><span class="syn"><b>fewer</b><i>更少的</i></span><span class="syn"><b>drop</b><i>下降；掉落</i></span><span class="syn"><b>fall</b><i>下降；落下</i></span><span class="syn"><b>decrease</b><i>减少</i></span></td>
+</tr><tr data-k="lack / v. 缺乏 shortage, insufficient, fewer, not enough [læk]">
+<td class="num">87</td>
+<td class="w"><b style="font-weight:600">lack</b><span class="phon">[læk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">/ v. 缺乏</span></td>
+<td class="s"><span class="syn"><b>shortage</b><i>短缺</i></span><span class="syn"><b>insufficient</b><i>不足的</i></span><span class="syn"><b>fewer</b><i>更少的</i></span><span class="syn"><b>not enough</b><i>不够</i></span></td>
+</tr><tr data-k="large 大的 big, huge [lɑːdʒ]">
+<td class="num">88</td>
+<td class="w"><b style="font-weight:600">large</b><span class="phon">[lɑːdʒ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">大的</span></td>
+<td class="s"><span class="syn"><b>big</b><i>大的</i></span><span class="syn"><b>huge</b><i>巨大的</i></span></td>
+</tr><tr data-k="amount of 大量 lots of, large quantities of, loads of ">
+<td class="num">89</td>
+<td class="w"><b style="font-weight:600">amount of</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">大量</span></td>
+<td class="s"><span class="syn"><b>lots of</b><i>许多</i></span><span class="syn"><b>large quantities of</b><i>大量的</i></span><span class="syn"><b>loads of</b><i>大量的</i></span></td>
+</tr><tr data-k="majority 绝大部分 most [məˈdʒɒrətɪ]">
+<td class="num">90</td>
+<td class="w"><b style="font-weight:600">majority</b><span class="phon">[məˈdʒɒrətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">绝大部分</span></td>
+<td class="s"><span class="syn"><b>most</b><i>大多数</i></span></td>
+</tr><tr data-k="double 两倍 twice [ˈdʌbl]">
+<td class="num">91</td>
+<td class="w"><b style="font-weight:600">double</b><span class="phon">[ˈdʌbl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">两倍</span></td>
+<td class="s"><span class="syn"><b>twice</b><i>两次</i></span></td>
+</tr><tr data-k="more than 超过 over, beyond, exceed, above ">
+<td class="num">92</td>
+<td class="w"><b style="font-weight:600">more than</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">超过</span></td>
+<td class="s"><span class="syn"><b>over</b><i>超过；在上方</i></span><span class="syn"><b>beyond</b><i>超出</i></span><span class="syn"><b>exceed</b><i>超过</i></span><span class="syn"><b>above</b><i>在……上方</i></span></td>
+</tr><tr data-k="at present 当前 already, existing, currently, nowadays ">
+<td class="num">93</td>
+<td class="w"><b style="font-weight:600">at present</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">当前</span></td>
+<td class="s"><span class="syn"><b>already</b><i>已经</i></span><span class="syn"><b>existing</b><i>现有的</i></span><span class="syn"><b>currently</b><i>目前</i></span><span class="syn"><b>nowadays</b><i>如今</i></span></td>
+</tr><tr data-k="update 更新 upgrade, up to date, more current, modern [ˌʌpˈdeɪt]">
+<td class="num">94</td>
+<td class="w"><b style="font-weight:600">update</b><span class="phon">[ˌʌpˈdeɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">更新</span></td>
+<td class="s"><span class="syn"><b>upgrade</b><i>升级</i></span><span class="syn"><b>up to date</b><i>最新的</i></span><span class="syn"><b>more current</b><i>更时新的</i></span><span class="syn"><b>modern</b><i>现代的</i></span></td>
+</tr><tr data-k="newest 最新的 latest [ˈnjuːɪst]">
+<td class="num">95</td>
+<td class="w"><b style="font-weight:600">newest</b><span class="phon">[ˈnjuːɪst]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">最新的</span></td>
+<td class="s"><span class="syn"><b>latest</b><i>最新的</i></span></td>
+</tr><tr data-k="soon 将来 later, in the future [suːn]">
+<td class="num">96</td>
+<td class="w"><b style="font-weight:600">soon</b><span class="phon">[suːn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">将来</span></td>
+<td class="s"><span class="syn"><b>later</b><i>后来</i></span><span class="syn"><b>in the future</b><i>将来</i></span></td>
+</tr><tr data-k="out of date 过时的 old fashioned ">
+<td class="num">97</td>
+<td class="w"><b style="font-weight:600">out of date</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">过时的</span></td>
+<td class="s"><span class="syn"><b>old fashioned</b><i>老式的</i></span></td>
+</tr><tr data-k="ancient 古老的，过去的 medieval, in the past, once, historical, old, ancient, former [ˈeɪnʃənt]">
+<td class="num">98</td>
+<td class="w"><b style="font-weight:600">ancient</b><span class="phon">[ˈeɪnʃənt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">古老的，过去的</span></td>
+<td class="s"><span class="syn"><b>medieval</b><i>中世纪的</i></span><span class="syn"><b>in the past</b><i>过去</i></span><span class="syn"><b>once</b><i>一次；曾经</i></span><span class="syn"><b>historical</b><i>历史的</i></span><span class="syn"><b>old</b><i>老的</i></span><span class="syn"><b>ancient</b><i>古代的</i></span><span class="syn"><b>former</b><i>前者的，以前的</i></span></td>
+</tr><tr data-k="temporary 暂时的 a short time [ˈtemprərɪ]">
+<td class="num">99</td>
+<td class="w"><b style="font-weight:600">temporary</b><span class="phon">[ˈtemprərɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">暂时的</span></td>
+<td class="s"><span class="syn"><b>a short time</b><i>短时间</i></span></td>
+</tr><tr data-k="deadline 截止时间 time pressure, on time [ˈdedlaɪn]">
+<td class="num">100</td>
+<td class="w"><b style="font-weight:600">deadline</b><span class="phon">[ˈdedlaɪn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">截止时间</span></td>
+<td class="s"><span class="syn"><b>time pressure</b><i>时间压力</i></span><span class="syn"><b>on time</b><i>准时</i></span></td>
+</tr><tr data-k="permanent 长久的 long-lasting [ˈpɜːmənənt]">
+<td class="num">101</td>
+<td class="w"><b style="font-weight:600">permanent</b><span class="phon">[ˈpɜːmənənt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">长久的</span></td>
+<td class="s"><span class="syn"><b>long-lasting</b><i>持久的</i></span></td>
+</tr><tr data-k="more often 频繁 frequent ">
+<td class="num">102</td>
+<td class="w"><b style="font-weight:600">more often</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">频繁</span></td>
+<td class="s"><span class="syn"><b>frequent</b><i>频繁的</i></span></td>
+</tr><tr data-k="annual 年度的 every year [ˈænjʊəl]">
+<td class="num">103</td>
+<td class="w"><b style="font-weight:600">annual</b><span class="phon">[ˈænjʊəl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">年度的</span></td>
+<td class="s"><span class="syn"><b>every year</b><i>每年</i></span></td>
+</tr><tr data-k="every month 每个月 monthly, four weeks ">
+<td class="num">104</td>
+<td class="w"><b style="font-weight:600">every month</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">每个月</span></td>
+<td class="s"><span class="syn"><b>monthly</b><i>每月的</i></span><span class="syn"><b>four weeks</b><i>四周</i></span></td>
+</tr><tr data-k="every day 每天 daily ">
+<td class="num">105</td>
+<td class="w"><b style="font-weight:600">every day</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">每天</span></td>
+<td class="s"><span class="syn"><b>daily</b><i>每天的</i></span></td>
+</tr><tr data-k="classify 分类 category, sort, type, kind [ˈklæsɪfaɪ]">
+<td class="num">106</td>
+<td class="w"><b style="font-weight:600">classify</b><span class="phon">[ˈklæsɪfaɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">分类</span></td>
+<td class="s"><span class="syn"><b>category</b><i>类别</i></span><span class="syn"><b>sort</b><i>种类；分类</i></span><span class="syn"><b>type</b><i>类型</i></span><span class="syn"><b>kind</b><i>种类；友善的</i></span></td>
+</tr><tr data-k="entrance 入口 access, main gate, door [ˈentrəns]">
+<td class="num">107</td>
+<td class="w"><b style="font-weight:600">entrance</b><span class="phon">[ˈentrəns]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">入口</span></td>
+<td class="s"><span class="syn"><b>access</b><i>进入，使用权</i></span><span class="syn"><b>main gate</b><i>大门</i></span><span class="syn"><b>door</b><i>门</i></span></td>
+</tr><tr data-k="behind 在……后面 back, rear [bɪˈhaɪnd]">
+<td class="num">108</td>
+<td class="w"><b style="font-weight:600">behind</b><span class="phon">[bɪˈhaɪnd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">在……后面</span></td>
+<td class="s"><span class="syn"><b>back</b><i>后面；背部</i></span><span class="syn"><b>rear</b><i>后部；抚养</i></span></td>
+</tr><tr data-k="below 在……下面 under [bɪˈljuː]">
+<td class="num">109</td>
+<td class="w"><b style="font-weight:600">below</b><span class="phon">[bɪˈljuː]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">在……下面</span></td>
+<td class="s"><span class="syn"><b>under</b><i>在……下方</i></span></td>
+</tr><tr data-k="beside 在……旁边 next to, near, border [bɪˈsaɪd]">
+<td class="num">110</td>
+<td class="w"><b style="font-weight:600">beside</b><span class="phon">[bɪˈsaɪd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">在……旁边</span></td>
+<td class="s"><span class="syn"><b>next to</b><i>在……旁边</i></span><span class="syn"><b>near</b><i>靠近</i></span><span class="syn"><b>border</b><i>边界；接壤</i></span></td>
+</tr><tr data-k="available 可用的 have, accessible, not close, open [əˈveɪləbl]">
+<td class="num">111</td>
+<td class="w"><b style="font-weight:600">available</b><span class="phon">[əˈveɪləbl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">可用的</span></td>
+<td class="s"><span class="syn"><b>have</b><i>有</i></span><span class="syn"><b>accessible</b><i>可进入的，易接近的</i></span><span class="syn"><b>not close</b><i>不近</i></span><span class="syn"><b>open</b><i>开放的；打开</i></span></td>
+</tr><tr data-k="boring 无趣的 not interesting, boredom [ˈbɔːrɪŋ]">
+<td class="num">112</td>
+<td class="w"><b style="font-weight:600">boring</b><span class="phon">[ˈbɔːrɪŋ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">无趣的</span></td>
+<td class="s"><span class="syn"><b>not interesting</b><i>无趣的</i></span><span class="syn"><b>boredom</b><i>无聊</i></span></td>
+</tr><tr data-k="trend 倾向 possibility, likely, tendency [trend]">
+<td class="num">113</td>
+<td class="w"><b style="font-weight:600">trend</b><span class="phon">[trend]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">倾向</span></td>
+<td class="s"><span class="syn"><b>possibility</b><i>可能性</i></span><span class="syn"><b>likely</b><i>可能的</i></span><span class="syn"><b>tendency</b><i>趋势</i></span></td>
+</tr><tr data-k="risky 危险的 dangerous, not safe, hazard [ˈrɪskɪ]">
+<td class="num">114</td>
+<td class="w"><b style="font-weight:600">risky</b><span class="phon">[ˈrɪskɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">危险的</span></td>
+<td class="s"><span class="syn"><b>dangerous</b><i>危险的</i></span><span class="syn"><b>not safe</b><i>不安全的</i></span><span class="syn"><b>hazard</b><i>危险</i></span></td>
+</tr><tr data-k="poisonous 有毒的 toxic, dangerous [ˈpɔɪzənəs]">
+<td class="num">115</td>
+<td class="w"><b style="font-weight:600">poisonous</b><span class="phon">[ˈpɔɪzənəs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">有毒的</span></td>
+<td class="s"><span class="syn"><b>toxic</b><i>有毒的</i></span><span class="syn"><b>dangerous</b><i>危险的</i></span></td>
+</tr><tr data-k="warning 警报 alarm, alert [ˈwɔːnɪŋ]">
+<td class="num">116</td>
+<td class="w"><b style="font-weight:600">warning</b><span class="phon">[ˈwɔːnɪŋ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">警报</span></td>
+<td class="s"><span class="syn"><b>alarm</b><i>警报</i></span><span class="syn"><b>alert</b><i>警惕的；警报</i></span></td>
+</tr><tr data-k="care 谨慎 caution [keə(r)]">
+<td class="num">117</td>
+<td class="w"><b style="font-weight:600">care</b><span class="phon">[keə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">谨慎</span></td>
+<td class="s"><span class="syn"><b>caution</b><i>谨慎，警告</i></span></td>
+</tr><tr data-k="steal 偷窃 theft [stiːl]">
+<td class="num">118</td>
+<td class="w"><b style="font-weight:600">steal</b><span class="phon">[stiːl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">偷窃</span></td>
+<td class="s"><span class="syn"><b>theft</b><i>盗窃</i></span></td>
+</tr><tr data-k="protect 保护 safeguard, shelter, preserve [prəˈtekt]">
+<td class="num">119</td>
+<td class="w"><b style="font-weight:600">protect</b><span class="phon">[prəˈtekt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">保护</span></td>
+<td class="s"><span class="syn"><b>safeguard</b><i>保护</i></span><span class="syn"><b>shelter</b><i>住所，庇护</i></span><span class="syn"><b>preserve</b><i>保护，保存</i></span></td>
+</tr><tr data-k="injury 伤害 harm, hurt, damage, dangerous, frighten [ˈɪndʒərɪ]">
+<td class="num">120</td>
+<td class="w"><b style="font-weight:600">injury</b><span class="phon">[ˈɪndʒərɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">伤害</span></td>
+<td class="s"><span class="syn"><b>harm</b><i>伤害</i></span><span class="syn"><b>hurt</b><i>伤害</i></span><span class="syn"><b>damage</b><i>损害</i></span><span class="syn"><b>dangerous</b><i>危险的</i></span><span class="syn"><b>frighten</b><i>使害怕</i></span></td>
+</tr><tr data-k="military 军事的 battle, weapon, not peaceful [ˈmɪlətrɪ]">
+<td class="num">121</td>
+<td class="w"><b style="font-weight:600">military</b><span class="phon">[ˈmɪlətrɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">军事的</span></td>
+<td class="s"><span class="syn"><b>battle</b><i>战斗</i></span><span class="syn"><b>weapon</b><i>武器</i></span><span class="syn"><b>not peaceful</b><i>不平静的</i></span></td>
+</tr><tr data-k="tactics 策略 strategy, method [ˈtæktɪks]">
+<td class="num">122</td>
+<td class="w"><b style="font-weight:600">tactics</b><span class="phon">[ˈtæktɪks]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">策略</span></td>
+<td class="s"><span class="syn"><b>strategy</b><i>策略</i></span><span class="syn"><b>method</b><i>方法</i></span></td>
+</tr><tr data-k="rely on 依靠 depend on, count on ">
+<td class="num">123</td>
+<td class="w"><b style="font-weight:600">rely on</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">依靠</span></td>
+<td class="s"><span class="syn"><b>depend on</b><i>依靠</i></span><span class="syn"><b>count on</b><i>依靠</i></span></td>
+</tr><tr data-k="travel 旅行 tourism, trip, passenger, flight [ˈtrævl]">
+<td class="num">124</td>
+<td class="w"><b style="font-weight:600">travel</b><span class="phon">[ˈtrævl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">旅行</span></td>
+<td class="s"><span class="syn"><b>tourism</b><i>旅游业</i></span><span class="syn"><b>trip</b><i>旅行</i></span><span class="syn"><b>passenger</b><i>乘客</i></span><span class="syn"><b>flight</b><i>飞行，航班</i></span></td>
+</tr><tr data-k="space travel 空间旅行 aircraft, rocket, satellite ">
+<td class="num">125</td>
+<td class="w"><b style="font-weight:600">space travel</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">空间旅行</span></td>
+<td class="s"><span class="syn"><b>aircraft</b><i>飞机</i></span><span class="syn"><b>rocket</b><i>火箭</i></span><span class="syn"><b>satellite</b><i>卫星</i></span></td>
+</tr><tr data-k="transport 交通 vehicle, bus, train, boat, ship, ferry, subway [ˈtrænspɔːt]">
+<td class="num">126</td>
+<td class="w"><b style="font-weight:600">transport</b><span class="phon">[ˈtrænspɔːt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">交通</span></td>
+<td class="s"><span class="syn"><b>vehicle</b><i>车辆</i></span><span class="syn"><b>bus</b><i>公共汽车</i></span><span class="syn"><b>train</b><i>火车；训练</i></span><span class="syn"><b>boat</b><i>船</i></span><span class="syn"><b>ship</b><i>船；运输</i></span><span class="syn"><b>ferry</b><i>渡轮</i></span><span class="syn"><b>subway</b><i>地铁</i></span></td>
+</tr><tr data-k="specific 具体的 detail, particular, example [spəˈsɪfɪk]">
+<td class="num">127</td>
+<td class="w"><b style="font-weight:600">specific</b><span class="phon">[spəˈsɪfɪk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">具体的</span></td>
+<td class="s"><span class="syn"><b>detail</b><i>细节</i></span><span class="syn"><b>particular</b><i>特别的</i></span><span class="syn"><b>example</b><i>例子</i></span></td>
+</tr><tr data-k="request 询问 ask for, inquiry [rɪˈkwest]">
+<td class="num">128</td>
+<td class="w"><b style="font-weight:600">request</b><span class="phon">[rɪˈkwest]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">询问</span></td>
+<td class="s"><span class="syn"><b>ask for</b><i>要求，索取</i></span><span class="syn"><b>inquiry</b><i>询问，调查</i></span></td>
+</tr><tr data-k="clear 清晰地 definitive [klɪə(r)]">
+<td class="num">129</td>
+<td class="w"><b style="font-weight:600">clear</b><span class="phon">[klɪə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">清晰地</span></td>
+<td class="s"><span class="syn"><b>definitive</b><i>确定的，权威的</i></span></td>
+</tr><tr data-k="freeze 结冰 froze, ice, chill, cold [ˈfri:z]">
+<td class="num">130</td>
+<td class="w"><b style="font-weight:600">freeze</b><span class="phon">[ˈfri:z]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">结冰</span></td>
+<td class="s"><span class="syn"><b>froze</b><i>冻结（freeze 的过去式）</i></span><span class="syn"><b>ice</b><i>冰</i></span><span class="syn"><b>chill</b><i>寒冷</i></span><span class="syn"><b>cold</b><i>寒冷的</i></span></td>
+</tr><tr data-k="organization 公司 business, company, corporation structure [ˌɔːgənaɪˈzeɪʃn]">
+<td class="num">131</td>
+<td class="w"><b style="font-weight:600">organization</b><span class="phon">[ˌɔːgənaɪˈzeɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">公司</span></td>
+<td class="s"><span class="syn"><b>business</b><i>商业，事务</i></span><span class="syn"><b>company</b><i>公司</i></span><span class="syn"><b>corporation structure</b><i>公司架构</i></span></td>
+</tr><tr data-k="organize 组织，安排 arrange, plan [ˈɔːgənaɪz]">
+<td class="num">132</td>
+<td class="w"><b style="font-weight:600">organize</b><span class="phon">[ˈɔːgənaɪz]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">组织，安排</span></td>
+<td class="s"><span class="syn"><b>arrange</b><i>安排，排列</i></span><span class="syn"><b>plan</b><i>计划</i></span></td>
+</tr><tr data-k="produce 产生 generate, make [prəˈdjuːs]">
+<td class="num">133</td>
+<td class="w"><b style="font-weight:600">produce</b><span class="phon">[prəˈdjuːs]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">产生</span></td>
+<td class="s"><span class="syn"><b>generate</b><i>产生</i></span><span class="syn"><b>make</b><i>制造</i></span></td>
+</tr><tr data-k="administer 管理，治理 manage [ədˈmɪnɪstə(r)]">
+<td class="num">134</td>
+<td class="w"><b style="font-weight:600">administer</b><span class="phon">[ədˈmɪnɪstə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">管理，治理</span></td>
+<td class="s"><span class="syn"><b>manage</b><i>管理；设法</i></span></td>
+</tr><tr data-k="occupation 职位 profession, job [ˌɒkjʊˈpeɪʃn]">
+<td class="num">135</td>
+<td class="w"><b style="font-weight:600">occupation</b><span class="phon">[ˌɒkjʊˈpeɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">职位</span></td>
+<td class="s"><span class="syn"><b>profession</b><i>职业</i></span><span class="syn"><b>job</b><i>工作</i></span></td>
+</tr><tr data-k="all ages 所有年龄的人 young and old ">
+<td class="num">136</td>
+<td class="w"><b style="font-weight:600">all ages</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">所有年龄的人</span></td>
+<td class="s"><span class="syn"><b>young and old</b><i>老少</i></span></td>
+</tr><tr data-k="youth 年轻 young, boy, child, teenager [juːθ]">
+<td class="num">137</td>
+<td class="w"><b style="font-weight:600">youth</b><span class="phon">[juːθ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">年轻</span></td>
+<td class="s"><span class="syn"><b>young</b><i>年轻的</i></span><span class="syn"><b>boy</b><i>男孩</i></span><span class="syn"><b>child</b><i>儿童</i></span><span class="syn"><b>teenager</b><i>青少年</i></span></td>
+</tr><tr data-k="mate 伙伴 friend, peer [meɪt]">
+<td class="num">138</td>
+<td class="w"><b style="font-weight:600">mate</b><span class="phon">[meɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">伙伴</span></td>
+<td class="s"><span class="syn"><b>friend</b><i>朋友</i></span><span class="syn"><b>peer</b><i>同龄人，同行</i></span></td>
+</tr><tr data-k="staff 员工 recruit, worker, employee [stɑːf]">
+<td class="num">139</td>
+<td class="w"><b style="font-weight:600">staff</b><span class="phon">[stɑːf]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">员工</span></td>
+<td class="s"><span class="syn"><b>recruit</b><i>招募；新员工</i></span><span class="syn"><b>worker</b><i>工人</i></span><span class="syn"><b>employee</b><i>雇员</i></span></td>
+</tr><tr data-k="sale 销售 retail [seɪl]">
+<td class="num">140</td>
+<td class="w"><b style="font-weight:600">sale</b><span class="phon">[seɪl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">销售</span></td>
+<td class="s"><span class="syn"><b>retail</b><i>零售</i></span></td>
+</tr><tr data-k="cheap 便宜的 low price [tʃiːp]">
+<td class="num">141</td>
+<td class="w"><b style="font-weight:600">cheap</b><span class="phon">[tʃiːp]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">便宜的</span></td>
+<td class="s"><span class="syn"><b>low price</b><i>低价</i></span></td>
+</tr><tr data-k="discount 打折 10% off, on sale [ˈdɪskaʊnt]">
+<td class="num">142</td>
+<td class="w"><b style="font-weight:600">discount</b><span class="phon">[ˈdɪskaʊnt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">打折</span></td>
+<td class="s"><span class="syn"><b>10% off</b><i>打九折</i></span><span class="syn"><b>on sale</b><i>打折出售</i></span></td>
+</tr><tr data-k="round 圆 curve, circle [raʊnd]">
+<td class="num">143</td>
+<td class="w"><b style="font-weight:600">round</b><span class="phon">[raʊnd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">圆</span></td>
+<td class="s"><span class="syn"><b>curve</b><i>曲线</i></span><span class="syn"><b>circle</b><i>圆圈</i></span></td>
+</tr><tr data-k="order 顺序 sequence [ˈɔːdə(r)]">
+<td class="num">144</td>
+<td class="w"><b style="font-weight:600">order</b><span class="phon">[ˈɔːdə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">顺序</span></td>
+<td class="s"><span class="syn"><b>sequence</b><i>顺序</i></span></td>
+</tr><tr data-k="renovate 修理；翻新 fix, repair [ˈrenəveɪt]">
+<td class="num">145</td>
+<td class="w"><b style="font-weight:600">renovate</b><span class="phon">[ˈrenəveɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">修理；翻新</span></td>
+<td class="s"><span class="syn"><b>fix</b><i>修理；固定</i></span><span class="syn"><b>repair</b><i>修理</i></span></td>
+</tr><tr data-k="alone 单独的 single, by themselves [əˈljuːn]">
+<td class="num">146</td>
+<td class="w"><b style="font-weight:600">alone</b><span class="phon">[əˈljuːn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">单独的</span></td>
+<td class="s"><span class="syn"><b>single</b><i>单一的</i></span><span class="syn"><b>by themselves</b><i>独自地</i></span></td>
+</tr><tr data-k="hospitality 招待 treatment, prepare refreshment [ˌhɒspɪˈtælətɪ]">
+<td class="num">147</td>
+<td class="w"><b style="font-weight:600">hospitality</b><span class="phon">[ˌhɒspɪˈtælətɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">招待</span></td>
+<td class="s"><span class="syn"><b>treatment</b><i>治疗，处理</i></span><span class="syn"><b>prepare refreshment</b><i>准备茶点</i></span></td>
+</tr><tr data-k="shape like 像 look like, seem ">
+<td class="num">148</td>
+<td class="w"><b style="font-weight:600">shape like</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">像</span></td>
+<td class="s"><span class="syn"><b>look like</b><i>看起来像</i></span><span class="syn"><b>seem</b><i>似乎</i></span></td>
+</tr><tr data-k="depress 失望，使沮丧 disappoint, dispirit, frustrate, discourage [dɪˈpres]">
+<td class="num">149</td>
+<td class="w"><b style="font-weight:600">depress</b><span class="phon">[dɪˈpres]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">失望，使沮丧</span></td>
+<td class="s"><span class="syn"><b>disappoint</b><i>使失望</i></span><span class="syn"><b>dispirit</b><i>使沮丧</i></span><span class="syn"><b>frustrate</b><i>使沮丧</i></span><span class="syn"><b>discourage</b><i>使气馁；阻止</i></span></td>
+</tr><tr data-k="well-known 有名的 famous, fame [ˌwelˈnjuːn]">
+<td class="num">150</td>
+<td class="w"><b style="font-weight:600">well-known</b><span class="phon">[ˌwelˈnjuːn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">有名的</span></td>
+<td class="s"><span class="syn"><b>famous</b><i>著名的</i></span><span class="syn"><b>fame</b><i>名声</i></span></td>
+</tr><tr data-k="specialize in 专注于 focus, emphasis, concentrate ">
+<td class="num">151</td>
+<td class="w"><b style="font-weight:600">specialize in</b><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">专注于</span></td>
+<td class="s"><span class="syn"><b>focus</b><i>焦点；集中</i></span><span class="syn"><b>emphasis</b><i>强调</i></span><span class="syn"><b>concentrate</b><i>集中</i></span></td>
+</tr><tr data-k="part 部分 component, proportion, percent, section, element, ingredient [pɑːt]">
+<td class="num">152</td>
+<td class="w"><b style="font-weight:600">part</b><span class="phon">[pɑːt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">部分</span></td>
+<td class="s"><span class="syn"><b>component</b><i>成分，部件</i></span><span class="syn"><b>proportion</b><i>比例</i></span><span class="syn"><b>percent</b><i>百分比</i></span><span class="syn"><b>section</b><i>部分，区段</i></span><span class="syn"><b>element</b><i>要素</i></span><span class="syn"><b>ingredient</b><i>成分，原料</i></span></td>
+</tr><tr data-k="typical 典型的；普通的 representative, common, average [ˈtɪpɪkl]">
+<td class="num">153</td>
+<td class="w"><b style="font-weight:600">typical</b><span class="phon">[ˈtɪpɪkl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">典型的；普通的</span></td>
+<td class="s"><span class="syn"><b>representative</b><i>代表</i></span><span class="syn"><b>common</b><i>常见的，共同的</i></span><span class="syn"><b>average</b><i>平均的</i></span></td>
+</tr><tr data-k="uncommon 特别的 special, unique, unusual, rare [ʌnˈkɒmən]">
+<td class="num">154</td>
+<td class="w"><b style="font-weight:600">uncommon</b><span class="phon">[ʌnˈkɒmən]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">特别的</span></td>
+<td class="s"><span class="syn"><b>special</b><i>特别的</i></span><span class="syn"><b>unique</b><i>独特的</i></span><span class="syn"><b>unusual</b><i>不寻常的</i></span><span class="syn"><b>rare</b><i>稀有的</i></span></td>
+</tr><tr data-k="accurately 精确地 precisely [ˈækjərətlɪ]">
+<td class="num">155</td>
+<td class="w"><b style="font-weight:600">accurately</b><span class="phon">[ˈækjərətlɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">精确地</span></td>
+<td class="s"><span class="syn"><b>precisely</b><i>精确地</i></span></td>
+</tr><tr data-k="expand 扩建；扩张 add, enlarge, increase spaces [ɪkˈspænd]">
+<td class="num">156</td>
+<td class="w"><b style="font-weight:600">expand</b><span class="phon">[ɪkˈspænd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">扩建；扩张</span></td>
+<td class="s"><span class="syn"><b>add</b><i>增加</i></span><span class="syn"><b>enlarge</b><i>扩大</i></span><span class="syn"><b>increase spaces</b><i>增加空间</i></span></td>
+</tr><tr data-k="climb 上升 go up, increase [klaɪm]">
+<td class="num">157</td>
+<td class="w"><b style="font-weight:600">climb</b><span class="phon">[klaɪm]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">上升</span></td>
+<td class="s"><span class="syn"><b>go up</b><i>上升</i></span><span class="syn"><b>increase</b><i>增加</i></span></td>
+</tr><tr data-k="enhance 增强 improve, increase [ɪnˈhɑːns]">
+<td class="num">158</td>
+<td class="w"><b style="font-weight:600">enhance</b><span class="phon">[ɪnˈhɑːns]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">增强</span></td>
+<td class="s"><span class="syn"><b>improve</b><i>改进</i></span><span class="syn"><b>increase</b><i>增加</i></span></td>
+</tr><tr data-k="power 力量 force, energy [ˈpaʊə(r)]">
+<td class="num">159</td>
+<td class="w"><b style="font-weight:600">power</b><span class="phon">[ˈpaʊə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">力量</span></td>
+<td class="s"><span class="syn"><b>force</b><i>力量；迫使</i></span><span class="syn"><b>energy</b><i>能量</i></span></td>
+</tr><tr data-k="fuel 燃料 coal, firewood, petrol, gas [ˈfjuːəl]">
+<td class="num">160</td>
+<td class="w"><b style="font-weight:600">fuel</b><span class="phon">[ˈfjuːəl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">燃料</span></td>
+<td class="s"><span class="syn"><b>coal</b><i>煤</i></span><span class="syn"><b>firewood</b><i>柴火</i></span><span class="syn"><b>petrol</b><i>汽油</i></span><span class="syn"><b>gas</b><i>气体，燃气</i></span></td>
+</tr><tr data-k="refurbish 重新装修 redecorate [ˌriːˈfɜːbɪʃ]">
+<td class="num">161</td>
+<td class="w"><b style="font-weight:600">refurbish</b><span class="phon">[ˌriːˈfɜːbɪʃ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">重新装修</span></td>
+<td class="s"><span class="syn"><b>redecorate</b><i>重新装修</i></span></td>
+</tr><tr data-k="preference 偏爱； 优先权 like, priority [ˈprefrəns]">
+<td class="num">162</td>
+<td class="w"><b style="font-weight:600">preference</b><span class="phon">[ˈprefrəns]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">偏爱； 优先权</span></td>
+<td class="s"><span class="syn"><b>like</b><i>像；喜欢</i></span><span class="syn"><b>priority</b><i>优先，优先权</i></span></td>
+</tr><tr data-k="trust 信任 less suspicious, believe [trʌst]">
+<td class="num">163</td>
+<td class="w"><b style="font-weight:600">trust</b><span class="phon">[trʌst]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">信任</span></td>
+<td class="s"><span class="syn"><b>less suspicious</b><i>不太可疑的</i></span><span class="syn"><b>believe</b><i>相信</i></span></td>
+</tr><tr data-k="computer 电脑 laptop [kəmˈpjuːtə(r)]">
+<td class="num">164</td>
+<td class="w"><b style="font-weight:600">computer</b><span class="phon">[kəmˈpjuːtə(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">电脑</span></td>
+<td class="s"><span class="syn"><b>laptop</b><i>笔记本电脑</i></span></td>
+</tr><tr data-k="handy 方便的 convenient [ˈhændɪ]">
+<td class="num">165</td>
+<td class="w"><b style="font-weight:600">handy</b><span class="phon">[ˈhændɪ]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">方便的</span></td>
+<td class="s"><span class="syn"><b>convenient</b><i>方便的</i></span></td>
+</tr><tr data-k="demonstrate 展示 display, show, exhibition [ˈdemənstreɪt]">
+<td class="num">166</td>
+<td class="w"><b style="font-weight:600">demonstrate</b><span class="phon">[ˈdemənstreɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">展示</span></td>
+<td class="s"><span class="syn"><b>display</b><i>展示</i></span><span class="syn"><b>show</b><i>展示</i></span><span class="syn"><b>exhibition</b><i>展览</i></span></td>
+</tr><tr data-k="important 主要的 significant, major, main, primary [ɪmˈpɔːtnt]">
+<td class="num">167</td>
+<td class="w"><b style="font-weight:600">important</b><span class="phon">[ɪmˈpɔːtnt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">主要的</span></td>
+<td class="s"><span class="syn"><b>significant</b><i>重要的，显著的</i></span><span class="syn"><b>major</b><i>主要的</i></span><span class="syn"><b>main</b><i>主要的</i></span><span class="syn"><b>primary</b><i>主要的；初级的</i></span></td>
+</tr><tr data-k="straightforward 简单直接的 direct, first-hand, simple [ˌstreɪtˈfɔːwəd]">
+<td class="num">168</td>
+<td class="w"><b style="font-weight:600">straightforward</b><span class="phon">[ˌstreɪtˈfɔːwəd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">简单直接的</span></td>
+<td class="s"><span class="syn"><b>direct</b><i>直接的；指导</i></span><span class="syn"><b>first-hand</b><i>第一手的</i></span><span class="syn"><b>simple</b><i>简单的</i></span></td>
+</tr><tr data-k="disused 废弃的 empty, abandoned [ˌdɪsˈjuːzd]">
+<td class="num">169</td>
+<td class="w"><b style="font-weight:600">disused</b><span class="phon">[ˌdɪsˈjuːzd]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">废弃的</span></td>
+<td class="s"><span class="syn"><b>empty</b><i>空的</i></span><span class="syn"><b>abandoned</b><i>被遗弃的</i></span></td>
+</tr><tr data-k="donate 捐赠 charity, give [djuːˈneɪt]">
+<td class="num">170</td>
+<td class="w"><b style="font-weight:600">donate</b><span class="phon">[djuːˈneɪt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">捐赠</span></td>
+<td class="s"><span class="syn"><b>charity</b><i>慈善机构</i></span><span class="syn"><b>give</b><i>给予</i></span></td>
+</tr><tr data-k="work 作品 item [wɜːk]">
+<td class="num">171</td>
+<td class="w"><b style="font-weight:600">work</b><span class="phon">[wɜːk]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">作品</span></td>
+<td class="s"><span class="syn"><b>item</b><i>物品</i></span></td>
+</tr><tr data-k="turn 转动 switch [tɜːn]">
+<td class="num">172</td>
+<td class="w"><b style="font-weight:600">turn</b><span class="phon">[tɜːn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">转动</span></td>
+<td class="s"><span class="syn"><b>switch</b><i>转换；开关</i></span></td>
+</tr><tr data-k="information 信息 details, data, graph, chart [ˌɪnfəˈmeɪʃn]">
+<td class="num">173</td>
+<td class="w"><b style="font-weight:600">information</b><span class="phon">[ˌɪnfəˈmeɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">信息</span></td>
+<td class="s"><span class="syn"><b>details</b><i>细节</i></span><span class="syn"><b>data</b><i>数据</i></span><span class="syn"><b>graph</b><i>图表</i></span><span class="syn"><b>chart</b><i>图表</i></span></td>
+</tr><tr data-k="visualize 想象 imagine [ˈvɪʒʊəlaɪz]">
+<td class="num">174</td>
+<td class="w"><b style="font-weight:600">visualize</b><span class="phon">[ˈvɪʒʊəlaɪz]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">想象</span></td>
+<td class="s"><span class="syn"><b>imagine</b><i>想象</i></span></td>
+</tr><tr data-k="repetition 重复 over and over [ˌrepəˈtɪʃn]">
+<td class="num">175</td>
+<td class="w"><b style="font-weight:600">repetition</b><span class="phon">[ˌrepəˈtɪʃn]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">重复</span></td>
+<td class="s"><span class="syn"><b>over and over</b><i>反复地</i></span></td>
+</tr><tr data-k="poor 弱的 weak [pɔː(r)]">
+<td class="num">176</td>
+<td class="w"><b style="font-weight:600">poor</b><span class="phon">[pɔː(r)]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">弱的</span></td>
+<td class="s"><span class="syn"><b>weak</b><i>弱的</i></span></td>
+</tr><tr data-k="durable 耐用的 stronger, longer [ˈdjʊərəbl]">
+<td class="num">177</td>
+<td class="w"><b style="font-weight:600">durable</b><span class="phon">[ˈdjʊərəbl]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">耐用的</span></td>
+<td class="s"><span class="syn"><b>stronger</b><i>更强的</i></span><span class="syn"><b>longer</b><i>更长的</i></span></td>
+</tr><tr data-k="pollutant 污染物 contaminant [pəˈluːtənt]">
+<td class="num">178</td>
+<td class="w"><b style="font-weight:600">pollutant</b><span class="phon">[pəˈluːtənt]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">污染物</span></td>
+<td class="s"><span class="syn"><b>contaminant</b><i>污染物</i></span></td>
+</tr><tr data-k="continue 继续 ahead, go on, keep doing [kənˈtɪnjuː]">
+<td class="num">179</td>
+<td class="w"><b style="font-weight:600">continue</b><span class="phon">[kənˈtɪnjuː]</span><span class="mean" style="display:block;color:var(--ink-2);font-size:13px;font-weight:400;margin-top:2px">继续</span></td>
+<td class="s"><span class="syn"><b>ahead</b><i>提前，在前面</i></span><span class="syn"><b>go on</b><i>继续</i></span><span class="syn"><b>keep doing</b><i>继续做</i></span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<footer>
+  <span>已去除原 PDF 中的公众号水印、LOGO 与二维码，仅保留词表内容。</span>
+  <span>原文：刘洪波《剑桥雅思考点词真经》系列 · 本页仅作学习整理</span>
+</footer>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('q');
+  var bare=document.getElementById('bare');
+  var mean=document.getElementById('mean');
+  var rows=[].slice.call(document.querySelectorAll('tbody tr'));
+  var counters=[].slice.call(document.querySelectorAll('section.cls'));
+  function norm(s){return (s||'').toLowerCase()}
+  function run(){
+    var v=norm(box.value.trim());
+    var total=0;
+    rows.forEach(function(tr){
+      var hit=!v||norm(tr.dataset.k).indexOf(v)>-1;
+      tr.style.display=hit?'':'none';
+      if(hit)total++;
+    });
+    counters.forEach(function(sec){
+      var vis=sec.querySelectorAll('tbody tr:not([style*="none"])').length;
+      sec.querySelector('.gap').textContent=vis+' / '+sec.querySelectorAll('tbody tr').length+' 条';
+    });
+    document.getElementById('count').textContent=total+' 条';
+  }
+  box.addEventListener('input',run);
+  function save(){
+    document.body.classList.toggle('bare',bare.checked);
+    document.body.classList.toggle('hide-mean',mean.checked);
+    try{localStorage.setItem('ielts-tbl',JSON.stringify({b:bare.checked,m:mean.checked}))}catch(e){}
+  }
+  bare.addEventListener('change',save);
+  mean.addEventListener('change',save);
+  try{
+    var st=JSON.parse(localStorage.getItem('ielts-tbl')||'null');
+    if(st){bare.checked=!!st.b;mean.checked=!!st.m;}
+  }catch(e){}
+  save();
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/'&&document.activeElement!==box){e.preventDefault();box.focus();}
+    if(e.key==='Escape'){box.value='';run();box.blur();}
+  });
+  run();
+})();
+</script>
+</body>
+</html>

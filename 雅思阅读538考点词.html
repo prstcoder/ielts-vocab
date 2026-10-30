@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>雅思阅读考点词 538</title>
+<style>
+:root{
+  --ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e;
+  --line:#e6e2da; --line-2:#efece5;
+  --paper:#fdfcf9; --paper-2:#f7f4ee;
+  --accent:#0f766e; --accent-2:#0d5f59;
+  --mark:#fdf6e3; --mark-2:#f6e7c8;
+  --syn:#8a4b16;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.65; font-size:15px;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px 80px}
+header.top{
+  padding:52px 0 30px; border-bottom:1px solid var(--line);
+  display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px 28px;
+}
+header.top h1{
+  margin:0; font-size:30px; letter-spacing:.01em; font-weight:700;
+  font-family:"Songti SC","Source Han Serif SC",Georgia,serif;
+}
+header.top .sub{color:var(--ink-2);font-size:13.5px;margin-top:6px}
+.stats{margin-left:auto;display:flex;gap:26px}
+.stat{text-align:right}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:11.5px;color:var(--ink-3);letter-spacing:.08em}
+
+.toolbar{
+  position:sticky; top:0; z-index:20; background:rgba(253,252,249,.94);
+  backdrop-filter:saturate(180%) blur(8px);
+  border-bottom:1px solid var(--line);
+  padding:12px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.search{
+  flex:1 1 260px; display:flex; align-items:center; gap:8px;
+  background:#fff; border:1px solid var(--line); border-radius:9px; padding:8px 12px;
+}
+.search input{
+  border:0; outline:0; font-size:14px; width:100%; background:transparent; color:var(--ink);
+  font-family:inherit;
+}
+.search svg{flex:0 0 16px;opacity:.45}
+.hint{font-size:12px;color:var(--ink-3)}
+.toggle{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-2);cursor:pointer;user-select:none}
+.toggle input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+
+section.cls{margin-top:46px}
+.cls-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.cls-head h2{
+  margin:0;font-size:21px;font-weight:700;
+  font-family:"Songti SC","Source Han Serif SC",Georgia,serif;
+}
+.cls-head .numb{font-size:12px;color:var(--accent);border:1px solid #cfe3df;background:#f0f8f6;
+  padding:1px 8px;border-radius:99px;letter-spacing:.05em}
+.cls-head .gap{margin-left:auto;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.cls-desc{margin:0 0 16px;color:var(--ink-2);font-size:13.5px}
+
+table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff;
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+thead th{
+  text-align:left;font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ink-2);
+  background:var(--paper-2);padding:10px 12px;border-bottom:1px solid var(--line);
+}
+thead{display:table-header-group}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;font-size:14px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#fcfbf7}
+td.num{color:var(--ink-3);font-size:12px;font-variant-numeric:tabular-nums;text-align:center;
+  padding-top:12px;width:56px}
+td.w{font-weight:600;font-size:15px;word-break:break-word;overflow-wrap:anywhere}
+td.w .phon{display:block;font-weight:400;color:var(--ink-3);font-size:12px;
+  font-family:"SF Mono",Menlo,Consolas,monospace;margin-top:3px;letter-spacing:.01em}
+td.m{color:var(--ink-2);font-size:13.5px}
+.syn{display:inline-block;margin:2px 14px 2px 0;line-height:1.5}
+.syn b{font-weight:600;color:var(--ink);font-size:14px}
+.syn i{font-style:normal;color:var(--syn);font-size:12.5px;background:var(--mark);
+  border-radius:4px;padding:0 5px;margin-left:5px}
+.note{display:block;margin-top:6px;font-size:12px;color:var(--ink-3)}
+.empty{color:var(--ink-3);font-size:13px}
+body.bare .syn i{display:none}
+body.hide-mean td.m{display:none}
+body.hide-mean .mean{display:none!important}
+mark{background:var(--mark-2);color:inherit;border-radius:3px;padding:0 1px}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--ink-3);font-size:12px;display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--accent);text-decoration:none}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.nav a{font-size:13px;color:var(--accent-2);text-decoration:none;border:1px solid #d9e6e3;
+  background:#f4faf9;padding:6px 12px;border-radius:8px}
+.nav a:hover{background:#e9f5f3}
+@media print{
+  .toolbar,.nav,footer{display:none}
+  body{background:#fff;font-size:11pt}
+  table{page-break-inside:auto}
+  tr{page-break-inside:avoid}
+}
+@media (max-width:720px){
+  .wrap{padding:0 14px 56px}
+  header.top{padding:28px 0 18px}
+  header.top h1{font-size:22px}
+  header.top .sub{font-size:12.5px}
+  .stats{margin-left:0;gap:18px}
+  .toolbar{padding:10px 0;gap:10px}
+  .search{flex:1 1 100%}
+  .hint{font-size:11.5px}
+  .cls-head h2{font-size:19px}
+}
+@media (max-width:620px){
+  table{display:block;border:0;background:transparent;border-radius:0}
+  colgroup,thead{display:none}
+  tbody{display:block}
+  tbody tr{display:block;position:relative;background:#fff;border:1px solid var(--line);
+    border-radius:10px;padding:11px 13px 12px;margin-bottom:9px}
+  tbody tr:hover td{background:transparent}
+  tbody td{display:block;border:0;padding:0}
+  td.num{position:absolute;left:13px;top:13px;width:auto;text-align:left;
+    color:var(--ink-3);font-size:11.5px;letter-spacing:.02em}
+  td.w{padding-left:24px;font-size:15px;margin-bottom:3px}
+  td.w .phon{font-size:11.5px;margin-top:2px}
+  td.m{font-size:12.5px;padding-left:24px}
+  td.s{margin-top:7px;padding-left:0}
+  .syn{display:inline;margin:0}
+  .syn b,.syn i{display:inline;white-space:normal;font-size:13.5px}
+  .syn i{font-size:12px}
+  .syn{margin-right:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>雅思阅读考点词 538</h1>
+    <div class="sub">376 个考点词 + 523 个同义替换 = 899 词条 · 去重后 846 个不同单词 · 同义替换全部补中文释义</div>
+  </div>
+  <div class="stats"></div>
+</header>
+<div class="toolbar">
+  <div class="search">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+    <input id="q" type="search" placeholder="搜索单词 / 中文释义 / 同义替换（按 / 聚焦）" autocomplete="off">
+  </div>
+  <label class="toggle"><input type="checkbox" id="mean">隐藏词义</label>
+  <label class="toggle"><input type="checkbox" id="bare">隐藏替换释义</label>
+  <span class="hint" id="count">376 条</span>
+</div><section class="cls">
+<div class="cls-head"><h2>第 1 类考点词</h2>
+<span class="numb">20 词</span>
+<span class="gap">20 / 20 条</span></div>
+<p class="cls-desc">原文 20 个考点词 + 34 个同义替换 = 54 词。出现即 90% 被命题考查，不同真题反复考；要求滚瓜烂熟。</p>
+<table>
+<colgroup><col style="width:56px"><col style="width:180px"><col style="width:230px"><col></colgroup>
+<thead><tr><th>序</th><th>考点词</th><th>常考中文词义</th><th>真题同义替换 · 释义</th></tr></thead>
+<tbody>
+<tr data-k="resemble v. 像，与 …… 相似 like,look,like,be similar to">
+<td class="num">1</td><td class="w">resemble</td>
+<td class="m">v. 像，与……相似</td>
+<td class="s"><span class="syn"><b>like</b><i>像；喜欢</i></span><span class="syn"><b>look</b><i>看</i></span><span class="syn"><b>be similar to</b><i>与……相似</i></span></td>
+</tr><tr data-k="recognize v. 认出，识别；承 认 perceive,acknowledge, realize,appreciate, admit, identify, comprehend, understand know">
+<td class="num">2</td><td class="w">recognize</td>
+<td class="m">v. 认出，识别；承认</td>
+<td class="s"><span class="syn"><b>perceive</b><i>察觉，认为</i></span><span class="syn"><b>acknowledge</b><i>承认</i></span><span class="syn"><b>realize</b><i>意识到，实现</i></span><span class="syn"><b>appreciate</b><i>欣赏，理解</i></span><span class="syn"><b>admit</b><i>承认</i></span><span class="syn"><b>identify</b><i>识别</i></span><span class="syn"><b>comprehend</b><i>理解</i></span><span class="syn"><b>understand know</b><i>理解，知道</i></span></td>
+</tr><tr data-k="adjust v. 调整，使适合 change, modify, shift, alter">
+<td class="num">3</td><td class="w">adjust</td>
+<td class="m">v. 调整，使适合</td>
+<td class="s"><span class="syn"><b>change</b><i>改变</i></span><span class="syn"><b>modify</b><i>修改</i></span><span class="syn"><b>shift</b><i>转变；轮班</i></span><span class="syn"><b>alter</b><i>改变</i></span></td>
+</tr><tr data-k="approach n. 方法 method, way">
+<td class="num">4</td><td class="w">approach</td>
+<td class="m">n. 方法</td>
+<td class="s"><span class="syn"><b>method</b><i>方法</i></span><span class="syn"><b>way</b><i>方式，道路</i></span></td>
+</tr><tr data-k="fundamental adj. 基本的，基础 的 rudimentary, preliminary, basic">
+<td class="num">5</td><td class="w">fundamental</td>
+<td class="m">adj. 基本的，基础的</td>
+<td class="s"><span class="syn"><b>rudimentary</b><i>初步的，基本的</i></span><span class="syn"><b>preliminary</b><i>初步的</i></span><span class="syn"><b>basic</b><i>基本的</i></span></td>
+</tr><tr data-k="rely on 依靠，依赖 depend on">
+<td class="num">6</td><td class="w">rely on</td>
+<td class="m">依靠，依赖</td>
+<td class="s"><span class="syn"><b>depend on</b><i>依靠</i></span></td>
+</tr><tr data-k="domestic adj. 家庭的；国内 的 home, local, national">
+<td class="num">7</td><td class="w">domestic</td>
+<td class="m">adj. 家庭的；国内的</td>
+<td class="s"><span class="syn"><b>home</b><i>家；本国的</i></span><span class="syn"><b>local</b><i>当地的</i></span><span class="syn"><b>national</b><i>国家的</i></span></td>
+</tr><tr data-k="measure v. 测量 calculate, assess, evaluate">
+<td class="num">8</td><td class="w">measure</td>
+<td class="m">v. 测量</td>
+<td class="s"><span class="syn"><b>calculate</b><i>计算</i></span><span class="syn"><b>assess</b><i>评估</i></span><span class="syn"><b>evaluate</b><i>评估</i></span></td>
+</tr><tr data-k="trait n. 特性，特征 characteristic, feature, property">
+<td class="num">9</td><td class="w">trait</td>
+<td class="m">n. 特性，特征</td>
+<td class="s"><span class="syn"><b>characteristic</b><i>特征</i></span><span class="syn"><b>feature</b><i>特征</i></span><span class="syn"><b>property</b><i>财产；特性</i></span></td>
+</tr><tr data-k="coin v. 创造 first used, invent">
+<td class="num">10</td><td class="w">coin</td>
+<td class="m">v. 创造</td>
+<td class="s"><span class="syn"><b>first used</b><i>首次使用</i></span><span class="syn"><b>invent</b><i>发明</i></span></td>
+</tr><tr data-k="artificial adj. 人造的，仿造 的 synthetic, man-made">
+<td class="num">11</td><td class="w">artificial</td>
+<td class="m">adj. 人造的，仿造的</td>
+<td class="s"><span class="syn"><b>synthetic</b><i>合成的</i></span><span class="syn"><b>man-made</b><i>人造的</i></span></td>
+</tr><tr data-k="prompt v. 促进，激起 initiate, immediately">
+<td class="num">12</td><td class="w">prompt</td>
+<td class="m">v. 促进，激起</td>
+<td class="s"><span class="syn"><b>initiate</b><i>发起，开始</i></span><span class="syn"><b>immediately</b><i>立即</i></span></td>
+</tr><tr data-k="exchange v. 交换 share, apply A to B">
+<td class="num">13</td><td class="w">exchange</td>
+<td class="m">v. 交换</td>
+<td class="s"><span class="syn"><b>share</b><i>分享</i></span><span class="syn"><b>apply A to B</b><i>把 A 应用到 B</i></span></td>
+</tr><tr data-k="underlie v. 成为 …… 基础 based on, ground, root">
+<td class="num">14</td><td class="w">underlie</td>
+<td class="m">v. 成为……基础</td>
+<td class="s"><span class="syn"><b>based on</b><i>基于</i></span><span class="syn"><b>ground</b><i>地面；基础</i></span><span class="syn"><b>root</b><i>根源</i></span></td>
+</tr><tr data-k="ignore v. 忽视，不顾 neglect, overlook, underestimate">
+<td class="num">15</td><td class="w">ignore</td>
+<td class="m">v. 忽视，不顾</td>
+<td class="s"><span class="syn"><b>neglect</b><i>忽视</i></span><span class="syn"><b>overlook</b><i>忽视</i></span><span class="syn"><b>underestimate</b><i>低估</i></span></td>
+</tr><tr data-k="fertiliser n. 化肥，肥料 chemical, toxic, unnatural">
+<td class="num">16</td><td class="w">fertiliser</td>
+<td class="m">n. 化肥，肥料</td>
+<td class="s"><span class="syn"><b>chemical</b><i>化学的；化学品</i></span><span class="syn"><b>toxic</b><i>有毒的</i></span><span class="syn"><b>unnatural</b><i>不自然的</i></span></td>
+</tr><tr data-k="that* pron . 那；那个 this, it, they, those, these, such * 指代是雅思阅读的重要考点">
+<td class="num">17</td><td class="w">that*</td>
+<td class="m">pron . 那；那个</td>
+<td class="s"><span class="syn"><b>this</b><i>这个</i></span><span class="syn"><b>it</b><i>它</i></span><span class="syn"><b>they</b><i>他们</i></span><span class="syn"><b>those</b><i>那些</i></span><span class="syn"><b>these</b><i>这些</i></span><span class="syn"><b>such</b><i>这样的</i></span><span class="note">指代是雅思阅读的重要考点</span></td>
+</tr><tr data-k="and* conj . 和，而且 or, as well as, both…and, not only…but also…, other than, in addition, besides, on the one hand…on the other hand…, neither…nor… * 并列结构是雅思阅读的重要考点">
+<td class="num">18</td><td class="w">and*</td>
+<td class="m">conj . 和，而且</td>
+<td class="s"><span class="syn"><b>or</b><i>或者</i></span><span class="syn"><b>as well as</b><i>以及</i></span><span class="syn"><b>both…and</b><i>既……又……</i></span><span class="syn"><b>not only…but also…</b><i>不仅……而且……</i></span><span class="syn"><b>other than</b><i>除了</i></span><span class="syn"><b>in addition</b><i>此外</i></span><span class="syn"><b>besides</b><i>此外</i></span><span class="syn"><b>on the one hand…on the other hand…</b><i>一方面……另一方面……</i></span><span class="syn"><b>neither…nor…</b><i>既不……也不……</i></span><span class="note">并列结构是雅思阅读的重要考点</span></td>
+</tr><tr data-k="rather than* 而非，不是 but, yet, however, whereas, nonetheless, nevertheless, although, notwithstanding though, instead * 转折结构是雅思阅读的重要考点">
+<td class="num">19</td><td class="w">rather than*</td>
+<td class="m">而非，不是</td>
+<td class="s"><span class="syn"><b>but</b><i>但是</i></span><span class="syn"><b>yet</b><i>然而；还</i></span><span class="syn"><b>however</b><i>然而</i></span><span class="syn"><b>whereas</b><i>然而</i></span><span class="syn"><b>nonetheless</b><i>尽管如此</i></span><span class="syn"><b>nevertheless</b><i>然而</i></span><span class="syn"><b>although</b><i>虽然</i></span><span class="syn"><b>notwithstanding though</b><i>尽管如此</i></span><span class="syn"><b>instead</b><i>代替，反而</i></span><span class="note">转折结构是雅思阅读的重要考点</span></td>
+</tr><tr data-k="thanks to* 由于，幸亏 stem from， derive， owing to， due to, according to, because of, on account of, as a result of, leading to, because, since, for, in that, as, therefore, hence * 因果关系是雅思阅读重要考点">
+<td class="num">20</td><td class="w">thanks to*</td>
+<td class="m">由于，幸亏</td>
+<td class="s"><span class="syn"><b>stem from</b><i>源自</i></span><span class="syn"><b>derive</b><i>源自，得到</i></span><span class="syn"><b>owing to</b><i>由于</i></span><span class="syn"><b>due to</b><i>由于</i></span><span class="syn"><b>according to</b><i>根据</i></span><span class="syn"><b>because of</b><i>因为</i></span><span class="syn"><b>on account of</b><i>由于</i></span><span class="syn"><b>as a result of</b><i>由于</i></span><span class="syn"><b>leading to</b><i>导致</i></span><span class="syn"><b>because</b><i>因为</i></span><span class="syn"><b>since</b><i>因为；自从</i></span><span class="syn"><b>for</b><i>因为；为了</i></span><span class="syn"><b>in that</b><i>因为</i></span><span class="syn"><b>as</b><i>因为；作为</i></span><span class="syn"><b>therefore</b><i>因此</i></span><span class="syn"><b>hence</b><i>因此</i></span><span class="note">因果关系是雅思阅读重要考点</span></td>
+</tr>
+</tbody>
+</table>
+</section><section class="cls">
+<div class="cls-head"><h2>第 2 类考点词</h2>
+<span class="numb">100 词</span>
+<span class="gap">100 / 100 条</span></div>
+<p class="cls-desc">原文 100 个考点词 + 71 个同义替换 = 171 词。出现即 60% 被命题考查；要求熟记 10 遍以上。</p>
+<table>
+<colgroup><col style="width:56px"><col style="width:180px"><col style="width:230px"><col></colgroup>
+<thead><tr><th>序</th><th>考点词</th><th>常考中文词义</th><th>真题同义替换 · 释义</th></tr></thead>
+<tbody>
+<tr data-k="diversity n. 多样性，差异 variety, difference">
+<td class="num">21</td><td class="w">diversity</td>
+<td class="m">n. 多样性，差异</td>
+<td class="s"><span class="syn"><b>variety</b><i>多样性</i></span><span class="syn"><b>difference</b><i>差异</i></span></td>
+</tr><tr data-k="detect v. 查明，发现 find, look for, seek, search">
+<td class="num">22</td><td class="w">detect</td>
+<td class="m">v. 查明，发现</td>
+<td class="s"><span class="syn"><b>find</b><i>发现，找到</i></span><span class="syn"><b>look for</b><i>寻找</i></span><span class="syn"><b>seek</b><i>寻找</i></span><span class="syn"><b>search</b><i>搜寻</i></span></td>
+</tr><tr data-k="isolate v. 使隔离，使孤立 inaccessible">
+<td class="num">23</td><td class="w">isolate</td>
+<td class="m">v. 使隔离，使孤立</td>
+<td class="s"><span class="syn"><b>inaccessible</b><i>难以到达的</i></span></td>
+</tr><tr data-k="avoid v. 避免 escape, evitable">
+<td class="num">24</td><td class="w">avoid</td>
+<td class="m">v. 避免</td>
+<td class="s"><span class="syn"><b>escape</b><i>逃脱</i></span><span class="syn"><b>evitable</b><i>可避免的</i></span></td>
+</tr><tr data-k="budget n. 预算 fund, financial">
+<td class="num">25</td><td class="w">budget</td>
+<td class="m">n. 预算</td>
+<td class="s"><span class="syn"><b>fund</b><i>资金</i></span><span class="syn"><b>financial</b><i>财务的</i></span></td>
+</tr><tr data-k="adapt to 使适应 fit, suit">
+<td class="num">26</td><td class="w">adapt to</td>
+<td class="m">使适应</td>
+<td class="s"><span class="syn"><b>fit</b><i>适合</i></span><span class="syn"><b>suit</b><i>适合</i></span></td>
+</tr><tr data-k="alternative adj. 供替代的，供 选择的 n. 替代品 substitute">
+<td class="num">27</td><td class="w">alternative</td>
+<td class="m">adj. 供替代的，供选择的 n. 替代品</td>
+<td class="s"><span class="syn"><b>substitute</b><i>替代品；替代</i></span></td>
+</tr><tr data-k="compensate n. 补偿，赔偿 make up, offset">
+<td class="num">28</td><td class="w">compensate</td>
+<td class="m">n. 补偿，赔偿</td>
+<td class="s"><span class="syn"><b>make up</b><i>弥补，组成</i></span><span class="syn"><b>offset</b><i>抵消</i></span></td>
+</tr><tr data-k="component n. 成分，要素 proportion">
+<td class="num">29</td><td class="w">component</td>
+<td class="m">n. 成分，要素</td>
+<td class="s"><span class="syn"><b>proportion</b><i>比例</i></span></td>
+</tr><tr data-k="military adj. 军事的 weapon, army">
+<td class="num">30</td><td class="w">military</td>
+<td class="m">adj. 军事的</td>
+<td class="s"><span class="syn"><b>weapon</b><i>武器</i></span><span class="syn"><b>army</b><i>军队</i></span></td>
+</tr><tr data-k="criteria n. 标准 standard">
+<td class="num">31</td><td class="w">criteria</td>
+<td class="m">n. 标准</td>
+<td class="s"><span class="syn"><b>standard</b><i>标准</i></span></td>
+</tr><tr data-k="curriculum n. 课程 syllabus, course of study">
+<td class="num">32</td><td class="w">curriculum</td>
+<td class="m">n. 课程</td>
+<td class="s"><span class="syn"><b>syllabus</b><i>教学大纲</i></span><span class="syn"><b>course of study</b><i>课程</i></span></td>
+</tr><tr data-k="feasible adj. 可行的 realistic, viable">
+<td class="num">33</td><td class="w">feasible</td>
+<td class="m">adj. 可行的</td>
+<td class="s"><span class="syn"><b>realistic</b><i>现实的</i></span><span class="syn"><b>viable</b><i>可行的</i></span></td>
+</tr><tr data-k="constrain v. 束缚，限制 stop, control">
+<td class="num">34</td><td class="w">constrain</td>
+<td class="m">v. 束缚，限制</td>
+<td class="s"><span class="syn"><b>stop</b><i>停止</i></span><span class="syn"><b>control</b><i>控制</i></span></td>
+</tr><tr data-k="deficiency n. 缺陷，缺点 shortage, defect, weakness">
+<td class="num">35</td><td class="w">deficiency</td>
+<td class="m">n. 缺陷，缺点</td>
+<td class="s"><span class="syn"><b>shortage</b><i>短缺</i></span><span class="syn"><b>defect</b><i>缺陷</i></span><span class="syn"><b>weakness</b><i>弱点</i></span></td>
+</tr><tr data-k="supplement v. 补充 provision">
+<td class="num">36</td><td class="w">supplement</td>
+<td class="m">v. 补充</td>
+<td class="s"><span class="syn"><b>provision</b><i>供应，提供</i></span></td>
+</tr><tr data-k="distinguish v. 区别，辨别 separate, differentiate">
+<td class="num">37</td><td class="w">distinguish</td>
+<td class="m">v. 区别，辨别</td>
+<td class="s"><span class="syn"><b>separate</b><i>分开的；使分开</i></span><span class="syn"><b>differentiate</b><i>区分</i></span></td>
+</tr><tr data-k="analyze v. 分析，解释 examine, diagnose">
+<td class="num">38</td><td class="w">analyze</td>
+<td class="m">v. 分析，解释</td>
+<td class="s"><span class="syn"><b>examine</b><i>检查</i></span><span class="syn"><b>diagnose</b><i>诊断</i></span></td>
+</tr><tr data-k="emphasize v. 强调，着重 focus on, stress">
+<td class="num">39</td><td class="w">emphasize</td>
+<td class="m">v. 强调，着重</td>
+<td class="s"><span class="syn"><b>focus on</b><i>专注于</i></span><span class="syn"><b>stress</b><i>压力；强调</i></span></td>
+</tr><tr data-k="enormous adj. 庞大的， 巨大的 massive, large">
+<td class="num">40</td><td class="w">enormous</td>
+<td class="m">adj. 庞大的， 巨大的</td>
+<td class="s"><span class="syn"><b>massive</b><i>巨大的</i></span><span class="syn"><b>large</b><i>大的</i></span></td>
+</tr><tr data-k="imitate v. 模仿 mimic, copy">
+<td class="num">41</td><td class="w">imitate</td>
+<td class="m">v. 模仿</td>
+<td class="s"><span class="syn"><b>mimic</b><i>模仿</i></span><span class="syn"><b>copy</b><i>复制，模仿</i></span></td>
+</tr><tr data-k="impair v. 削弱，减少 damage, diminish, decrease">
+<td class="num">42</td><td class="w">impair</td>
+<td class="m">v. 削弱，减少</td>
+<td class="s"><span class="syn"><b>damage</b><i>损害</i></span><span class="syn"><b>diminish</b><i>减少</i></span><span class="syn"><b>decrease</b><i>减少</i></span></td>
+</tr><tr data-k="hinder v. 阻碍 impede, prevent, deter, obstacle">
+<td class="num">43</td><td class="w">hinder</td>
+<td class="m">v. 阻碍</td>
+<td class="s"><span class="syn"><b>impede</b><i>阻碍</i></span><span class="syn"><b>prevent</b><i>阻止</i></span><span class="syn"><b>deter</b><i>阻止，威慑</i></span><span class="syn"><b>obstacle</b><i>障碍</i></span></td>
+</tr><tr data-k="legitimate adj. 合法的 legal">
+<td class="num">44</td><td class="w">legitimate</td>
+<td class="m">adj. 合法的</td>
+<td class="s"><span class="syn"><b>legal</b><i>合法的</i></span></td>
+</tr><tr data-k="limitation n. 限制 restriction">
+<td class="num">45</td><td class="w">limitation</td>
+<td class="m">n. 限制</td>
+<td class="s"><span class="syn"><b>restriction</b><i>限制</i></span></td>
+</tr><tr data-k="convention n. 手法；习俗 method; tradition">
+<td class="num">46</td><td class="w">convention</td>
+<td class="m">n. 手法；习俗</td>
+<td class="s"><span class="syn"><b>method</b><i>方法</i></span><span class="syn"><b>tradition</b><i>传统</i></span></td>
+</tr><tr data-k="demanding adj. 苛求的 troublesome">
+<td class="num">47</td><td class="w">demanding</td>
+<td class="m">adj. 苛求的</td>
+<td class="s"><span class="syn"><b>troublesome</b><i>麻烦的</i></span></td>
+</tr><tr data-k="determine v. 决定 decide">
+<td class="num">48</td><td class="w">determine</td>
+<td class="m">v. 决定</td>
+<td class="s"><span class="syn"><b>decide</b><i>决定</i></span></td>
+</tr><tr data-k="accelerate v. 加速，促进；强调 speed up">
+<td class="num">49</td><td class="w">accelerate</td>
+<td class="m">v. 加速，促进；强调</td>
+<td class="s"><span class="syn"><b>speed up</b><i>加速</i></span></td>
+</tr><tr data-k="ancient adj. 古代的; 古老的 aged, old">
+<td class="num">50</td><td class="w">ancient</td>
+<td class="m">adj. 古代的; 古老的</td>
+<td class="s"><span class="syn"><b>aged</b><i>年老的</i></span><span class="syn"><b>old</b><i>老的</i></span></td>
+</tr><tr data-k="beneficial adj. 有益的 helpful, advantageous, wholesome">
+<td class="num">51</td><td class="w">beneficial</td>
+<td class="m">adj. 有益的</td>
+<td class="s"><span class="syn"><b>helpful</b><i>有帮助的</i></span><span class="syn"><b>advantageous</b><i>有利的</i></span><span class="syn"><b>wholesome</b><i>有益健康的</i></span></td>
+</tr><tr data-k="chronic adj. 慢性的，长期 性的 lasting">
+<td class="num">52</td><td class="w">chronic</td>
+<td class="m">adj. 慢性的，长期性的</td>
+<td class="s"><span class="syn"><b>lasting</b><i>持久的</i></span></td>
+</tr><tr data-k="conscious adj. 有意识的，神 志清醒的 aware, knowing">
+<td class="num">53</td><td class="w">conscious</td>
+<td class="m">adj. 有意识的，神志清醒的</td>
+<td class="s"><span class="syn"><b>aware</b><i>意识到的</i></span><span class="syn"><b>knowing</b><i>知晓</i></span></td>
+</tr><tr data-k="minimize v. 最小化，使 …… 减少到最少 reduce, lessen">
+<td class="num">54</td><td class="w">minimize</td>
+<td class="m">v. 最小化，使……减少到最少</td>
+<td class="s"><span class="syn"><b>reduce</b><i>减少</i></span><span class="syn"><b>lessen</b><i>减少</i></span></td>
+</tr><tr data-k="immunity n. 免疫力 resistance">
+<td class="num">55</td><td class="w">immunity</td>
+<td class="m">n. 免疫力</td>
+<td class="s"><span class="syn"><b>resistance</b><i>抵抗，抵抗力</i></span></td>
+</tr><tr data-k="Imperative adj. 必要的， 紧急 的 compelling, necessary, urgent">
+<td class="num">56</td><td class="w">Imperative</td>
+<td class="m">adj. 必要的， 紧急的</td>
+<td class="s"><span class="syn"><b>compelling</b><i>令人信服的</i></span><span class="syn"><b>necessary</b><i>必要的</i></span><span class="syn"><b>urgent</b><i>紧急的</i></span></td>
+</tr><tr data-k="secrete v. 分泌 discharge, exude">
+<td class="num">57</td><td class="w">secrete</td>
+<td class="m">v. 分泌</td>
+<td class="s"><span class="syn"><b>discharge</b><i>排出，释放</i></span><span class="syn"><b>exude</b><i>渗出，散发</i></span></td>
+</tr><tr data-k="exaggerate v. 夸大，夸张 overstate">
+<td class="num">58</td><td class="w">exaggerate</td>
+<td class="m">v. 夸大，夸张</td>
+<td class="s"><span class="syn"><b>overstate</b><i>夸大</i></span></td>
+</tr><tr data-k="transmit v. 传达，传输 pass, send ,transfer">
+<td class="num">59</td><td class="w">transmit</td>
+<td class="m">v. 传达，传输</td>
+<td class="s"><span class="syn"><b>pass</b><i>通过；传递</i></span><span class="syn"><b>send</b><i>发送</i></span><span class="syn"><b>transfer</b><i>转移</i></span></td>
+</tr><tr data-k="extinct v. 灭绝 die out, lost">
+<td class="num">60</td><td class="w">extinct</td>
+<td class="m">v. 灭绝</td>
+<td class="s"><span class="syn"><b>die out</b><i>灭绝</i></span><span class="syn"><b>lost</b><i>丢失的</i></span></td>
+</tr><tr data-k="exclusive adj. 独有的；排外 的；专一的 only">
+<td class="num">61</td><td class="w">exclusive</td>
+<td class="m">adj. 独有的；排外的；专一的</td>
+<td class="s"><span class="syn"><b>only</b><i>仅有的</i></span></td>
+</tr><tr data-k="guarantee v. 保证，担保 assure">
+<td class="num">62</td><td class="w">guarantee</td>
+<td class="m">v. 保证，担保</td>
+<td class="s"><span class="syn"><b>assure</b><i>保证，使确信</i></span></td>
+</tr><tr data-k="inherit v. 继承 receive">
+<td class="num">63</td><td class="w">inherit</td>
+<td class="m">v. 继承</td>
+<td class="s"><span class="syn"><b>receive</b><i>收到</i></span></td>
+</tr><tr data-k="witness n. 见证，证据；目 击者 view, see">
+<td class="num">64</td><td class="w">witness</td>
+<td class="m">n. 见证，证据；目击者</td>
+<td class="s"><span class="syn"><b>view</b><i>观点；景色</i></span><span class="syn"><b>see</b><i>看见</i></span></td>
+</tr><tr data-k="magnetic adj. 有磁性的 attractive">
+<td class="num">65</td><td class="w">magnetic</td>
+<td class="m">adj. 有磁性的</td>
+<td class="s"><span class="syn"><b>attractive</b><i>有吸引力的</i></span></td>
+</tr><tr data-k="loss n. 减少；亏损；失 败；遗失的 waste, gone">
+<td class="num">66</td><td class="w">loss</td>
+<td class="m">n. 减少；亏损；失败；遗失的</td>
+<td class="s"><span class="syn"><b>waste</b><i>废物；浪费</i></span><span class="syn"><b>gone</b><i>消失的</i></span></td>
+</tr><tr data-k="option n. 选择 choice">
+<td class="num">67</td><td class="w">option</td>
+<td class="m">n. 选择</td>
+<td class="s"><span class="syn"><b>choice</b><i>选择</i></span></td>
+</tr><tr data-k="prefer to 更喜欢 rather">
+<td class="num">68</td><td class="w">prefer to</td>
+<td class="m">更喜欢</td>
+<td class="s"><span class="syn"><b>rather</b><i>相当；宁愿</i></span></td>
+</tr><tr data-k="priority n. 优先权 preference, preferential">
+<td class="num">69</td><td class="w">priority</td>
+<td class="m">n. 优先权</td>
+<td class="s"><span class="syn"><b>preference</b><i>偏好</i></span><span class="syn"><b>preferential</b><i>优惠的</i></span></td>
+</tr><tr data-k="primary adj. 主要的 principle, main">
+<td class="num">70</td><td class="w">primary</td>
+<td class="m">adj. 主要的</td>
+<td class="s"><span class="syn"><b>principle</b><i>原则</i></span><span class="syn"><b>main</b><i>主要的</i></span></td>
+</tr><tr data-k="principle n. 原理 rule">
+<td class="num">71</td><td class="w">principle</td>
+<td class="m">n. 原理</td>
+<td class="s"><span class="syn"><b>rule</b><i>规则；统治</i></span></td>
+</tr><tr data-k="potential n. 潜能 adj. 潜在的 possibility">
+<td class="num">72</td><td class="w">potential</td>
+<td class="m">n. 潜能 adj. 潜在的</td>
+<td class="s"><span class="syn"><b>possibility</b><i>可能性</i></span></td>
+</tr><tr data-k="quantity n. 量，数量 number">
+<td class="num">73</td><td class="w">quantity</td>
+<td class="m">n. 量，数量</td>
+<td class="s"><span class="syn"><b>number</b><i>数量</i></span></td>
+</tr><tr data-k="settle v. 解决；定居，稳定 fix, figure out">
+<td class="num">74</td><td class="w">settle</td>
+<td class="m">v. 解决；定居，稳定</td>
+<td class="s"><span class="syn"><b>fix</b><i>修理；固定</i></span><span class="syn"><b>figure out</b><i>弄明白</i></span></td>
+</tr><tr data-k="sophisticate v. 使复杂 complicate">
+<td class="num">75</td><td class="w">sophisticate</td>
+<td class="m">v. 使复杂</td>
+<td class="s"><span class="syn"><b>complicate</b><i>使复杂</i></span></td>
+</tr><tr data-k="specific adj. 明确的；特殊的 detailed, particular">
+<td class="num">76</td><td class="w">specific</td>
+<td class="m">adj. 明确的；特殊的</td>
+<td class="s"><span class="syn"><b>detailed</b><i>详细的</i></span><span class="syn"><b>particular</b><i>特别的</i></span></td>
+</tr><tr data-k="survive v. 存活，幸存 remain">
+<td class="num">77</td><td class="w">survive</td>
+<td class="m">v. 存活，幸存</td>
+<td class="s"><span class="syn"><b>remain</b><i>保持，留下</i></span></td>
+</tr><tr data-k="swift adj. 迅速的，敏捷 的，立刻的 quick, rapid">
+<td class="num">78</td><td class="w">swift</td>
+<td class="m">adj. 迅速的，敏捷的，立刻的</td>
+<td class="s"><span class="syn"><b>quick</b><i>快的</i></span><span class="syn"><b>rapid</b><i>快速的</i></span></td>
+</tr><tr data-k="unexpectedly adv. 出乎意料的 surprising">
+<td class="num">79</td><td class="w">unexpectedly</td>
+<td class="m">adv. 出乎意料的</td>
+<td class="s"><span class="syn"><b>surprising</b><i>令人惊讶的</i></span></td>
+</tr><tr data-k="surrounding n. 环境 setting, environment">
+<td class="num">80</td><td class="w">surrounding</td>
+<td class="m">n. 环境</td>
+<td class="s"><span class="syn"><b>setting</b><i>环境，设置</i></span><span class="syn"><b>environment</b><i>环境</i></span></td>
+</tr><tr data-k="attempt n. 试图，尝试 try, test">
+<td class="num">81</td><td class="w">attempt</td>
+<td class="m">n. 试图，尝试</td>
+<td class="s"><span class="syn"><b>try</b><i>尝试</i></span><span class="syn"><b>test</b><i>测试</i></span></td>
+</tr><tr data-k="expertise n. 专门技术 knowledge, skill">
+<td class="num">82</td><td class="w">expertise</td>
+<td class="m">n. 专门技术</td>
+<td class="s"><span class="syn"><b>knowledge</b><i>知识</i></span><span class="syn"><b>skill</b><i>技能</i></span></td>
+</tr><tr data-k="faculty n. 能力，才能；全 体教员 ability">
+<td class="num">83</td><td class="w">faculty</td>
+<td class="m">n. 能力，才能；全体教员</td>
+<td class="s"><span class="syn"><b>ability</b><i>能力</i></span></td>
+</tr><tr data-k="donate v. 捐赠 contribute">
+<td class="num">84</td><td class="w">donate</td>
+<td class="m">v. 捐赠</td>
+<td class="s"><span class="syn"><b>contribute</b><i>贡献</i></span></td>
+</tr><tr data-k="dynamics n. 动力学 energy, force, move">
+<td class="num">85</td><td class="w">dynamics</td>
+<td class="m">n. 动力学</td>
+<td class="s"><span class="syn"><b>energy</b><i>能量</i></span><span class="syn"><b>force</b><i>力量；迫使</i></span><span class="syn"><b>move</b><i>移动</i></span></td>
+</tr><tr data-k="incentive n. 刺激, 鼓励; 动机 motive, stimulus">
+<td class="num">86</td><td class="w">incentive</td>
+<td class="m">n. 刺激, 鼓励; 动机</td>
+<td class="s"><span class="syn"><b>motive</b><i>动机</i></span><span class="syn"><b>stimulus</b><i>刺激物</i></span></td>
+</tr><tr data-k="mortality n. 死亡率 death">
+<td class="num">87</td><td class="w">mortality</td>
+<td class="m">n. 死亡率</td>
+<td class="s"><span class="syn"><b>death</b><i>死亡</i></span></td>
+</tr><tr data-k="peripheral adj. 外围的， 次要 的 unimportant, minor">
+<td class="num">88</td><td class="w">peripheral</td>
+<td class="m">adj. 外围的， 次要的</td>
+<td class="s"><span class="syn"><b>unimportant</b><i>不重要的</i></span><span class="syn"><b>minor</b><i>次要的</i></span></td>
+</tr><tr data-k="vicinity n. 邻近，附近 neighbourhood, nearby">
+<td class="num">89</td><td class="w">vicinity</td>
+<td class="m">n. 邻近，附近</td>
+<td class="s"><span class="syn"><b>neighbourhood</b><i>社区</i></span><span class="syn"><b>nearby</b><i>附近的</i></span></td>
+</tr><tr data-k="threaten v. 威胁，危及 endanger, jeopardize, risk, hazard">
+<td class="num">90</td><td class="w">threaten</td>
+<td class="m">v. 威胁，危及</td>
+<td class="s"><span class="syn"><b>endanger</b><i>危及</i></span><span class="syn"><b>jeopardize</b><i>危及</i></span><span class="syn"><b>risk</b><i>风险</i></span><span class="syn"><b>hazard</b><i>危险</i></span></td>
+</tr><tr data-k="practice n. 实行；练习 method, exercise">
+<td class="num">91</td><td class="w">practice</td>
+<td class="m">n. 实行；练习</td>
+<td class="s"><span class="syn"><b>method</b><i>方法</i></span><span class="syn"><b>exercise</b><i>锻炼；练习</i></span></td>
+</tr><tr data-k="bacteria n. 细菌 virus, germ, microbe">
+<td class="num">92</td><td class="w">bacteria</td>
+<td class="m">n. 细菌</td>
+<td class="s"><span class="syn"><b>virus</b><i>病毒</i></span><span class="syn"><b>germ</b><i>细菌</i></span><span class="syn"><b>microbe</b><i>微生物</i></span></td>
+</tr><tr data-k="be subject to 受 …... 支配 face">
+<td class="num">93</td><td class="w">be subject to</td>
+<td class="m">受…... 支配</td>
+<td class="s"><span class="syn"><b>face</b><i>面对</i></span></td>
+</tr><tr data-k="be liable to 易于 …… potential">
+<td class="num">94</td><td class="w">be liable to</td>
+<td class="m">易于……</td>
+<td class="s"><span class="syn"><b>potential</b><i>潜在的；潜力</i></span></td>
+</tr><tr data-k="innate adj. 天生的；内在 的，直觉的 built-in, inborn">
+<td class="num">95</td><td class="w">innate</td>
+<td class="m">adj. 天生的；内在的，直觉的</td>
+<td class="s"><span class="syn"><b>built-in</b><i>内置的</i></span><span class="syn"><b>inborn</b><i>天生的</i></span></td>
+</tr><tr data-k="pattern n. 模式 formation">
+<td class="num">96</td><td class="w">pattern</td>
+<td class="m">n. 模式</td>
+<td class="s"><span class="syn"><b>formation</b><i>形成</i></span></td>
+</tr><tr data-k="therapy n. 治疗，理疗 treatment">
+<td class="num">97</td><td class="w">therapy</td>
+<td class="m">n. 治疗，理疗</td>
+<td class="s"><span class="syn"><b>treatment</b><i>治疗，处理</i></span></td>
+</tr><tr data-k="original adj. 原始的, 最初的 initial, fist">
+<td class="num">98</td><td class="w">original</td>
+<td class="m">adj. 原始的, 最初的</td>
+<td class="s"><span class="syn"><b>initial</b><i>最初的</i></span><span class="syn"><b>fist</b><i>拳头</i></span></td>
+</tr><tr data-k="confidential adj. 机密的, 秘密的 undisclosed, secret, hidden">
+<td class="num">99</td><td class="w">confidential</td>
+<td class="m">adj. 机密的, 秘密的</td>
+<td class="s"><span class="syn"><b>undisclosed</b><i>未公开的</i></span><span class="syn"><b>secret</b><i>秘密</i></span><span class="syn"><b>hidden</b><i>隐藏的</i></span></td>
+</tr><tr data-k="cognitive adj. 认知的 mental">
+<td class="num">100</td><td class="w">cognitive</td>
+<td class="m">adj. 认知的</td>
+<td class="s"><span class="syn"><b>mental</b><i>精神的</i></span></td>
+</tr><tr data-k="comply with 照做，遵守 obey">
+<td class="num">101</td><td class="w">comply with</td>
+<td class="m">照做，遵守</td>
+<td class="s"><span class="syn"><b>obey</b><i>服从</i></span></td>
+</tr><tr data-k="consult v. 查阅, 商量, 请教, 咨询 ask for advice">
+<td class="num">102</td><td class="w">consult</td>
+<td class="m">v. 查阅, 商量, 请教, 咨询</td>
+<td class="s"><span class="syn"><b>ask for advice</b><i>征求意见</i></span></td>
+</tr><tr data-k="superior adj.. 上级的; 优秀 的 higher, upper">
+<td class="num">103</td><td class="w">superior</td>
+<td class="m">adj.. 上级的; 优秀的</td>
+<td class="s"><span class="syn"><b>higher</b><i>更高的</i></span><span class="syn"><b>upper</b><i>上部的</i></span></td>
+</tr><tr data-k="co-operation n. 合作，协作 support, work together">
+<td class="num">104</td><td class="w">co-operation</td>
+<td class="m">n. 合作，协作</td>
+<td class="s"><span class="syn"><b>support</b><i>支持</i></span><span class="syn"><b>work together</b><i>合作</i></span></td>
+</tr><tr data-k="co-ordinate v. 使 …… 协调 organize, harmonize">
+<td class="num">105</td><td class="w">co-ordinate</td>
+<td class="m">v. 使……协调</td>
+<td class="s"><span class="syn"><b>organize</b><i>组织</i></span><span class="syn"><b>harmonize</b><i>协调</i></span></td>
+</tr><tr data-k="differ v. 使 …… 相异； 使 …… 不同 vary">
+<td class="num">106</td><td class="w">differ</td>
+<td class="m">v. 使……相异； 使……不同</td>
+<td class="s"><span class="syn"><b>vary</b><i>变化，不同</i></span></td>
+</tr><tr data-k="cue n. 线索 hint, clue">
+<td class="num">107</td><td class="w">cue</td>
+<td class="m">n. 线索</td>
+<td class="s"><span class="syn"><b>hint</b><i>暗示</i></span><span class="syn"><b>clue</b><i>线索</i></span></td>
+</tr><tr data-k="signal n. 信号 symbol, mark, sign">
+<td class="num">108</td><td class="w">signal</td>
+<td class="m">n. 信号</td>
+<td class="s"><span class="syn"><b>symbol</b><i>象征</i></span><span class="syn"><b>mark</b><i>标记</i></span><span class="syn"><b>sign</b><i>标志；签名</i></span></td>
+</tr><tr data-k="abandon v. 放弃，遗弃 quit, give up, forsake, derelict">
+<td class="num">109</td><td class="w">abandon</td>
+<td class="m">v. 放弃，遗弃</td>
+<td class="s"><span class="syn"><b>quit</b><i>放弃，离开</i></span><span class="syn"><b>give up</b><i>放弃</i></span><span class="syn"><b>forsake</b><i>抛弃</i></span><span class="syn"><b>derelict</b><i>废弃的</i></span></td>
+</tr><tr data-k="halt n. 停止 stop, quit">
+<td class="num">110</td><td class="w">halt</td>
+<td class="m">n. 停止</td>
+<td class="s"><span class="syn"><b>stop</b><i>停止</i></span><span class="syn"><b>quit</b><i>放弃，离开</i></span></td>
+</tr><tr data-k="fragile adj. 脆弱的 vulnerable">
+<td class="num">111</td><td class="w">fragile</td>
+<td class="m">adj. 脆弱的</td>
+<td class="s"><span class="syn"><b>vulnerable</b><i>脆弱的</i></span></td>
+</tr><tr data-k="retain v. 记住 maintain">
+<td class="num">112</td><td class="w">retain</td>
+<td class="m">v. 记住</td>
+<td class="s"><span class="syn"><b>maintain</b><i>维持</i></span></td>
+</tr><tr data-k="vanish n. 消失，绝迹 disappear">
+<td class="num">113</td><td class="w">vanish</td>
+<td class="m">n. 消失，绝迹</td>
+<td class="s"><span class="syn"><b>disappear</b><i>消失</i></span></td>
+</tr><tr data-k="delivery n. 递送 send">
+<td class="num">114</td><td class="w">delivery</td>
+<td class="m">n. 递送</td>
+<td class="s"><span class="syn"><b>send</b><i>发送</i></span></td>
+</tr><tr data-k="erode v. 侵蚀 rust, damage">
+<td class="num">115</td><td class="w">erode</td>
+<td class="m">v. 侵蚀</td>
+<td class="s"><span class="syn"><b>rust</b><i>生锈</i></span><span class="syn"><b>damage</b><i>损害</i></span></td>
+</tr><tr data-k="induce v. 引起，引诱 cause, lead to">
+<td class="num">116</td><td class="w">induce</td>
+<td class="m">v. 引起，引诱</td>
+<td class="s"><span class="syn"><b>cause</b><i>引起；原因</i></span><span class="syn"><b>lead to</b><i>导致</i></span></td>
+</tr><tr data-k="stable adj. 稳定的 constant, unchanged">
+<td class="num">117</td><td class="w">stable</td>
+<td class="m">adj. 稳定的</td>
+<td class="s"><span class="syn"><b>constant</b><i>持续的，恒定的</i></span><span class="syn"><b>unchanged</b><i>不变的</i></span></td>
+</tr><tr data-k="integrate v. 使 …… 成整体 combine, whole">
+<td class="num">118</td><td class="w">integrate</td>
+<td class="m">v. 使……成整体</td>
+<td class="s"><span class="syn"><b>combine</b><i>结合</i></span><span class="syn"><b>whole</b><i>整个的</i></span></td>
+</tr><tr data-k="equal adj. 平等的; 相等 的；胜任的 fair, even">
+<td class="num">119</td><td class="w">equal</td>
+<td class="m">adj. 平等的; 相等的；胜任的</td>
+<td class="s"><span class="syn"><b>fair</b><i>公平的；集市</i></span><span class="syn"><b>even</b><i>甚至；平坦的</i></span></td>
+</tr><tr data-k="grant v. 拨款；授予 offer">
+<td class="num">120</td><td class="w">grant</td>
+<td class="m">v. 拨款；授予</td>
+<td class="s"><span class="syn"><b>offer</b><i>提供</i></span></td>
+</tr>
+</tbody>
+</table>
+</section><section class="cls">
+<div class="cls-head"><h2>第 3 类考点词</h2>
+<span class="numb">256 词</span>
+<span class="gap">256 / 256 条</span></div>
+<p class="cls-desc">原文 256 个考点词 + 57 个同义替换 = 313 词。真题文章中被考查过的词汇，重要性一致故不排序；要求熟记 5 遍以上。</p>
+<table>
+<colgroup><col style="width:180px"><col style="width:230px"><col></colgroup>
+<thead><tr><th>考点词</th><th>常考中文词义</th><th>真题同义替换 · 释义</th></tr></thead>
+<tbody>
+<tr data-k="accumulate v. 积累，积聚 gather">
+<td class="w">accumulate</td>
+<td class="m">v. 积累，积聚</td>
+<td class="s"><span class="syn"><b>gather</b><i>收集</i></span></td>
+</tr><tr data-k="addictive adj. 上瘾的 habit">
+<td class="w">addictive</td>
+<td class="m">adj. 上瘾的</td>
+<td class="s"><span class="syn"><b>habit</b><i>习惯</i></span></td>
+</tr><tr data-k="adversity n. 逆境，不幸 trouble">
+<td class="w">adversity</td>
+<td class="m">n. 逆境，不幸</td>
+<td class="s"><span class="syn"><b>trouble</b><i>麻烦</i></span></td>
+</tr><tr data-k="aggression n. 侵犯，侵害 attack">
+<td class="w">aggression</td>
+<td class="m">n. 侵犯，侵害</td>
+<td class="s"><span class="syn"><b>attack</b><i>攻击</i></span></td>
+</tr><tr data-k="agreeable adj. 令人愉快的；合 适的；和蔼可亲的 pleasant">
+<td class="w">agreeable</td>
+<td class="m">adj. 令人愉快的；合适的；和蔼可亲的</td>
+<td class="s"><span class="syn"><b>pleasant</b><i>令人愉快的</i></span></td>
+</tr><tr data-k="aid n. 援助，帮助 help">
+<td class="w">aid</td>
+<td class="m">n. 援助，帮助</td>
+<td class="s"><span class="syn"><b>help</b><i>帮助</i></span></td>
+</tr><tr data-k="allergic adj. 过敏的；对 …… 极讨厌的 irritate">
+<td class="w">allergic</td>
+<td class="m">adj. 过敏的；对……极讨厌的</td>
+<td class="s"><span class="syn"><b>irritate</b><i>刺激，使恼怒</i></span></td>
+</tr><tr data-k="altitude n. 高度，海拔 height">
+<td class="w">altitude</td>
+<td class="m">n. 高度，海拔</td>
+<td class="s"><span class="syn"><b>height</b><i>高度</i></span></td>
+</tr><tr data-k="application n. 应用 utilization">
+<td class="w">application</td>
+<td class="m">n. 应用</td>
+<td class="s"><span class="syn"><b>utilization</b><i>利用</i></span></td>
+</tr><tr data-k="approve v. 批准 agree">
+<td class="w">approve</td>
+<td class="m">v. 批准</td>
+<td class="s"><span class="syn"><b>agree</b><i>同意</i></span></td>
+</tr><tr data-k="array n. 排列，大批 order">
+<td class="w">array</td>
+<td class="m">n. 排列，大批</td>
+<td class="s"><span class="syn"><b>order</b><i>顺序；命令；订购</i></span></td>
+</tr><tr data-k="assign v. 分配，指派 allocate">
+<td class="w">assign</td>
+<td class="m">v. 分配，指派</td>
+<td class="s"><span class="syn"><b>allocate</b><i>分配</i></span></td>
+</tr><tr data-k="association n. 协会，联盟；联系 union">
+<td class="w">association</td>
+<td class="m">n. 协会，联盟；联系</td>
+<td class="s"><span class="syn"><b>union</b><i>联盟，工会</i></span></td>
+</tr><tr data-k="attitude n. 看法，态度 opinion">
+<td class="w">attitude</td>
+<td class="m">n. 看法，态度</td>
+<td class="s"><span class="syn"><b>opinion</b><i>观点</i></span></td>
+</tr><tr data-k="authority n. 当局，权威 government">
+<td class="w">authority</td>
+<td class="m">n. 当局，权威</td>
+<td class="s"><span class="syn"><b>government</b><i>政府</i></span></td>
+</tr><tr data-k="be consistent with 与 …… 一致 compatible">
+<td class="w">be consistent with</td>
+<td class="m">与……一致</td>
+<td class="s"><span class="syn"><b>compatible</b><i>兼容的，一致的</i></span></td>
+</tr><tr data-k="bear v. 承担；忍受 tolerate">
+<td class="w">bear</td>
+<td class="m">v. 承担；忍受</td>
+<td class="s"><span class="syn"><b>tolerate</b><i>容忍</i></span></td>
+</tr><tr data-k="blight v. 损害；枯萎 destroy">
+<td class="w">blight</td>
+<td class="m">v. 损害；枯萎</td>
+<td class="s"><span class="syn"><b>destroy</b><i>毁坏</i></span></td>
+</tr><tr data-k="boundary n. 边界；底线 barrier">
+<td class="w">boundary</td>
+<td class="m">n. 边界；底线</td>
+<td class="s"><span class="syn"><b>barrier</b><i>障碍</i></span></td>
+</tr><tr data-k="bungle v. 搞糟，拙劣地工作 mishandle">
+<td class="w">bungle</td>
+<td class="m">v. 搞糟，拙劣地工作</td>
+<td class="s"><span class="syn"><b>mishandle</b><i>处理不当</i></span></td>
+</tr><tr data-k="burden n. 负担 load">
+<td class="w">burden</td>
+<td class="m">n. 负担</td>
+<td class="s"><span class="syn"><b>load</b><i>负载</i></span></td>
+</tr><tr data-k="calamity n. 灾难 disaster">
+<td class="w">calamity</td>
+<td class="m">n. 灾难</td>
+<td class="s"><span class="syn"><b>disaster</b><i>灾难</i></span></td>
+</tr><tr data-k="capacity n. 容量 volume">
+<td class="w">capacity</td>
+<td class="m">n. 容量</td>
+<td class="s"><span class="syn"><b>volume</b><i>体积，音量</i></span></td>
+</tr><tr data-k="catastrophic adj. 灾难的 disastrous">
+<td class="w">catastrophic</td>
+<td class="m">adj. 灾难的</td>
+<td class="s"><span class="syn"><b>disastrous</b><i>灾难性的</i></span></td>
+</tr><tr data-k="cater v. 迎合；满足需求 serve">
+<td class="w">cater</td>
+<td class="m">v. 迎合；满足需求</td>
+<td class="s"><span class="syn"><b>serve</b><i>服务，供应</i></span></td>
+</tr><tr data-k="certify v. 证明, 保证 verify">
+<td class="w">certify</td>
+<td class="m">v. 证明, 保证</td>
+<td class="s"><span class="syn"><b>verify</b><i>核实</i></span></td>
+</tr><tr data-k="civic adj. 实名的 municipal">
+<td class="w">civic</td>
+<td class="m">adj. 实名的</td>
+<td class="s"><span class="syn"><b>municipal</b><i>市政的</i></span></td>
+</tr><tr data-k="comment n. 评论；意见 v. 评论 remark">
+<td class="w">comment</td>
+<td class="m">n. 评论；意见 v. 评论</td>
+<td class="s"><span class="syn"><b>remark</b><i>评论</i></span></td>
+</tr><tr data-k="commitment n. 承诺，许诺，义 务；致力 engagement">
+<td class="w">commitment</td>
+<td class="m">n. 承诺，许诺，义务；致力</td>
+<td class="s"><span class="syn"><b>engagement</b><i>约定，参与</i></span></td>
+</tr><tr data-k="communal adj. 公共的，公社的 public">
+<td class="w">communal</td>
+<td class="m">adj. 公共的，公社的</td>
+<td class="s"><span class="syn"><b>public</b><i>公众的</i></span></td>
+</tr><tr data-k="commute v. 通勤；用 …… 交换 travel">
+<td class="w">commute</td>
+<td class="m">v. 通勤；用……交换</td>
+<td class="s"><span class="syn"><b>travel</b><i>旅行</i></span></td>
+</tr><tr data-k="compare v. 与 …… 相比较 contrast">
+<td class="w">compare</td>
+<td class="m">v. 与……相比较</td>
+<td class="s"><span class="syn"><b>contrast</b><i>对比</i></span></td>
+</tr><tr data-k="conceal v. 隐藏；隐瞒 hide">
+<td class="w">conceal</td>
+<td class="m">v. 隐藏；隐瞒</td>
+<td class="s"><span class="syn"><b>hide</b><i>隐藏</i></span></td>
+</tr><tr data-k="concentrate v. 专心于；集中 focus">
+<td class="w">concentrate</td>
+<td class="m">v. 专心于；集中</td>
+<td class="s"><span class="syn"><b>focus</b><i>焦点；集中</i></span></td>
+</tr><tr data-k="concur v. 同意 agree">
+<td class="w">concur</td>
+<td class="m">v. 同意</td>
+<td class="s"><span class="syn"><b>agree</b><i>同意</i></span></td>
+</tr><tr data-k="confer v. 授予，给予 grant">
+<td class="w">confer</td>
+<td class="m">v. 授予，给予</td>
+<td class="s"><span class="syn"><b>grant</b><i>授予，拨款</i></span></td>
+</tr><tr data-k="conflict n. 冲突，矛盾 unharmonious">
+<td class="w">conflict</td>
+<td class="m">n. 冲突，矛盾</td>
+<td class="s"><span class="syn"><b>unharmonious</b><i>不和谐的</i></span></td>
+</tr><tr data-k="confuse v. 使混乱，使迷惑 puzzle">
+<td class="w">confuse</td>
+<td class="m">v. 使混乱，使迷惑</td>
+<td class="s"><span class="syn"><b>puzzle</b><i>谜；使困惑</i></span></td>
+</tr><tr data-k="conservative adj. 保守的 traditional">
+<td class="w">conservative</td>
+<td class="m">adj. 保守的</td>
+<td class="s"><span class="syn"><b>traditional</b><i>传统的</i></span></td>
+</tr><tr data-k="considerable adj. 相当大的，重要 的 significant">
+<td class="w">considerable</td>
+<td class="m">adj. 相当大的，重要的</td>
+<td class="s"><span class="syn"><b>significant</b><i>重要的，显著的</i></span></td>
+</tr><tr data-k="contingent adj. 因情况而异的 uncertain">
+<td class="w">contingent</td>
+<td class="m">adj. 因情况而异的</td>
+<td class="s"><span class="syn"><b>uncertain</b><i>不确定的</i></span></td>
+</tr><tr data-k="controversial adj. 有争论的 disputable">
+<td class="w">controversial</td>
+<td class="m">adj. 有争论的</td>
+<td class="s"><span class="syn"><b>disputable</b><i>有争议的</i></span></td>
+</tr><tr data-k="correlation n. 相关，关联 link">
+<td class="w">correlation</td>
+<td class="m">n. 相关，关联</td>
+<td class="s"><span class="syn"><b>link</b><i>联系</i></span></td>
+</tr><tr data-k="courtship n. 求爱（时期） mate">
+<td class="w">courtship</td>
+<td class="m">n. 求爱（时期）</td>
+<td class="s"><span class="syn"><b>mate</b><i>伙伴</i></span></td>
+</tr><tr data-k="crash n. 碰撞 collapse">
+<td class="w">crash</td>
+<td class="m">n. 碰撞</td>
+<td class="s"><span class="syn"><b>collapse</b><i>倒塌，崩溃</i></span></td>
+</tr><tr data-k="credibility n. 可信性 reliance">
+<td class="w">credibility</td>
+<td class="m">n. 可信性</td>
+<td class="s"><span class="syn"><b>reliance</b><i>依赖</i></span></td>
+</tr><tr data-k="criminal n. 罪犯，犯人 conviction">
+<td class="w">criminal</td>
+<td class="m">n. 罪犯，犯人</td>
+<td class="s"><span class="syn"><b>conviction</b><i>定罪；信念</i></span></td>
+</tr><tr data-k="crisis n. 危机 risk">
+<td class="w">crisis</td>
+<td class="m">n. 危机</td>
+<td class="s"><span class="syn"><b>risk</b><i>风险</i></span></td>
+</tr><tr data-k="criticism n. 评论 condemn">
+<td class="w">criticism</td>
+<td class="m">n. 评论</td>
+<td class="s"><span class="syn"><b>condemn</b><i>谴责</i></span></td>
+</tr><tr data-k="curb v. 限制，抑制 restrict">
+<td class="w">curb</td>
+<td class="m">v. 限制，抑制</td>
+<td class="s"><span class="syn"><b>restrict</b><i>限制</i></span></td>
+</tr><tr data-k="damp adj. 潮湿的 wet">
+<td class="w">damp</td>
+<td class="m">adj. 潮湿的</td>
+<td class="s"><span class="syn"><b>wet</b><i>湿的</i></span></td>
+</tr><tr data-k="dazzle v. 使目眩；使 …… 眼花 flash">
+<td class="w">dazzle</td>
+<td class="m">v. 使目眩；使……眼花</td>
+<td class="s"><span class="syn"><b>flash</b><i>闪光</i></span></td>
+</tr><tr data-k="deadline n. 最后期限 limit">
+<td class="w">deadline</td>
+<td class="m">n. 最后期限</td>
+<td class="s"><span class="syn"><b>limit</b><i>限制</i></span></td>
+</tr><tr data-k="delay n. 延期，耽搁 postpone">
+<td class="w">delay</td>
+<td class="m">n. 延期，耽搁</td>
+<td class="s"><span class="syn"><b>postpone</b><i>推迟</i></span></td>
+</tr><tr data-k="democratic adj. 民主的 republic">
+<td class="w">democratic</td>
+<td class="m">adj. 民主的</td>
+<td class="s"><span class="syn"><b>republic</b><i>共和国</i></span></td>
+</tr><tr data-k="demographic adj. 人口统计学的； 人口学 population statistic">
+<td class="w">demographic</td>
+<td class="m">adj. 人口统计学的； 人口学</td>
+<td class="s"><span class="syn"><b>population statistic</b><i>人口统计</i></span></td>
+</tr><tr data-k="dental adj. 牙科的，牙齿的 teeth">
+<td class="w">dental</td>
+<td class="m">adj. 牙科的，牙齿的</td>
+<td class="s"><span class="syn"><b>teeth</b><i>牙齿</i></span></td>
+</tr><tr data-k="depression n. 抑郁，沮丧 frustration">
+<td class="w">depression</td>
+<td class="m">n. 抑郁，沮丧</td>
+<td class="s"><span class="syn"><b>frustration</b><i>沮丧</i></span></td>
+</tr><tr data-k="designate n. 指定；指派，标出 appoint">
+<td class="w">designate</td>
+<td class="m">n. 指定；指派，标出</td>
+<td class="s"><span class="syn"><b>appoint</b><i>任命，指定</i></span></td>
+</tr><tr data-k="detain v. 留住 hold">
+<td class="w">detain</td>
+<td class="m">v. 留住</td>
+<td class="s"><span class="syn"><b>hold</b><i>拿着；容纳</i></span></td>
+</tr><tr data-k="devastate v. 毁坏，毁灭 wreck">
+<td class="w">devastate</td>
+<td class="m">v. 毁坏，毁灭</td>
+<td class="s"><span class="syn"><b>wreck</b><i>毁坏</i></span></td>
+</tr><tr data-k="disclose v. 公开；揭露 expose">
+<td class="w">disclose</td>
+<td class="m">v. 公开；揭露</td>
+<td class="s"><span class="syn"><b>expose</b><i>暴露，揭露</i></span></td>
+</tr><tr data-k="disparate adj. 不同的 different">
+<td class="w">disparate</td>
+<td class="m">adj. 不同的</td>
+<td class="s"><span class="syn"><b>different</b><i>不同的</i></span></td>
+</tr><tr data-k="display n. 显示 show">
+<td class="w">display</td>
+<td class="m">n. 显示</td>
+<td class="s"><span class="syn"><b>show</b><i>展示</i></span></td>
+</tr><tr data-k="disrupt v. 破坏 destroy">
+<td class="w">disrupt</td>
+<td class="m">v. 破坏</td>
+<td class="s"><span class="syn"><b>destroy</b><i>毁坏</i></span></td>
+</tr><tr data-k="distract v. 转移，分心 divert">
+<td class="w">distract</td>
+<td class="m">v. 转移，分心</td>
+<td class="s"><span class="syn"><b>divert</b><i>转移，使分心</i></span></td>
+</tr><tr data-k="distribute v. 分配，分发 spread">
+<td class="w">distribute</td>
+<td class="m">v. 分配，分发</td>
+<td class="s"><span class="syn"><b>spread</b><i>传播，散布</i></span></td>
+</tr><tr data-k="documentation n. 文件；文献 record">
+<td class="w">documentation</td>
+<td class="m">n. 文件；文献</td>
+<td class="s"><span class="syn"><b>record</b><i>记录</i></span></td>
+</tr><tr data-k="domain n. 领域 field">
+<td class="w">domain</td>
+<td class="m">n. 领域</td>
+<td class="s"><span class="syn"><b>field</b><i>领域；田野</i></span></td>
+</tr><tr data-k="dominant adj. 占优势的，占支 配地位的 overbearing">
+<td class="w">dominant</td>
+<td class="m">adj. 占优势的，占支配地位的</td>
+<td class="s"><span class="syn"><b>overbearing</b><i>专横的，压倒性的</i></span></td>
+</tr><tr data-k="dramatic adj. 戏剧化的；激动 人心的，引人注意的 striking">
+<td class="w">dramatic</td>
+<td class="m">adj. 戏剧化的；激动人心的，引人注意的</td>
+<td class="s"><span class="syn"><b>striking</b><i>显著的，引人注目的</i></span></td>
+</tr><tr data-k="drought n. 干旱 dry">
+<td class="w">drought</td>
+<td class="m">n. 干旱</td>
+<td class="s"><span class="syn"><b>dry</b><i>干燥的</i></span></td>
+</tr><tr data-k="durable adj. 持久的 lasting">
+<td class="w">durable</td>
+<td class="m">adj. 持久的</td>
+<td class="s"><span class="syn"><b>lasting</b><i>持久的</i></span></td>
+</tr><tr data-k="eco-friendly adj. 生态有好的， 环保的 environmentally-friendly">
+<td class="w">eco-friendly</td>
+<td class="m">adj. 生态有好的， 环保的</td>
+<td class="s"><span class="syn"><b>environmentally-friendly</b><i>环保的</i></span></td>
+</tr><tr data-k="elaborate v. 详细阐述，详细叙 述 illustrate">
+<td class="w">elaborate</td>
+<td class="m">v. 详细阐述，详细叙述</td>
+<td class="s"><span class="syn"><b>illustrate</b><i>说明，举例</i></span></td>
+</tr><tr data-k="elderly adj. 高龄的 aged">
+<td class="w">elderly</td>
+<td class="m">adj. 高龄的</td>
+<td class="s"><span class="syn"><b>aged</b><i>年老的</i></span></td>
+</tr><tr data-k="eliminate v. 消除，排除 dispose">
+<td class="w">eliminate</td>
+<td class="m">v. 消除，排除</td>
+<td class="s"><span class="syn"><b>dispose</b><i>处理，清除</i></span></td>
+</tr><tr data-k="elusive adj. 难懂的，难捉摸 的；行踪隐秘的 hard">
+<td class="w">elusive</td>
+<td class="m">adj. 难懂的，难捉摸的；行踪隐秘的</td>
+<td class="s"><span class="syn"><b>hard</b><i>困难的；硬的</i></span></td>
+</tr><tr data-k="encyclopaedia n. 百科全书 entire range of knowledge">
+<td class="w">encyclopaedia</td>
+<td class="m">n. 百科全书</td>
+<td class="s"><span class="syn"><b>entire range of knowledge</b><i>全部知识</i></span></td>
+</tr><tr data-k="entrepreneur n. 企业家 boss">
+<td class="w">entrepreneur</td>
+<td class="m">n. 企业家</td>
+<td class="s"><span class="syn"><b>boss</b><i>老板</i></span></td>
+</tr><tr data-k="equator n. 赤道 geography">
+<td class="w">equator</td>
+<td class="m">n. 赤道</td>
+<td class="s"><span class="syn"><b>geography</b><i>地理</i></span></td>
+</tr><tr data-k="erratically adv. 不定的，无视规 律地 unpredictably">
+<td class="w">erratically</td>
+<td class="m">adv. 不定的，无视规律地</td>
+<td class="s"><span class="syn"><b>unpredictably</b><i>不可预测地</i></span></td>
+</tr><tr data-k="established adj. 确定的；已制定 的，已建立的 built">
+<td class="w">established</td>
+<td class="m">adj. 确定的；已制定的，已建立的</td>
+<td class="s"><span class="syn"><b>built</b><i>建成的</i></span></td>
+</tr><tr data-k="estate n. 房地产 property">
+<td class="w">estate</td>
+<td class="m">n. 房地产</td>
+<td class="s"><span class="syn"><b>property</b><i>财产；特性</i></span></td>
+</tr><tr data-k="ethical adj. 道德的 moral">
+<td class="w">ethical</td>
+<td class="m">adj. 道德的</td>
+<td class="s"><span class="syn"><b>moral</b><i>道德的</i></span></td>
+</tr><tr data-k="eventually adv. 最后，终于 finally">
+<td class="w">eventually</td>
+<td class="m">adv. 最后，终于</td>
+<td class="s"><span class="syn"><b>finally</b><i>最后</i></span></td>
+</tr><tr data-k="evidence n. 迹象；证据 proof">
+<td class="w">evidence</td>
+<td class="m">n. 迹象；证据</td>
+<td class="s"><span class="syn"><b>proof</b><i>证据</i></span></td>
+</tr><tr data-k="evolve v. 进化，发展；逐渐形 成 develop">
+<td class="w">evolve</td>
+<td class="m">v. 进化，发展；逐渐形成</td>
+<td class="s"><span class="syn"><b>develop</b><i>发展</i></span></td>
+</tr><tr data-k="exhausted adj. 疲惫的，耗尽的 fatigue">
+<td class="w">exhausted</td>
+<td class="m">adj. 疲惫的，耗尽的</td>
+<td class="s"><span class="syn"><b>fatigue</b><i>疲劳</i></span></td>
+</tr><tr data-k="experiment n. 试验，试验 test">
+<td class="w">experiment</td>
+<td class="m">n. 试验，试验</td>
+<td class="s"><span class="syn"><b>test</b><i>测试</i></span></td>
+</tr><tr data-k="exceptional adj. 异常的，特别出 色的 extreme, utmost">
+<td class="w">exceptional</td>
+<td class="m">adj. 异常的，特别出色的</td>
+<td class="s"><span class="syn"><b>extreme</b><i>极端的</i></span><span class="syn"><b>utmost</b><i>极度的</i></span></td>
+</tr><tr data-k="explicit adj. 明确的 clear">
+<td class="w">explicit</td>
+<td class="m">adj. 明确的</td>
+<td class="s"><span class="syn"><b>clear</b><i>清楚的</i></span></td>
+</tr><tr data-k="exploit v. 开发，利用 use">
+<td class="w">exploit</td>
+<td class="m">v. 开发，利用</td>
+<td class="s"><span class="syn"><b>use</b><i>使用</i></span></td>
+</tr><tr data-k="extend v. 扩展，延伸，推广 expand">
+<td class="w">extend</td>
+<td class="m">v. 扩展，延伸，推广</td>
+<td class="s"><span class="syn"><b>expand</b><i>扩大</i></span></td>
+</tr><tr data-k="extract n. 摘录 v. 提取 quotation">
+<td class="w">extract</td>
+<td class="m">n. 摘录 v. 提取</td>
+<td class="s"><span class="syn"><b>quotation</b><i>引文；报价</i></span></td>
+</tr><tr data-k="famine n. 饥荒 hunger">
+<td class="w">famine</td>
+<td class="m">n. 饥荒</td>
+<td class="s"><span class="syn"><b>hunger</b><i>饥饿</i></span></td>
+</tr><tr data-k="finite adj. 有限的 limited">
+<td class="w">finite</td>
+<td class="m">adj. 有限的</td>
+<td class="s"><span class="syn"><b>limited</b><i>有限的</i></span></td>
+</tr><tr data-k="fitness n. 健康的 health">
+<td class="w">fitness</td>
+<td class="m">n. 健康的</td>
+<td class="s"><span class="syn"><b>health</b><i>健康</i></span></td>
+</tr><tr data-k="foe n. 敌人，危害物 enemy">
+<td class="w">foe</td>
+<td class="m">n. 敌人，危害物</td>
+<td class="s"><span class="syn"><b>enemy</b><i>敌人</i></span></td>
+</tr><tr data-k="format n. 格式 structure">
+<td class="w">format</td>
+<td class="m">n. 格式</td>
+<td class="s"><span class="syn"><b>structure</b><i>结构</i></span></td>
+</tr><tr data-k="fragment n. 碎片 piece">
+<td class="w">fragment</td>
+<td class="m">n. 碎片</td>
+<td class="s"><span class="syn"><b>piece</b><i>一块，一件</i></span></td>
+</tr><tr data-k="freeze n. 冰冻，冻结 chill">
+<td class="w">freeze</td>
+<td class="m">n. 冰冻，冻结</td>
+<td class="s"><span class="syn"><b>chill</b><i>寒冷</i></span></td>
+</tr><tr data-k="fulfill v. 满足，实现 execute">
+<td class="w">fulfill</td>
+<td class="m">v. 满足，实现</td>
+<td class="s"><span class="syn"><b>execute</b><i>执行</i></span></td>
+</tr><tr data-k="gene n. 基因 factor">
+<td class="w">gene</td>
+<td class="m">n. 基因</td>
+<td class="s"><span class="syn"><b>factor</b><i>因素</i></span></td>
+</tr><tr data-k="gifted adj. 有天赋的，有才 华的 talented">
+<td class="w">gifted</td>
+<td class="m">adj. 有天赋的，有才华的</td>
+<td class="s"><span class="syn"><b>talented</b><i>有天赋的</i></span></td>
+</tr><tr data-k="graphic adj. 形象的；图解的 picture">
+<td class="w">graphic</td>
+<td class="m">adj. 形象的；图解的</td>
+<td class="s"><span class="syn"><b>picture</b><i>图片</i></span></td>
+</tr><tr data-k="habitat n. 栖息地，住所 residence">
+<td class="w">habitat</td>
+<td class="m">n. 栖息地，住所</td>
+<td class="s"><span class="syn"><b>residence</b><i>住所</i></span></td>
+</tr><tr data-k="harbor v. 怀有 n. 海港 hold">
+<td class="w">harbor</td>
+<td class="m">v. 怀有 n. 海港</td>
+<td class="s"><span class="syn"><b>hold</b><i>拿着；容纳</i></span></td>
+</tr><tr data-k="hardship n. 困苦；苦难 difficult">
+<td class="w">hardship</td>
+<td class="m">n. 困苦；苦难</td>
+<td class="s"><span class="syn"><b>difficult</b><i>困难的</i></span></td>
+</tr><tr data-k="harsh adj. 艰难的；严酷的 rough">
+<td class="w">harsh</td>
+<td class="m">adj. 艰难的；严酷的</td>
+<td class="s"><span class="syn"><b>rough</b><i>粗糙的</i></span></td>
+</tr><tr data-k="hypothesis n. 假设 assumption">
+<td class="w">hypothesis</td>
+<td class="m">n. 假设</td>
+<td class="s"><span class="syn"><b>assumption</b><i>假设</i></span></td>
+</tr><tr data-k="impact n. 影响 influence">
+<td class="w">impact</td>
+<td class="m">n. 影响</td>
+<td class="s"><span class="syn"><b>influence</b><i>影响</i></span></td>
+</tr><tr data-k="impressive adj. 感人的；给人深 刻印象的 touching">
+<td class="w">impressive</td>
+<td class="m">adj. 感人的；给人深刻印象的</td>
+<td class="s"><span class="syn"><b>touching</b><i>感人的；接触</i></span></td>
+</tr><tr data-k="in accordance with 依照；与 …… 一致 conform">
+<td class="w">in accordance with</td>
+<td class="m">依照；与……一致</td>
+<td class="s"><span class="syn"><b>conform</b><i>符合，遵从</i></span></td>
+</tr><tr data-k="inaccurate adj. 错误的 incorrect">
+<td class="w">inaccurate</td>
+<td class="m">adj. 错误的</td>
+<td class="s"><span class="syn"><b>incorrect</b><i>不正确的</i></span></td>
+</tr><tr data-k="inactive adj. 不活跃的，不活 动的 passive">
+<td class="w">inactive</td>
+<td class="m">adj. 不活跃的，不活动的</td>
+<td class="s"><span class="syn"><b>passive</b><i>被动的</i></span></td>
+</tr><tr data-k="inappropriate adj. 不适当的 hard">
+<td class="w">inappropriate</td>
+<td class="m">adj. 不适当的</td>
+<td class="s"><span class="syn"><b>hard</b><i>困难的；硬的</i></span></td>
+</tr><tr data-k="indulge v. 沉溺（于） spoil">
+<td class="w">indulge</td>
+<td class="m">v. 沉溺（于）</td>
+<td class="s"><span class="syn"><b>spoil</b><i>破坏，宠坏</i></span></td>
+</tr><tr data-k="infest v. 侵害；寄生于 plague">
+<td class="w">infest</td>
+<td class="m">v. 侵害；寄生于</td>
+<td class="s"><span class="syn"><b>plague</b><i>瘟疫；困扰</i></span></td>
+</tr><tr data-k="installment n. 安装；分期付款 payment on its completion">
+<td class="w">installment</td>
+<td class="m">n. 安装；分期付款</td>
+<td class="s"><span class="syn"><b>payment on its completion</b><i>完工后付款</i></span></td>
+</tr><tr data-k="intelligence n. 智力 mind">
+<td class="w">intelligence</td>
+<td class="m">n. 智力</td>
+<td class="s"><span class="syn"><b>mind</b><i>头脑；介意</i></span></td>
+</tr><tr data-k="intense adj. 强烈的；紧张的； 热情的 strong">
+<td class="w">intense</td>
+<td class="m">adj. 强烈的；紧张的； 热情的</td>
+<td class="s"><span class="syn"><b>strong</b><i>强壮的</i></span></td>
+</tr><tr data-k="interaction n. 相互作用，交流互 动 social activities">
+<td class="w">interaction</td>
+<td class="m">n. 相互作用，交流互动</td>
+<td class="s"><span class="syn"><b>social activities</b><i>社交活动</i></span></td>
+</tr><tr data-k="interference n. 干涉 interdependence">
+<td class="w">interference</td>
+<td class="m">n. 干涉</td>
+<td class="s"><span class="syn"><b>interdependence</b><i>相互依赖</i></span></td>
+</tr><tr data-k="interior n. 内部 adj. 内部的 inner">
+<td class="w">interior</td>
+<td class="m">n. 内部 adj. 内部的</td>
+<td class="s"><span class="syn"><b>inner</b><i>内部的</i></span></td>
+</tr><tr data-k="interrupt v. 中断 stop">
+<td class="w">interrupt</td>
+<td class="m">v. 中断</td>
+<td class="s"><span class="syn"><b>stop</b><i>停止</i></span></td>
+</tr><tr data-k="introverted adj. 内向的，含蓄的 shyness">
+<td class="w">introverted</td>
+<td class="m">adj. 内向的，含蓄的</td>
+<td class="s"><span class="syn"><b>shyness</b><i>害羞</i></span></td>
+</tr><tr data-k="involve v. 包含，牵涉 associate">
+<td class="w">involve</td>
+<td class="m">v. 包含，牵涉</td>
+<td class="s"><span class="syn"><b>associate</b><i>联系，关联</i></span></td>
+</tr><tr data-k="keen adj. 热切的；强迫的， 强烈的 strong">
+<td class="w">keen</td>
+<td class="m">adj. 热切的；强迫的， 强烈的</td>
+<td class="s"><span class="syn"><b>strong</b><i>强壮的</i></span></td>
+</tr><tr data-k="label v. 打上标签 display">
+<td class="w">label</td>
+<td class="m">v. 打上标签</td>
+<td class="s"><span class="syn"><b>display</b><i>展示</i></span></td>
+</tr><tr data-k="lack v. 缺乏；不足 shortage">
+<td class="w">lack</td>
+<td class="m">v. 缺乏；不足</td>
+<td class="s"><span class="syn"><b>shortage</b><i>短缺</i></span></td>
+</tr><tr data-k="landscape n. 风景 scene">
+<td class="w">landscape</td>
+<td class="m">n. 风景</td>
+<td class="s"><span class="syn"><b>scene</b><i>场景</i></span></td>
+</tr><tr data-k="likelihood n. 可能性 chance">
+<td class="w">likelihood</td>
+<td class="m">n. 可能性</td>
+<td class="s"><span class="syn"><b>chance</b><i>机会</i></span></td>
+</tr><tr data-k="limb n. 四肢 arm or leg">
+<td class="w">limb</td>
+<td class="m">n. 四肢</td>
+<td class="s"><span class="syn"><b>arm or leg</b><i>胳膊或腿</i></span></td>
+</tr><tr data-k="linguistic adj. 语言(学) 的 language">
+<td class="w">linguistic</td>
+<td class="m">adj. 语言(学) 的</td>
+<td class="s"><span class="syn"><b>language</b><i>语言</i></span></td>
+</tr><tr data-k="log v. 记录 n. 原木 record">
+<td class="w">log</td>
+<td class="m">v. 记录 n. 原木</td>
+<td class="s"><span class="syn"><b>record</b><i>记录</i></span></td>
+</tr><tr data-k="look-in n. 成功的机会 opportunity, chance">
+<td class="w">look-in</td>
+<td class="m">n. 成功的机会</td>
+<td class="s"><span class="syn"><b>opportunity</b><i>机会</i></span><span class="syn"><b>chance</b><i>机会</i></span></td>
+</tr><tr data-k="lopsided adj. 不平衡的 uneven">
+<td class="w">lopsided</td>
+<td class="m">adj. 不平衡的</td>
+<td class="s"><span class="syn"><b>uneven</b><i>不均衡的</i></span></td>
+</tr><tr data-k="mainly adv. 主要的，大体的 primarily">
+<td class="w">mainly</td>
+<td class="m">adv. 主要的，大体的</td>
+<td class="s"><span class="syn"><b>primarily</b><i>主要地</i></span></td>
+</tr><tr data-k="malfunction v. 发生故障; 不起作用 breakdown">
+<td class="w">malfunction</td>
+<td class="m">v. 发生故障; 不起作用</td>
+<td class="s"><span class="syn"><b>breakdown</b><i>故障，崩溃</i></span></td>
+</tr><tr data-k="mammal n. 哺乳动物 creature">
+<td class="w">mammal</td>
+<td class="m">n. 哺乳动物</td>
+<td class="s"><span class="syn"><b>creature</b><i>生物</i></span></td>
+</tr><tr data-k="mange to do 设法完成某事 success">
+<td class="w">mange to do</td>
+<td class="m">设法完成某事</td>
+<td class="s"><span class="syn"><b>success</b><i>成功</i></span></td>
+</tr><tr data-k="manifest v. 出现，表现 obvious">
+<td class="w">manifest</td>
+<td class="m">v. 出现，表现</td>
+<td class="s"><span class="syn"><b>obvious</b><i>明显的</i></span></td>
+</tr><tr data-k="manufacture n. 生产 produce">
+<td class="w">manufacture</td>
+<td class="m">n. 生产</td>
+<td class="s"><span class="syn"><b>produce</b><i>生产</i></span></td>
+</tr><tr data-k="marine adj. 海产的；航海的； 海运的 sea">
+<td class="w">marine</td>
+<td class="m">adj. 海产的；航海的； 海运的</td>
+<td class="s"><span class="syn"><b>sea</b><i>海</i></span></td>
+</tr><tr data-k="mate n. 配偶 spouse">
+<td class="w">mate</td>
+<td class="m">n. 配偶</td>
+<td class="s"><span class="syn"><b>spouse</b><i>配偶</i></span></td>
+</tr><tr data-k="mechanism n. 机制，原理 method">
+<td class="w">mechanism</td>
+<td class="m">n. 机制，原理</td>
+<td class="s"><span class="syn"><b>method</b><i>方法</i></span></td>
+</tr><tr data-k="mental adj. 精神的，心理的 intelligent">
+<td class="w">mental</td>
+<td class="m">adj. 精神的，心理的</td>
+<td class="s"><span class="syn"><b>intelligent</b><i>聪明的</i></span></td>
+</tr><tr data-k="mercury n. 汞，水银 liquid metal">
+<td class="w">mercury</td>
+<td class="m">n. 汞，水银</td>
+<td class="s"><span class="syn"><b>liquid metal</b><i>液态金属</i></span></td>
+</tr><tr data-k="meteorological adj. 气象学的 weather">
+<td class="w">meteorological</td>
+<td class="m">adj. 气象学的</td>
+<td class="s"><span class="syn"><b>weather</b><i>天气</i></span></td>
+</tr><tr data-k="migrate v. 转移, 迁移 move">
+<td class="w">migrate</td>
+<td class="m">v. 转移, 迁移</td>
+<td class="s"><span class="syn"><b>move</b><i>移动</i></span></td>
+</tr><tr data-k="moisture n. 水分，湿度 humidity">
+<td class="w">moisture</td>
+<td class="m">n. 水分，湿度</td>
+<td class="s"><span class="syn"><b>humidity</b><i>湿度</i></span></td>
+</tr><tr data-k="monitor v. 监控 surveillance">
+<td class="w">monitor</td>
+<td class="m">v. 监控</td>
+<td class="s"><span class="syn"><b>surveillance</b><i>监视</i></span></td>
+</tr><tr data-k="motif n. 主题；图形 theme">
+<td class="w">motif</td>
+<td class="m">n. 主题；图形</td>
+<td class="s"><span class="syn"><b>theme</b><i>主题</i></span></td>
+</tr><tr data-k="mould v. 模压，塑造；塑造成 form">
+<td class="w">mould</td>
+<td class="m">v. 模压，塑造；塑造成</td>
+<td class="s"><span class="syn"><b>form</b><i>形成；形式</i></span></td>
+</tr><tr data-k="native adj. 本国的，土著的； 天然的；天赋的 original">
+<td class="w">native</td>
+<td class="m">adj. 本国的，土著的； 天然的；天赋的</td>
+<td class="s"><span class="syn"><b>original</b><i>最初的，原创的</i></span></td>
+</tr><tr data-k="nocturnal adj. 夜间的, 夜间发生 的 night">
+<td class="w">nocturnal</td>
+<td class="m">adj. 夜间的, 夜间发生的</td>
+<td class="s"><span class="syn"><b>night</b><i>夜晚</i></span></td>
+</tr><tr data-k="norm n. 规范 regulation">
+<td class="w">norm</td>
+<td class="m">n. 规范</td>
+<td class="s"><span class="syn"><b>regulation</b><i>规定</i></span></td>
+</tr><tr data-k="notoriety n. 名声 famous">
+<td class="w">notoriety</td>
+<td class="m">n. 名声</td>
+<td class="s"><span class="syn"><b>famous</b><i>著名的</i></span></td>
+</tr><tr data-k="objective n. 目标，目的 adj. 客观的 goal">
+<td class="w">objective</td>
+<td class="m">n. 目标，目的 adj. 客观的</td>
+<td class="s"><span class="syn"><b>goal</b><i>目标</i></span></td>
+</tr><tr data-k="obligation n. 义务 responsibility">
+<td class="w">obligation</td>
+<td class="m">n. 义务</td>
+<td class="s"><span class="syn"><b>responsibility</b><i>责任</i></span></td>
+</tr><tr data-k="obscure v. 掩盖，使模糊不清 hide">
+<td class="w">obscure</td>
+<td class="m">v. 掩盖，使模糊不清</td>
+<td class="s"><span class="syn"><b>hide</b><i>隐藏</i></span></td>
+</tr><tr data-k="obtain v. 获得 get">
+<td class="w">obtain</td>
+<td class="m">v. 获得</td>
+<td class="s"><span class="syn"><b>get</b><i>得到</i></span></td>
+</tr><tr data-k="odd adj. 古怪的 strange">
+<td class="w">odd</td>
+<td class="m">adj. 古怪的</td>
+<td class="s"><span class="syn"><b>strange</b><i>奇怪的</i></span></td>
+</tr><tr data-k="odour n. 气味 smell">
+<td class="w">odour</td>
+<td class="m">n. 气味</td>
+<td class="s"><span class="syn"><b>smell</b><i>气味；闻</i></span></td>
+</tr><tr data-k="offensive adj. 冒犯的，无礼的 hostile">
+<td class="w">offensive</td>
+<td class="m">adj. 冒犯的，无礼的</td>
+<td class="s"><span class="syn"><b>hostile</b><i>敌对的</i></span></td>
+</tr><tr data-k="official n. 官员 adj. 官方的 authority">
+<td class="w">official</td>
+<td class="m">n. 官员 adj. 官方的</td>
+<td class="s"><span class="syn"><b>authority</b><i>当局，权威</i></span></td>
+</tr><tr data-k="optimum n. 最佳效果 adj. 最适宜的 best">
+<td class="w">optimum</td>
+<td class="m">n. 最佳效果 adj. 最适宜的</td>
+<td class="s"><span class="syn"><b>best</b><i>最好的</i></span></td>
+</tr><tr data-k="ordinary adj. 普通的；平凡的； 平常的 common">
+<td class="w">ordinary</td>
+<td class="m">adj. 普通的；平凡的； 平常的</td>
+<td class="s"><span class="syn"><b>common</b><i>常见的，共同的</i></span></td>
+</tr><tr data-k="organ n. 器官；机构 a part of a body">
+<td class="w">organ</td>
+<td class="m">n. 器官；机构</td>
+<td class="s"><span class="syn"><b>a part of a body</b><i>身体的一部分</i></span></td>
+</tr><tr data-k="out of the question 不可能 impossible">
+<td class="w">out of the question</td>
+<td class="m">不可能</td>
+<td class="s"><span class="syn"><b>impossible</b><i>不可能的</i></span></td>
+</tr><tr data-k="overcome v. 克服 defeat">
+<td class="w">overcome</td>
+<td class="m">v. 克服</td>
+<td class="s"><span class="syn"><b>defeat</b><i>击败</i></span></td>
+</tr><tr data-k="overtake v. 赶上 surpass">
+<td class="w">overtake</td>
+<td class="m">v. 赶上</td>
+<td class="s"><span class="syn"><b>surpass</b><i>超过</i></span></td>
+</tr><tr data-k="paralyse v. 使 …… 麻痹；使 …… 瘫痪 cannot move">
+<td class="w">paralyse</td>
+<td class="m">v. 使……麻痹；使……瘫痪</td>
+<td class="s"><span class="syn"><b>cannot move</b><i>不能移动</i></span></td>
+</tr><tr data-k="paramount adj. 最重要的，主要 的 principal">
+<td class="w">paramount</td>
+<td class="m">adj. 最重要的，主要的</td>
+<td class="s"><span class="syn"><b>principal</b><i>主要的；校长</i></span></td>
+</tr><tr data-k="participate v. 参加 join">
+<td class="w">participate</td>
+<td class="m">v. 参加</td>
+<td class="s"><span class="syn"><b>join</b><i>加入，连接</i></span></td>
+</tr><tr data-k="patient adj. 有耐性的，能容 忍的 n. 病人；患者 repetitive">
+<td class="w">patient</td>
+<td class="m">adj. 有耐性的，能容忍的 n. 病人；患者</td>
+<td class="s"><span class="syn"><b>repetitive</b><i>重复的</i></span></td>
+</tr><tr data-k="peak n. 最高峰，顶点 v. 使 …… 达到顶峰 top">
+<td class="w">peak</td>
+<td class="m">n. 最高峰，顶点 v. 使……达到顶峰</td>
+<td class="s"><span class="syn"><b>top</b><i>顶部</i></span></td>
+</tr><tr data-k="permit n. 许可证，执照 v. 许可 allow">
+<td class="w">permit</td>
+<td class="m">n. 许可证，执照 v. 许可</td>
+<td class="s"><span class="syn"><b>allow</b><i>允许</i></span></td>
+</tr><tr data-k="persuade v. 说服，劝说 influence">
+<td class="w">persuade</td>
+<td class="m">v. 说服，劝说</td>
+<td class="s"><span class="syn"><b>influence</b><i>影响</i></span></td>
+</tr><tr data-k="pessimistic adj. 悲观的 negative">
+<td class="w">pessimistic</td>
+<td class="m">adj. 悲观的</td>
+<td class="s"><span class="syn"><b>negative</b><i>负面的</i></span></td>
+</tr><tr data-k="phase n. 阶段 process">
+<td class="w">phase</td>
+<td class="m">n. 阶段</td>
+<td class="s"><span class="syn"><b>process</b><i>过程</i></span></td>
+</tr><tr data-k="physical adj. 身体上的；物质 的 body">
+<td class="w">physical</td>
+<td class="m">adj. 身体上的；物质的</td>
+<td class="s"><span class="syn"><b>body</b><i>身体</i></span></td>
+</tr><tr data-k="plagiarise v. 抄袭 copy">
+<td class="w">plagiarise</td>
+<td class="m">v. 抄袭</td>
+<td class="s"><span class="syn"><b>copy</b><i>复制，模仿</i></span></td>
+</tr><tr data-k="plenty of 大量的 many">
+<td class="w">plenty of</td>
+<td class="m">大量的</td>
+<td class="s"><span class="syn"><b>many</b><i>许多</i></span></td>
+</tr><tr data-k="plot v. 密谋 plan">
+<td class="w">plot</td>
+<td class="m">v. 密谋</td>
+<td class="s"><span class="syn"><b>plan</b><i>计划</i></span></td>
+</tr><tr data-k="pose v. 提出，造成，形成 cause">
+<td class="w">pose</td>
+<td class="m">v. 提出，造成，形成</td>
+<td class="s"><span class="syn"><b>cause</b><i>引起；原因</i></span></td>
+</tr><tr data-k="portable adj. 可携带的 conveyable">
+<td class="w">portable</td>
+<td class="m">adj. 可携带的</td>
+<td class="s"><span class="syn"><b>conveyable</b><i>可传达的</i></span></td>
+</tr><tr data-k="poverty n. 贫穷 poor">
+<td class="w">poverty</td>
+<td class="m">n. 贫穷</td>
+<td class="s"><span class="syn"><b>poor</b><i>贫穷的；差的</i></span></td>
+</tr><tr data-k="praise n. 赞扬 commend">
+<td class="w">praise</td>
+<td class="m">n. 赞扬</td>
+<td class="s"><span class="syn"><b>commend</b><i>称赞</i></span></td>
+</tr><tr data-k="predict v. 预测，预知 expect">
+<td class="w">predict</td>
+<td class="m">v. 预测，预知</td>
+<td class="s"><span class="syn"><b>expect</b><i>期待</i></span></td>
+</tr><tr data-k="pressing adj. 迫切的 urgent">
+<td class="w">pressing</td>
+<td class="m">adj. 迫切的</td>
+<td class="s"><span class="syn"><b>urgent</b><i>紧急的</i></span></td>
+</tr><tr data-k="private adj. 私人的；私有的； 私下的 personal">
+<td class="w">private</td>
+<td class="m">adj. 私人的；私有的； 私下的</td>
+<td class="s"><span class="syn"><b>personal</b><i>个人的</i></span></td>
+</tr><tr data-k="prohibit v. 禁止的 not allowed">
+<td class="w">prohibit</td>
+<td class="m">v. 禁止的</td>
+<td class="s"><span class="syn"><b>not allowed</b><i>不被允许</i></span></td>
+</tr><tr data-k="prolong v. 拉长，延长 extend">
+<td class="w">prolong</td>
+<td class="m">v. 拉长，延长</td>
+<td class="s"><span class="syn"><b>extend</b><i>延伸</i></span></td>
+</tr><tr data-k="promote v. 促进，推销 improve">
+<td class="w">promote</td>
+<td class="m">v. 促进，推销</td>
+<td class="s"><span class="syn"><b>improve</b><i>改进</i></span></td>
+</tr><tr data-k="prosper v. 使成功，使繁荣 success">
+<td class="w">prosper</td>
+<td class="m">v. 使成功，使繁荣</td>
+<td class="s"><span class="syn"><b>success</b><i>成功</i></span></td>
+</tr><tr data-k="purify v. 净化 clean">
+<td class="w">purify</td>
+<td class="m">v. 净化</td>
+<td class="s"><span class="syn"><b>clean</b><i>干净的；清洁</i></span></td>
+</tr><tr data-k="qualify v. 取得资格 fulfill">
+<td class="w">qualify</td>
+<td class="m">v. 取得资格</td>
+<td class="s"><span class="syn"><b>fulfill</b><i>实现，满足</i></span></td>
+</tr><tr data-k="radical adj. 彻底的，根本的 utmost">
+<td class="w">radical</td>
+<td class="m">adj. 彻底的，根本的</td>
+<td class="s"><span class="syn"><b>utmost</b><i>极度的</i></span></td>
+</tr><tr data-k="range n. 范围；幅度 scope">
+<td class="w">range</td>
+<td class="m">n. 范围；幅度</td>
+<td class="s"><span class="syn"><b>scope</b><i>范围</i></span></td>
+</tr><tr data-k="rare adj. 稀有的 unusual">
+<td class="w">rare</td>
+<td class="m">adj. 稀有的</td>
+<td class="s"><span class="syn"><b>unusual</b><i>不寻常的</i></span></td>
+</tr><tr data-k="rate n. 等级 v. 评估 rank;measure">
+<td class="w">rate</td>
+<td class="m">n. 等级 v. 评估</td>
+<td class="s"><span class="syn"><b>rank</b><i>排名</i></span><span class="syn"><b>measure</b><i>测量；措施</i></span></td>
+</tr><tr data-k="react v. 反应 respond">
+<td class="w">react</td>
+<td class="m">v. 反应</td>
+<td class="s"><span class="syn"><b>respond</b><i>回应</i></span></td>
+</tr><tr data-k="recreation n. 娱乐，消遣 entertainment">
+<td class="w">recreation</td>
+<td class="m">n. 娱乐，消遣</td>
+<td class="s"><span class="syn"><b>entertainment</b><i>娱乐</i></span></td>
+</tr><tr data-k="reduction n. 下降，减少 decrease">
+<td class="w">reduction</td>
+<td class="m">n. 下降，减少</td>
+<td class="s"><span class="syn"><b>decrease</b><i>减少</i></span></td>
+</tr><tr data-k="refer to 指(的是)，涉及，提及 talk about">
+<td class="w">refer to</td>
+<td class="m">指(的是)，涉及，提及</td>
+<td class="s"><span class="syn"><b>talk about</b><i>谈论</i></span></td>
+</tr><tr data-k="rehearsal n. 排演；预演；练习 preparation">
+<td class="w">rehearsal</td>
+<td class="m">n. 排演；预演；练习</td>
+<td class="s"><span class="syn"><b>preparation</b><i>准备</i></span></td>
+</tr><tr data-k="reject v. 拒绝，排斥，丢弃 exclude">
+<td class="w">reject</td>
+<td class="m">v. 拒绝，排斥，丢弃</td>
+<td class="s"><span class="syn"><b>exclude</b><i>排除</i></span></td>
+</tr><tr data-k="relevant adj. 相关的 relative">
+<td class="w">relevant</td>
+<td class="m">adj. 相关的</td>
+<td class="s"><span class="syn"><b>relative</b><i>相对的；亲戚</i></span></td>
+</tr><tr data-k="religious adj. 宗教的；虔诚的 sacred">
+<td class="w">religious</td>
+<td class="m">adj. 宗教的；虔诚的</td>
+<td class="s"><span class="syn"><b>sacred</b><i>神圣的</i></span></td>
+</tr><tr data-k="reluctant adj. 不情愿的 unwilling">
+<td class="w">reluctant</td>
+<td class="m">adj. 不情愿的</td>
+<td class="s"><span class="syn"><b>unwilling</b><i>不愿意的</i></span></td>
+</tr><tr data-k="reproduce v. 繁殖 breed">
+<td class="w">reproduce</td>
+<td class="m">v. 繁殖</td>
+<td class="s"><span class="syn"><b>breed</b><i>繁殖</i></span></td>
+</tr><tr data-k="responsible adj. 负责的，可靠的； 有责任的 liable">
+<td class="w">responsible</td>
+<td class="m">adj. 负责的，可靠的； 有责任的</td>
+<td class="s"><span class="syn"><b>liable</b><i>有责任的；易于……的</i></span></td>
+</tr><tr data-k="revision n. 修正 editing">
+<td class="w">revision</td>
+<td class="m">n. 修正</td>
+<td class="s"><span class="syn"><b>editing</b><i>编辑</i></span></td>
+</tr><tr data-k="revive v. 使复苏，恢复 renaissance">
+<td class="w">revive</td>
+<td class="m">v. 使复苏，恢复</td>
+<td class="s"><span class="syn"><b>renaissance</b><i>文艺复兴</i></span></td>
+</tr><tr data-k="ruin v. 毁灭 destroy">
+<td class="w">ruin</td>
+<td class="m">v. 毁灭</td>
+<td class="s"><span class="syn"><b>destroy</b><i>毁坏</i></span></td>
+</tr><tr data-k="scenic adj. 风景优美的 beautiful">
+<td class="w">scenic</td>
+<td class="m">adj. 风景优美的</td>
+<td class="s"><span class="syn"><b>beautiful</b><i>美丽的</i></span></td>
+</tr><tr data-k="shade n. 遮阳；阴影 shelter">
+<td class="w">shade</td>
+<td class="m">n. 遮阳；阴影</td>
+<td class="s"><span class="syn"><b>shelter</b><i>住所，庇护</i></span></td>
+</tr><tr data-k="skepticism n. 怀疑 doubt">
+<td class="w">skepticism</td>
+<td class="m">n. 怀疑</td>
+<td class="s"><span class="syn"><b>doubt</b><i>怀疑</i></span></td>
+</tr><tr data-k="soar v. 激增 increase">
+<td class="w">soar</td>
+<td class="m">v. 激增</td>
+<td class="s"><span class="syn"><b>increase</b><i>增加</i></span></td>
+</tr><tr data-k="solely adv. 唯一地 alone">
+<td class="w">solely</td>
+<td class="m">adv. 唯一地</td>
+<td class="s"><span class="syn"><b>alone</b><i>独自的</i></span></td>
+</tr><tr data-k="solicitor n. 律师 lawyer">
+<td class="w">solicitor</td>
+<td class="m">n. 律师</td>
+<td class="s"><span class="syn"><b>lawyer</b><i>律师</i></span></td>
+</tr><tr data-k="steer v. 控制，引导 manage">
+<td class="w">steer</td>
+<td class="m">v. 控制，引导</td>
+<td class="s"><span class="syn"><b>manage</b><i>管理；设法</i></span></td>
+</tr><tr data-k="stimulate v. 刺激，激励 motivate">
+<td class="w">stimulate</td>
+<td class="m">v. 刺激，激励</td>
+<td class="s"><span class="syn"><b>motivate</b><i>激励</i></span></td>
+</tr><tr data-k="stride n. 进展 progress">
+<td class="w">stride</td>
+<td class="m">n. 进展</td>
+<td class="s"><span class="syn"><b>progress</b><i>进步</i></span></td>
+</tr><tr data-k="succumb vi. 屈服 yield">
+<td class="w">succumb</td>
+<td class="m">vi. 屈服</td>
+<td class="s"><span class="syn"><b>yield</b><i>产生，屈服</i></span></td>
+</tr><tr data-k="subdivide v. 把 …… 细分 break down">
+<td class="w">subdivide</td>
+<td class="m">v. 把……细分</td>
+<td class="s"><span class="syn"><b>break down</b><i>分解；出故障</i></span></td>
+</tr><tr data-k="subtle adj. 微妙的 delicate">
+<td class="w">subtle</td>
+<td class="m">adj. 微妙的</td>
+<td class="s"><span class="syn"><b>delicate</b><i>精致的，脆弱的</i></span></td>
+</tr><tr data-k="substance n. 物质；实质 matter">
+<td class="w">substance</td>
+<td class="m">n. 物质；实质</td>
+<td class="s"><span class="syn"><b>matter</b><i>事情；要紧</i></span></td>
+</tr><tr data-k="sufficiency n. 足量，充足 enough">
+<td class="w">sufficiency</td>
+<td class="m">n. 足量，充足</td>
+<td class="s"><span class="syn"><b>enough</b><i>足够的</i></span></td>
+</tr><tr data-k="supersede v. 取代，代替 replace">
+<td class="w">supersede</td>
+<td class="m">v. 取代，代替</td>
+<td class="s"><span class="syn"><b>replace</b><i>替换</i></span></td>
+</tr><tr data-k="suppress v. 抑制，隐瞒 hold">
+<td class="w">suppress</td>
+<td class="m">v. 抑制，隐瞒</td>
+<td class="s"><span class="syn"><b>hold</b><i>拿着；容纳</i></span></td>
+</tr><tr data-k="supremacy n. 至高无上，很高的 地位 priority">
+<td class="w">supremacy</td>
+<td class="m">n. 至高无上，很高的地位</td>
+<td class="s"><span class="syn"><b>priority</b><i>优先，优先权</i></span></td>
+</tr><tr data-k="suspicious adj. 可疑的 odd">
+<td class="w">suspicious</td>
+<td class="m">adj. 可疑的</td>
+<td class="s"><span class="syn"><b>odd</b><i>奇怪的；奇数的</i></span></td>
+</tr><tr data-k="sustainable adj. 可持续的 long-term">
+<td class="w">sustainable</td>
+<td class="m">adj. 可持续的</td>
+<td class="s"><span class="syn"><b>long-term</b><i>长期的</i></span></td>
+</tr><tr data-k="symptom n. 症状，征兆 sign">
+<td class="w">symptom</td>
+<td class="m">n. 症状，征兆</td>
+<td class="s"><span class="syn"><b>sign</b><i>标志；签名</i></span></td>
+</tr><tr data-k="tension n. 紧张，不安 upset">
+<td class="w">tension</td>
+<td class="m">n. 紧张，不安</td>
+<td class="s"><span class="syn"><b>upset</b><i>使不安的</i></span></td>
+</tr><tr data-k="term n. 术语 word">
+<td class="w">term</td>
+<td class="m">n. 术语</td>
+<td class="s"><span class="syn"><b>word</b><i>单词</i></span></td>
+</tr><tr data-k="throughout adv. 自始至终，到处； 全部 anywhere">
+<td class="w">throughout</td>
+<td class="m">adv. 自始至终，到处； 全部</td>
+<td class="s"><span class="syn"><b>anywhere</b><i>任何地方</i></span></td>
+</tr><tr data-k="toll n. 通行费 v. 征收 charge">
+<td class="w">toll</td>
+<td class="m">n. 通行费 v. 征收</td>
+<td class="s"><span class="syn"><b>charge</b><i>收费；充电</i></span></td>
+</tr><tr data-k="trace n. 追溯；痕迹 track">
+<td class="w">trace</td>
+<td class="m">n. 追溯；痕迹</td>
+<td class="s"><span class="syn"><b>track</b><i>轨道；追踪</i></span></td>
+</tr><tr data-k="transcend v. 胜过，超越 excel">
+<td class="w">transcend</td>
+<td class="m">v. 胜过，超越</td>
+<td class="s"><span class="syn"><b>excel</b><i>擅长，胜过</i></span></td>
+</tr><tr data-k="transit n. 运输；经过 v. 运送 send">
+<td class="w">transit</td>
+<td class="m">n. 运输；经过 v. 运送</td>
+<td class="s"><span class="syn"><b>send</b><i>发送</i></span></td>
+</tr><tr data-k="tremendous adj. 巨大的，惊人的 vast">
+<td class="w">tremendous</td>
+<td class="m">adj. 巨大的，惊人的</td>
+<td class="s"><span class="syn"><b>vast</b><i>广阔的，巨大的</i></span></td>
+</tr><tr data-k="trigger n. 触发，引发，引起 begin">
+<td class="w">trigger</td>
+<td class="m">n. 触发，引发，引起</td>
+<td class="s"><span class="syn"><b>begin</b><i>开始</i></span></td>
+</tr><tr data-k="tropical adj. 热带的 hot">
+<td class="w">tropical</td>
+<td class="m">adj. 热带的</td>
+<td class="s"><span class="syn"><b>hot</b><i>热的</i></span></td>
+</tr><tr data-k="unbiased adj. 公正的，无偏见 的 fair">
+<td class="w">unbiased</td>
+<td class="m">adj. 公正的，无偏见的</td>
+<td class="s"><span class="syn"><b>fair</b><i>公平的；集市</i></span></td>
+</tr><tr data-k="uniform adj. 始终如一的 consistent">
+<td class="w">uniform</td>
+<td class="m">adj. 始终如一的</td>
+<td class="s"><span class="syn"><b>consistent</b><i>一致的</i></span></td>
+</tr><tr data-k="valuable adj. 宝贵的，有价值 的 benefit">
+<td class="w">valuable</td>
+<td class="m">adj. 宝贵的，有价值的</td>
+<td class="s"><span class="syn"><b>benefit</b><i>益处</i></span></td>
+</tr><tr data-k="versatile adj. 多功能 all-around">
+<td class="w">versatile</td>
+<td class="m">adj. 多功能</td>
+<td class="s"><span class="syn"><b>all-around</b><i>全面的</i></span></td>
+</tr><tr data-k="view v. 看 overlook">
+<td class="w">view</td>
+<td class="m">v. 看</td>
+<td class="s"><span class="syn"><b>overlook</b><i>忽视</i></span></td>
+</tr><tr data-k="violent adj. 暴力的；猛烈的 fierce">
+<td class="w">violent</td>
+<td class="m">adj. 暴力的；猛烈的</td>
+<td class="s"><span class="syn"><b>fierce</b><i>凶猛的，激烈的</i></span></td>
+</tr><tr data-k="visible adj. 明显的，看得见 的 see">
+<td class="w">visible</td>
+<td class="m">adj. 明显的，看得见的</td>
+<td class="s"><span class="syn"><b>see</b><i>看见</i></span></td>
+</tr><tr data-k="visual adj. 是觉得 image">
+<td class="w">visual</td>
+<td class="m">adj. 是觉得</td>
+<td class="s"><span class="syn"><b>image</b><i>图像</i></span></td>
+</tr><tr data-k="well-being n. 健康，康乐 health">
+<td class="w">well-being</td>
+<td class="m">n. 健康，康乐</td>
+<td class="s"><span class="syn"><b>health</b><i>健康</i></span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<footer>
+  <span>已去除原 PDF 中的公众号水印、LOGO 与二维码，仅保留词表内容。</span>
+  <span>原文：刘洪波《剑桥雅思考点词真经》系列 · 本页仅作学习整理</span>
+</footer>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('q');
+  var bare=document.getElementById('bare');
+  var mean=document.getElementById('mean');
+  var rows=[].slice.call(document.querySelectorAll('tbody tr'));
+  var counters=[].slice.call(document.querySelectorAll('section.cls'));
+  function norm(s){return (s||'').toLowerCase()}
+  function run(){
+    var v=norm(box.value.trim());
+    var total=0;
+    rows.forEach(function(tr){
+      var hit=!v||norm(tr.dataset.k).indexOf(v)>-1;
+      tr.style.display=hit?'':'none';
+      if(hit)total++;
+    });
+    counters.forEach(function(sec){
+      var vis=sec.querySelectorAll('tbody tr:not([style*="none"])').length;
+      sec.querySelector('.gap').textContent=vis+' / '+sec.querySelectorAll('tbody tr').length+' 条';
+    });
+    document.getElementById('count').textContent=total+' 条';
+  }
+  box.addEventListener('input',run);
+  function save(){
+    document.body.classList.toggle('bare',bare.checked);
+    document.body.classList.toggle('hide-mean',mean.checked);
+    try{localStorage.setItem('ielts-tbl',JSON.stringify({b:bare.checked,m:mean.checked}))}catch(e){}
+  }
+  bare.addEventListener('change',save);
+  mean.addEventListener('change',save);
+  try{
+    var st=JSON.parse(localStorage.getItem('ielts-tbl')||'null');
+    if(st){bare.checked=!!st.b;mean.checked=!!st.m;}
+  }catch(e){}
+  save();
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/'&&document.activeElement!==box){e.preventDefault();box.focus();}
+    if(e.key==='Escape'){box.value='';run();box.blur();}
+  });
+  run();
+})();
+</script>
+</body>
+</html>
