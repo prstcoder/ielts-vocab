@@ -73,23 +73,23 @@ footer a{color:var(--accent);text-decoration:none}
 <div class="grid"><a href="雅思阅读538考点词.html" class="card">
   <div class="tag">READING</div>
   <div class="ct">雅思阅读考点词 538</div>
-  <div class="cd">表格版：376 条，含中文词义与 523 个同义替换释义，可搜索。</div>
+  <div class="cd">表格版：376 条，含中文词义与 523 个同义替换释义，可搜索；点「背诵这一页」可逐词自测。</div>
 </a><a href="雅思阅读538-例句版.html" class="card">
   <div class="tag">READING</div>
   <div class="ct">雅思阅读考点词 538 · 例句版</div>
-  <div class="cd">卡片版：376 条，每词配中英例句，中文可全部隐藏（默写模式）。</div>
+  <div class="cd">卡片版：376 条，每词配中英例句，中文可全部隐藏（默写模式），也支持逐词背诵。</div>
 </a><a href="雅思听力179考点词.html" class="card">
   <div class="tag">LISTENING</div>
   <div class="ct">剑桥雅思听力考点词 179</div>
-  <div class="cd">表格版：179 条，含音标、词义与 495 个同义替换释义。</div>
+  <div class="cd">表格版：179 条，含音标、词义与 495 个同义替换释义；点「背诵这一页」可逐词自测。</div>
 </a><a href="雅思听力179-例句版.html" class="card">
   <div class="tag">LISTENING</div>
   <div class="ct">剑桥雅思听力考点词 179 · 例句版</div>
-  <div class="cd">卡片版：179 条，每词配中英例句，中文可全部隐藏（默写模式）。</div>
+  <div class="cd">卡片版：179 条，每词配中英例句，中文可全部隐藏（默写模式），也支持逐词背诵。</div>
 </a><a href="生词本.html" class="card" style="border-color:var(--accent)">
   <div class="tag">NOTEBOOK</div>
   <div class="ct">我的生词本 · <span id="nbn">0</span> 词</div>
-  <div class="cd">阅读 538 与听力 179 共用这一本；在词表里点 ☆ 收录，支持闪卡复习、导出与备份。</div>
+  <div class="cd">阅读 538 与听力 179 共用这一本。背诵时不认识的词会自动收进来，按遗忘曲线安排复习。</div>
 </a></div>
 <style>
 .grid{margin-top:34px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -152,9 +152,26 @@ footer a{color:var(--accent);text-decoration:none}
 })();
 </script><script>
 (function(){
- var n=0;
- try{var o=JSON.parse(localStorage.getItem('kd-book')||'{}');n=Object.keys(o).length}catch(e){}
+ var o={}, n=0, due=0, now=Date.now();
+ try{o=JSON.parse(localStorage.getItem('kd-book')||'{}')}catch(e){o={}}
+ for(var k in o){ n++; var r=o[k]||{};
+   if((r.lv||0)<7 && (r.due||r.t||0)<=now) due++; }
  var el=document.getElementById('nbn'); if(el) el.textContent=n;
+ var card=el?el.closest('.card'):null;
+ var cd=card?card.querySelector('.cd'):null;
+ if(cd){
+  cd.textContent = n
+   ? (due? '阅读 538 与听力 179 共用这一本 · 今天有 '+due+' 个词到期，点这里开始复习'
+        : '阅读 538 与听力 179 共用这一本 · 暂无到期词，随时可以再复习一遍')
+   : '阅读 538 与听力 179 共用这一本。背诵时不认识的词会自动收进来，按遗忘曲线安排复习。';
+ }
+ /* 各页背诵进度 */
+ var rec={};
+ try{rec=JSON.parse(localStorage.getItem('kd-rec')||'{}')}catch(e){rec={}}
+ var rc=0, rcd=0;
+ for(var w in rec){ rc++; if((rec[w].due||0)<=now && (rec[w].lv||0)<7) rcd++; }
+ var ft=document.querySelector('footer span');
+ if(ft && rc) ft.textContent += '　已背诵 '+rc+' 词'+(rcd?('，其中 '+rcd+' 个到期待复习'):'')+'。';
 })();
 </script>
 </body></html>
