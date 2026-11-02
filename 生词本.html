@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>生词本 · 雅思考点词</title>
+<style>
+:root{
+  --ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e;
+  --line:#e6e2da; --line-2:#efece5;
+  --paper:#fdfcf9; --paper-2:#f7f4ee;
+  --accent:#0f766e; --accent-2:#0d5f59;
+  --mark:#fdf6e3; --mark-2:#f6e7c8;
+  --syn:#8a4b16;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+ line-height:1.65;font-size:15px;padding-bottom:80px}
+a{color:inherit}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+.top{padding:44px 0 20px}
+.back{display:inline-block;font-size:13px;color:var(--ink-2);text-decoration:none;
+ border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin-bottom:16px;background:#fff}
+.back:hover{color:var(--accent);border-color:var(--accent)}
+h1{margin:0;font-size:30px;font-weight:700;font-family:"Songti SC","Source Han Serif SC",Georgia,serif}
+.sub{margin:7px 0 0;color:var(--ink-2);font-size:13.5px}
+
+.hd{display:flex;align-items:baseline;gap:8px;margin:22px 0 4px}
+.hd b{font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.hd span{font-size:13px;color:var(--ink-2)}
+.tip{color:var(--ink-3);font-size:12.5px}
+
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 6px}
+.btn{font:inherit;font-size:13px;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+ border-radius:999px;padding:7px 14px;cursor:pointer}
+.btn:hover{color:var(--accent);border-color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:650}
+.btn.pri:hover{background:var(--accent-2);color:#fff}
+
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 16px}
+#q{flex:1 1 220px;min-width:150px;padding:8px 13px;border:1px solid var(--line);border-radius:9px;
+ background:#fff;color:var(--ink);font-size:14px;outline:none}
+#q:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.1)}
+#sort{font:inherit;font-size:13px;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+ border-radius:999px;padding:6px 10px}
+.cnt{font-size:12.5px;color:var(--ink-3);margin-left:auto;font-variant-numeric:tabular-nums}
+
+.item{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 17px;margin-bottom:11px}
+.item .h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.item .w{font-family:"Songti SC",Georgia,serif;font-size:20px;font-weight:700}
+.item .phon{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;color:var(--ink-2)}
+.item .tag{font-size:11px;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.item .del{margin-left:auto;font:inherit;font-size:12.5px;color:var(--ink-2);background:transparent;
+ border:1px solid var(--line);border-radius:999px;padding:2px 10px;cursor:pointer}
+.item .del:hover{color:#b4442e;border-color:#b4442e}
+.item .m{font-size:14.5px;margin-top:5px}
+.item .sy{font-size:13px;color:var(--syn);margin-top:7px;line-height:1.9}
+.item .sy .lab{font-size:11px;letter-spacing:.08em;color:var(--ink-3);margin-right:7px}
+.item .sy b{font-weight:600}
+.item .sy i{font-style:normal;color:var(--ink-2);font-size:11.5px;margin-left:2px}
+.item .eg{margin-top:10px;padding:8px 11px;background:var(--paper-2);border-radius:8px;font-size:13.5px}
+.item .eg .en{font-family:Georgia,serif;line-height:1.55}
+.item .eg .zh{color:var(--ink-2);margin-top:2px}
+
+.empty{padding:50px 10px;text-align:center;color:var(--ink-3);font-size:14px}
+
+#rev{position:fixed;inset:0;z-index:100;background:rgba(253,252,249,.98);display:none;overflow:auto;padding:22px 16px 30px}
+#rev.on{display:block}
+.rwrap{max-width:640px;margin:0 auto}
+.rbar{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.rbar .prog{flex:1;height:5px;background:var(--line-2);border-radius:99px;overflow:hidden}
+.rbar .prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.rbar .num{font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.rbar .x{font:inherit;font-size:20px;line-height:1;background:transparent;border:0;color:var(--ink-2);cursor:pointer;padding:4px 8px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 26px 24px;
+ text-align:center;min-height:240px;cursor:pointer;user-select:none}
+.rcard .rw{font-family:"Songti SC",Georgia,serif;font-size:32px;font-weight:700;word-break:break-word}
+.rcard .ripa{font-family:"SF Mono",Menlo,monospace;font-size:14px;color:var(--ink-2);margin-top:7px}
+.rcard .rq{color:var(--ink-3);font-size:13px;margin-top:26px;letter-spacing:.04em}
+.rans{margin-top:20px;text-align:left;border-top:1px dashed var(--line);padding-top:16px;display:none}
+.rans.on{display:block}
+.rans .rm{font-size:16px}
+.rans .ry{font-size:13.5px;color:var(--syn);margin-top:9px;line-height:1.9}
+.rans .rex{margin-top:12px;font-size:14px;background:var(--paper-2);padding:10px 12px;border-radius:9px}
+.rans .rex .en{font-family:Georgia,serif}
+.rans .rex .zh{color:var(--ink-2);margin-top:3px;font-size:13px}
+.rbtns{display:flex;gap:10px;margin-top:16px}
+.rbtns button{flex:1;font:inherit;font-size:14.5px;font-weight:650;padding:12px 0;border-radius:12px;
+ cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.rbtns button.ok{background:var(--accent);border-color:var(--accent);color:#fff}
+.rbtns button.no{color:#b4442e}
+.done{text-align:center;padding:40px 10px}
+.done h2{font-size:22px;margin:0 0 8px}
+.done p{color:var(--ink-2);font-size:14px}
+kbd{font:inherit;font-size:11px;border:1px solid var(--line);border-radius:5px;padding:0 5px;
+ color:var(--ink-3);background:var(--paper-2);margin-left:5px}
+@media (max-width:640px){
+ .wrap{padding:0 14px}
+ h1{font-size:25px}
+ .rcard{padding:24px 18px 20px}
+ .rcard .rw{font-size:27px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="top">
+  <a class="back" href="index.html">← 返回词表</a>
+  <h1>生词本</h1>
+  <p class="sub">阅读 538 与听力 179 的考点词共用这一本；遇到不会的词，点表格或卡片上的 ☆ 就能收进来。</p>
+ </div>
+
+ <div class="hd"><b id="tot">0</b><span>个生词</span><span class="tip" id="tip"></span></div>
+
+ <div class="acts">
+  <button class="btn pri" id="start">开始复习</button>
+  <button class="btn" id="exp">导出 TXT</button>
+  <button class="btn" id="expj">备份 JSON</button>
+  <button class="btn" id="imp">导入备份</button>
+  <button class="btn" id="clr">清空</button>
+  <input type="file" id="file" accept=".json" style="display:none">
+ </div>
+
+ <div class="bar">
+  <input id="q" type="search" placeholder="在生词本里搜索…（按 / 聚焦）">
+  <select id="sort">
+   <option value="t">按加入时间</option>
+   <option value="s">按来源</option>
+   <option value="a">按字母</option>
+  </select>
+  <span class="cnt" id="cnt">0 条</span>
+ </div>
+
+ <div id="list"></div>
+ <div class="empty" id="empty" style="display:none">生词本还是空的 —— 去词表点单词旁边的 ☆ 吧</div>
+</div>
+
+<div id="rev">
+ <div class="rwrap">
+  <div class="rbar">
+   <span class="num" id="rnum">0 / 0</span>
+   <div class="prog"><i id="rprog"></i></div>
+   <button class="x" id="rclose">×</button>
+  </div>
+  <div class="rcard" id="rcard">
+   <div class="rw" id="rw"></div>
+   <div class="ripa" id="ripa"></div>
+   <div class="rq" id="rq">点击卡片看释义，或按空格</div>
+   <div class="rans" id="rans">
+    <div class="rm" id="rm"></div>
+    <div class="ry" id="ry"></div>
+    <div class="rex" id="rex"></div>
+   </div>
+  </div>
+  <div class="rbtns">
+   <button class="no" id="rno">还没记住<kbd>1</kbd></button>
+   <button class="ok" id="rok">记住了<kbd>2</kbd></button>
+  </div>
+ </div>
+</div>
+
+<script>
+var NB=(function(){
+ var KEY='kd-book', mem=null;
+ function read(){ if(mem) return mem;
+  try{var raw=localStorage.getItem(KEY); mem=raw?JSON.parse(raw):{}}catch(e){mem={}}
+  return mem; }
+ function write(){ try{localStorage.setItem(KEY,JSON.stringify(mem))}catch(e){
+   alert('浏览器不允许本地存储，生词本无法保存（请用 https 打开）');} }
+ function count(){return Object.keys(read()).length}
+ function has(w){return !!read()[w]}
+ function remove(w){var m=read(); delete m[w]; write();}
+ function all(){var m=read(),a=[];for(var k in m)a.push(m[k]);
+  a.sort(function(x,y){return (y.t||0)-(x.t||0)}); return a;}
+ return {count:count,has:has,all:all,remove:remove,read:read};
+})();
+
+(function(){
+ var list=document.getElementById('list'), empty=document.getElementById('empty');
+ var q=document.getElementById('q'), sort=document.getElementById('sort');
+ var cnt=document.getElementById('cnt'), tot=document.getElementById('tot'), tip=document.getElementById('tip');
+
+ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];})}
+
+ function syHtml(y,cls){
+  if(!y) return '';
+  var parts=y.split('|').filter(Boolean).map(function(s){
+   var i=s.indexOf('：');
+   var w=i>0?s.slice(0,i):s, m=i>0?s.slice(i+1):'';
+   return '<b>'+esc(w)+'</b>'+(m?'<i>'+esc(m)+'</i>':'');
+  });
+  return '<div class="'+(cls||'ry')+'"><span class="lab">同义</span>'+parts.join(' &nbsp; ')+'</div>';
+ }
+
+ function render(){
+  var all=NB.all(), v=(q.value||'').trim().toLowerCase(), s=sort.value;
+  var arr=all.filter(function(r){
+   return !v || (r.w+' '+(r.m||'')+' '+(r.y||'')).toLowerCase().indexOf(v)>-1;
+  });
+  if(s==='s') arr.sort(function(a,b){return (a.s||'').localeCompare(b.s||'') || (a.w>b.w?1:-1)});
+  if(s==='a') arr.sort(function(a,b){return a.w.toLowerCase()>b.w.toLowerCase()?1:-1});
+  cnt.textContent=arr.length+' 条';
+  tot.textContent=all.length;
+  empty.style.display=(all.length&&arr.length)?'none':'block';
+  empty.textContent=all.length?'没有匹配的生词':'生词本还是空的 —— 去词表点单词旁边的 ☆ 吧';
+  if(!all.length){list.innerHTML='';}
+  else if(!arr.length){list.innerHTML='';}
+  else{
+   list.innerHTML=arr.map(function(r){
+    var eg=(r.e||r.z)?'<div class="eg">'+(r.e?'<div class="en">'+esc(r.e)+'</div>':'')+
+      (r.z?'<div class="zh">'+esc(r.z)+'</div>':'')+'</div>':'';
+    var tag=(r.s?'<span class="tag">'+esc(r.s)+(r.c?' · '+esc(r.c):'')+'</span>':'');
+    return '<div class="item"><div class="h"><span class="w">'+esc(r.w)+'</span>'+
+      (r.p?'<span class="phon">'+esc(r.p)+'</span>':'')+tag+
+      '<button class="del" data-del="'+esc(r.w)+'">移出</button></div>'+
+      '<div class="m">'+esc(r.m||'—')+'</div>'+syHtml(r.y,'sy')+eg+'</div>';
+   }).join('');
+  }
+  tip.textContent=all.length?('最近添加 '+all[0].w):'点单词旁的 ☆ 即可加入';
+  document.title=(all.length?all.length+' 词 · ':'')+'生词本 · 雅思考点词';
+ }
+
+ list.addEventListener('click',function(e){
+  var b=e.target.closest('[data-del]'); if(!b) return;
+  NB.remove(b.dataset.del); render();
+ });
+ q.addEventListener('input',render);
+ sort.addEventListener('change',render);
+
+ function dl(name,text,type){
+  var blob=new Blob([text],{type:type||'text/plain;charset=utf-8'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},600);
+ }
+ document.getElementById('exp').onclick=function(){
+  var all=NB.all(); if(!all.length) return alert('生词本还是空的');
+  var t='雅思考点词 · 生词本（'+all.length+' 词）\n\n';
+  all.forEach(function(r,i){
+   t+=(i+1)+'. '+r.w+(r.p?'  '+r.p:'')+(r.s?'  ['+r.s+']':'')+'\n   '+(r.m||'')+'\n';
+   if(r.y) t+='   同义：'+r.y.split('|').join('；')+'\n';
+   if(r.e) t+='   例：'+r.e+'\n';
+   if(r.z) t+='        '+r.z+'\n';
+   t+='\n';
+  });
+  dl('考点词生词本-'+all.length+'词.txt',t);
+ };
+ document.getElementById('expj').onclick=function(){
+  var all=NB.all(); if(!all.length) return alert('生词本还是空的');
+  dl('考点词生词本备份.json',JSON.stringify({app:'ielts-kd',n:all.length,items:all},null,1),'application/json');
+ };
+ document.getElementById('imp').onclick=function(){document.getElementById('file').click()};
+ document.getElementById('file').onchange=function(e){
+  var f=e.target.files[0]; if(!f) return;
+  var rd=new FileReader();
+  rd.onload=function(){
+   try{
+    var o=JSON.parse(rd.result), items=o.items||o||[];
+    if(!Array.isArray(items)) throw 0;
+    var m=NB.read(), n=0;
+    items.forEach(function(r){ if(r&&r.w&&!m[r.w]){r.t=r.t||Date.now();m[r.w]=r;n++} });
+    try{localStorage.setItem('kd-book',JSON.stringify(m))}catch(err){}
+    alert('导入完成：新增 '+n+' 个生词'); render();
+   }catch(err){alert('文件格式不对，需要本页导出的 JSON 备份')}
+  };
+  rd.readAsText(f); e.target.value='';
+ };
+ document.getElementById('clr').onclick=function(){
+  if(!NB.count()) return;
+  if(!confirm('确定清空全部 '+NB.count()+' 个生词？不可撤销。')) return;
+  try{localStorage.setItem('kd-book','{}')}catch(e){}
+  location.reload();
+ };
+
+ var rev=document.getElementById('rev'), queue=[], idx=0, shown=false, okN=0;
+ var rw=document.getElementById('rw'), ripa=document.getElementById('ripa'), rq=document.getElementById('rq'),
+     rans=document.getElementById('rans'), rm=document.getElementById('rm'), ry=document.getElementById('ry'),
+     rex=document.getElementById('rex'), rnum=document.getElementById('rnum'), rprog=document.getElementById('rprog'),
+     rcard=document.getElementById('rcard'), rok=document.getElementById('rok'), rno=document.getElementById('rno');
+
+ function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+ function start(){
+  var all=NB.all(); if(!all.length) return alert('生词本还是空的，先点 ☆ 加几个词吧');
+  queue=shuffle(all.slice()); idx=0; okN=0;
+  rev.classList.add('on'); document.body.style.overflow='hidden'; show();
+ }
+ function show(){
+  if(idx>=queue.length){ return finish(); }
+  var r=queue[idx]; shown=false;
+  rw.textContent=r.w; ripa.textContent=r.p||'';
+  rq.style.display=''; rq.textContent='点击卡片看释义，或按空格';
+  rans.classList.remove('on'); rcard.style.cursor='pointer';
+  rm.textContent=r.m||'—';
+  ry.innerHTML=r.y? ('同义替换 · ' + r.y.split('|').map(function(s){
+      var i=s.indexOf('：'); return i>0? s.slice(0,i)+'（'+s.slice(i+1)+'）': s; }).join(' · ')) : '';
+  rex.innerHTML=(r.e?'<div class="en">'+esc(r.e)+'</div>':'')+(r.z?'<div class="zh">'+esc(r.z)+'</div>':'');
+  rnum.textContent=(idx+1)+' / '+queue.length;
+  rprog.style.width=((idx)/queue.length*100)+'%';
+  rok.disabled=rno.disabled=false;
+ }
+ function reveal(){ if(shown) return; shown=true; rans.classList.add('on');
+   rq.style.display='none'; rcard.style.cursor='default'; }
+ function next(remember){
+  if(remember){ NB.remove(queue[idx].w); okN++; }
+  idx++;
+  if(idx<queue.length) rprog.style.width=(idx/queue.length*100)+'%';
+  show();
+ }
+ function finish(){
+  rev.innerHTML='<div class="rwrap"><div class="done"><h2>这一轮过完了</h2>'+
+   '<p>共复习 '+queue.length+' 个词，记住 '+okN+' 个，还剩 '+(queue.length-okN)+' 个留待下次。</p>'+
+   '<div class="acts" style="justify-content:center"><button class="btn pri" id="again">再来一轮</button>'+
+   '<button class="btn" id="back">回到列表</button></div></div></div>';
+  document.getElementById('again').onclick=function(){location.reload()};
+  document.getElementById('back').onclick=function(){location.reload()};
+ }
+ document.getElementById('start').onclick=start;
+ document.getElementById('rclose').onclick=function(){location.reload()};
+ rcard.onclick=reveal;
+ rok.onclick=function(){ if(!shown){reveal();return} next(true) };
+ rno.onclick=function(){ if(!shown){reveal();return} next(false) };
+ document.addEventListener('keydown',function(e){
+  if(!rev.classList.contains('on')){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   return;
+  }
+  if(e.key===' '||e.key==='Enter'){e.preventDefault(); if(!shown)reveal(); else next(true)}
+  if(e.key==='1'){ if(!shown)reveal(); else next(false) }
+  if(e.key==='2'){ if(!shown)reveal(); else next(true) }
+  if(e.key==='Escape') location.reload();
+ });
+
+ render();
+})();
+</script>
+</body></html>

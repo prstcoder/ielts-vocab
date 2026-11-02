@@ -86,6 +86,10 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="tag">LISTENING</div>
   <div class="ct">剑桥雅思听力考点词 179 · 例句版</div>
   <div class="cd">卡片版：179 条，每词配中英例句，中文可全部隐藏（默写模式）。</div>
+</a><a href="生词本.html" class="card" style="border-color:var(--accent)">
+  <div class="tag">NOTEBOOK</div>
+  <div class="ct">我的生词本 · <span id="nbn">0</span> 词</div>
+  <div class="cd">阅读 538 与听力 179 共用这一本；在词表里点 ☆ 收录，支持闪卡复习、导出与备份。</div>
 </a></div>
 <style>
 .grid{margin-top:34px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -146,4 +150,11 @@ footer a{color:var(--accent);text-decoration:none}
   }catch(e){}
   applyState();run();
 })();
-</script></body></html>
+</script><script>
+(function(){
+ var n=0;
+ try{var o=JSON.parse(localStorage.getItem('kd-book')||'{}');n=Object.keys(o).length}catch(e){}
+ var el=document.getElementById('nbn'); if(el) el.textContent=n;
+})();
+</script>
+</body></html>
