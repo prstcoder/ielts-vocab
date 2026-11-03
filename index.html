@@ -97,10 +97,19 @@ html.dark .tk,html.dark .decks{background:var(--paper-2)}
 }
 
 
+
+
 /* 手动主题：html.dark / html.light 覆盖系统偏好 */
 html.dark{color-scheme:dark;--ink:#e8eaed; --ink-2:#9aa3ad; --ink-3:#737d88;--line:#2c3037; --line-2:#242830; --paper:#16181c; --paper-2:#1d2025;--accent:#4fd1c5; --accent-2:#38b2a5; --mark:#4a3f1a; --mark-2:#3a3215; --syn:#e0a06a;}
 html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; --line:#e6e2da; --line-2:#efece5; --paper:#fdfcf9; --paper-2:#f7f4ee; --accent:#0f766e; --accent-2:#0d5f59; --mark:#fdf6e3; --mark-2:#f6e7c8; --syn:#8a4b16;}
-</style></head>
+</style><!-- pwa -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f766e">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="考点词">
+</head>
 <body><div class="wrap">
 <header class="top"><h1>雅思考点词 · 词表</h1><div class="sub">从 PDF 转出的网页版，已去除水印与二维码</div></header>
 <div class="today">
@@ -224,6 +233,8 @@ html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; -
  if(ft && rc) ft.textContent += '　已背诵 '+rc+' 词'+(rcd?('，其中 '+rcd+' 个到期待复习'):'')+'。';
 })();
 </script>
+
+
 
 <script>
 /* ================= 今日任务卡 + 两本词表进度 ================= */
