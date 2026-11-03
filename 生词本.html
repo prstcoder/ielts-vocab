@@ -1275,4 +1275,1843 @@ var SYNC=(function(){
 })();
 window.SYNC=SYNC;
 </script>
+
+
+
+<script>var qrcode = function() {
+var qrcode = function(typeNumber, errorCorrectionLevel) {
+var PAD0 = 0xEC;
+var PAD1 = 0x11;
+var _typeNumber = typeNumber;
+var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+var _modules = null;
+var _moduleCount = 0;
+var _dataCache = null;
+var _dataList = [];
+var _this = {};
+var makeImpl = function(test, maskPattern) {
+_moduleCount = _typeNumber * 4 + 17;
+_modules = function(moduleCount) {
+var modules = new Array(moduleCount);
+for (var row = 0; row < moduleCount; row += 1) {
+modules[row] = new Array(moduleCount);
+for (var col = 0; col < moduleCount; col += 1) {
+modules[row][col] = null;
+}
+}
+return modules;
+}(_moduleCount);
+setupPositionProbePattern(0, 0);
+setupPositionProbePattern(_moduleCount - 7, 0);
+setupPositionProbePattern(0, _moduleCount - 7);
+setupPositionAdjustPattern();
+setupTimingPattern();
+setupTypeInfo(test, maskPattern);
+if (_typeNumber >= 7) {
+setupTypeNumber(test);
+}
+if (_dataCache == null) {
+_dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+}
+mapData(_dataCache, maskPattern);
+};
+var setupPositionProbePattern = function(row, col) {
+for (var r = -1; r <= 7; r += 1) {
+if (row + r <= -1 || _moduleCount <= row + r) continue;
+for (var c = -1; c <= 7; c += 1) {
+if (col + c <= -1 || _moduleCount <= col + c) continue;
+if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+|| (0 <= c && c <= 6 && (r == 0 || r == 6) )
+|| (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+_modules[row + r][col + c] = true;
+} else {
+_modules[row + r][col + c] = false;
+}
+}
+}
+};
+var getBestMaskPattern = function() {
+var minLostPoint = 0;
+var pattern = 0;
+for (var i = 0; i < 8; i += 1) {
+makeImpl(true, i);
+var lostPoint = QRUtil.getLostPoint(_this);
+if (i == 0 || minLostPoint > lostPoint) {
+minLostPoint = lostPoint;
+pattern = i;
+}
+}
+return pattern;
+};
+var setupTimingPattern = function() {
+for (var r = 8; r < _moduleCount - 8; r += 1) {
+if (_modules[r][6] != null) {
+continue;
+}
+_modules[r][6] = (r % 2 == 0);
+}
+for (var c = 8; c < _moduleCount - 8; c += 1) {
+if (_modules[6][c] != null) {
+continue;
+}
+_modules[6][c] = (c % 2 == 0);
+}
+};
+var setupPositionAdjustPattern = function() {
+var pos = QRUtil.getPatternPosition(_typeNumber);
+for (var i = 0; i < pos.length; i += 1) {
+for (var j = 0; j < pos.length; j += 1) {
+var row = pos[i];
+var col = pos[j];
+if (_modules[row][col] != null) {
+continue;
+}
+for (var r = -2; r <= 2; r += 1) {
+for (var c = -2; c <= 2; c += 1) {
+if (r == -2 || r == 2 || c == -2 || c == 2
+|| (r == 0 && c == 0) ) {
+_modules[row + r][col + c] = true;
+} else {
+_modules[row + r][col + c] = false;
+}
+}
+}
+}
+}
+};
+var setupTypeNumber = function(test) {
+var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+for (var i = 0; i < 18; i += 1) {
+var mod = (!test && ( (bits >> i) & 1) == 1);
+_modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+}
+for (var i = 0; i < 18; i += 1) {
+var mod = (!test && ( (bits >> i) & 1) == 1);
+_modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+}
+};
+var setupTypeInfo = function(test, maskPattern) {
+var data = (_errorCorrectionLevel << 3) | maskPattern;
+var bits = QRUtil.getBCHTypeInfo(data);
+for (var i = 0; i < 15; i += 1) {
+var mod = (!test && ( (bits >> i) & 1) == 1);
+if (i < 6) {
+_modules[i][8] = mod;
+} else if (i < 8) {
+_modules[i + 1][8] = mod;
+} else {
+_modules[_moduleCount - 15 + i][8] = mod;
+}
+}
+for (var i = 0; i < 15; i += 1) {
+var mod = (!test && ( (bits >> i) & 1) == 1);
+if (i < 8) {
+_modules[8][_moduleCount - i - 1] = mod;
+} else if (i < 9) {
+_modules[8][15 - i - 1 + 1] = mod;
+} else {
+_modules[8][15 - i - 1] = mod;
+}
+}
+_modules[_moduleCount - 8][8] = (!test);
+};
+var mapData = function(data, maskPattern) {
+var inc = -1;
+var row = _moduleCount - 1;
+var bitIndex = 7;
+var byteIndex = 0;
+var maskFunc = QRUtil.getMaskFunction(maskPattern);
+for (var col = _moduleCount - 1; col > 0; col -= 2) {
+if (col == 6) col -= 1;
+while (true) {
+for (var c = 0; c < 2; c += 1) {
+if (_modules[row][col - c] == null) {
+var dark = false;
+if (byteIndex < data.length) {
+dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+}
+var mask = maskFunc(row, col - c);
+if (mask) {
+dark = !dark;
+}
+_modules[row][col - c] = dark;
+bitIndex -= 1;
+if (bitIndex == -1) {
+byteIndex += 1;
+bitIndex = 7;
+}
+}
+}
+row += inc;
+if (row < 0 || _moduleCount <= row) {
+row -= inc;
+inc = -inc;
+break;
+}
+}
+}
+};
+var createBytes = function(buffer, rsBlocks) {
+var offset = 0;
+var maxDcCount = 0;
+var maxEcCount = 0;
+var dcdata = new Array(rsBlocks.length);
+var ecdata = new Array(rsBlocks.length);
+for (var r = 0; r < rsBlocks.length; r += 1) {
+var dcCount = rsBlocks[r].dataCount;
+var ecCount = rsBlocks[r].totalCount - dcCount;
+maxDcCount = Math.max(maxDcCount, dcCount);
+maxEcCount = Math.max(maxEcCount, ecCount);
+dcdata[r] = new Array(dcCount);
+for (var i = 0; i < dcdata[r].length; i += 1) {
+dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+}
+offset += dcCount;
+var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+var modPoly = rawPoly.mod(rsPoly);
+ecdata[r] = new Array(rsPoly.getLength() - 1);
+for (var i = 0; i < ecdata[r].length; i += 1) {
+var modIndex = i + modPoly.getLength() - ecdata[r].length;
+ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+}
+}
+var totalCodeCount = 0;
+for (var i = 0; i < rsBlocks.length; i += 1) {
+totalCodeCount += rsBlocks[i].totalCount;
+}
+var data = new Array(totalCodeCount);
+var index = 0;
+for (var i = 0; i < maxDcCount; i += 1) {
+for (var r = 0; r < rsBlocks.length; r += 1) {
+if (i < dcdata[r].length) {
+data[index] = dcdata[r][i];
+index += 1;
+}
+}
+}
+for (var i = 0; i < maxEcCount; i += 1) {
+for (var r = 0; r < rsBlocks.length; r += 1) {
+if (i < ecdata[r].length) {
+data[index] = ecdata[r][i];
+index += 1;
+}
+}
+}
+return data;
+};
+var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+var buffer = qrBitBuffer();
+for (var i = 0; i < dataList.length; i += 1) {
+var data = dataList[i];
+buffer.put(data.getMode(), 4);
+buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+data.write(buffer);
+}
+var totalDataCount = 0;
+for (var i = 0; i < rsBlocks.length; i += 1) {
+totalDataCount += rsBlocks[i].dataCount;
+}
+if (buffer.getLengthInBits() > totalDataCount * 8) {
+throw 'code length overflow. ('
++ buffer.getLengthInBits()
++ '>'
++ totalDataCount * 8
++ ')';
+}
+if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+buffer.put(0, 4);
+}
+while (buffer.getLengthInBits() % 8 != 0) {
+buffer.putBit(false);
+}
+while (true) {
+if (buffer.getLengthInBits() >= totalDataCount * 8) {
+break;
+}
+buffer.put(PAD0, 8);
+if (buffer.getLengthInBits() >= totalDataCount * 8) {
+break;
+}
+buffer.put(PAD1, 8);
+}
+return createBytes(buffer, rsBlocks);
+};
+_this.addData = function(data, mode) {
+mode = mode || 'Byte';
+var newData = null;
+switch(mode) {
+case 'Numeric' :
+newData = qrNumber(data);
+break;
+case 'Alphanumeric' :
+newData = qrAlphaNum(data);
+break;
+case 'Byte' :
+newData = qr8BitByte(data);
+break;
+case 'Kanji' :
+newData = qrKanji(data);
+break;
+default :
+throw 'mode:' + mode;
+}
+_dataList.push(newData);
+_dataCache = null;
+};
+_this.isDark = function(row, col) {
+if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+throw row + ',' + col;
+}
+return _modules[row][col];
+};
+_this.getModuleCount = function() {
+return _moduleCount;
+};
+_this.make = function() {
+if (_typeNumber < 1) {
+var typeNumber = 1;
+for (; typeNumber < 40; typeNumber++) {
+var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+var buffer = qrBitBuffer();
+for (var i = 0; i < _dataList.length; i++) {
+var data = _dataList[i];
+buffer.put(data.getMode(), 4);
+buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+data.write(buffer);
+}
+var totalDataCount = 0;
+for (var i = 0; i < rsBlocks.length; i++) {
+totalDataCount += rsBlocks[i].dataCount;
+}
+if (buffer.getLengthInBits() <= totalDataCount * 8) {
+break;
+}
+}
+_typeNumber = typeNumber;
+}
+makeImpl(false, getBestMaskPattern() );
+};
+_this.createTableTag = function(cellSize, margin) {
+cellSize = cellSize || 2;
+margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+var qrHtml = '';
+qrHtml += '<table style="';
+qrHtml += ' border-width: 0px; border-style: none;';
+qrHtml += ' border-collapse: collapse;';
+qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+qrHtml += '">';
+qrHtml += '<tbody>';
+for (var r = 0; r < _this.getModuleCount(); r += 1) {
+qrHtml += '<tr>';
+for (var c = 0; c < _this.getModuleCount(); c += 1) {
+qrHtml += '<td style="';
+qrHtml += ' border-width: 0px; border-style: none;';
+qrHtml += ' border-collapse: collapse;';
+qrHtml += ' padding: 0px; margin: 0px;';
+qrHtml += ' width: ' + cellSize + 'px;';
+qrHtml += ' height: ' + cellSize + 'px;';
+qrHtml += ' background-color: ';
+qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+qrHtml += ';';
+qrHtml += '"/>';
+}
+qrHtml += '</tr>';
+}
+qrHtml += '</tbody>';
+qrHtml += '</table>';
+return qrHtml;
+};
+_this.createSvgTag = function(cellSize, margin, alt, title) {
+var opts = {};
+if (typeof arguments[0] == 'object') {
+opts = arguments[0];
+cellSize = opts.cellSize;
+margin = opts.margin;
+alt = opts.alt;
+title = opts.title;
+}
+cellSize = cellSize || 2;
+margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+alt.text = alt.text || null;
+alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+title = (typeof title === 'string') ? {text: title} : title || {};
+title.text = title.text || null;
+title.id = (title.text) ? title.id || 'qrcode-title' : null;
+var size = _this.getModuleCount() * cellSize + margin * 2;
+var c, mc, r, mr, qrSvg='', rect;
+rect = 'l' + cellSize + ',0 0,' + cellSize +
+' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+qrSvg += '>';
+qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+escapeXml(title.text) + '</title>' : '';
+qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+escapeXml(alt.text) + '</description>' : '';
+qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+qrSvg += '<path d="';
+for (r = 0; r < _this.getModuleCount(); r += 1) {
+mr = r * cellSize + margin;
+for (c = 0; c < _this.getModuleCount(); c += 1) {
+if (_this.isDark(r, c) ) {
+mc = c*cellSize+margin;
+qrSvg += 'M' + mc + ',' + mr + rect;
+}
+}
+}
+qrSvg += '" stroke="transparent" fill="black"/>';
+qrSvg += '</svg>';
+return qrSvg;
+};
+_this.createDataURL = function(cellSize, margin) {
+cellSize = cellSize || 2;
+margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+var size = _this.getModuleCount() * cellSize + margin * 2;
+var min = margin;
+var max = size - margin;
+return createDataURL(size, size, function(x, y) {
+if (min <= x && x < max && min <= y && y < max) {
+var c = Math.floor( (x - min) / cellSize);
+var r = Math.floor( (y - min) / cellSize);
+return _this.isDark(r, c)? 0 : 1;
+} else {
+return 1;
+}
+} );
+};
+_this.createImgTag = function(cellSize, margin, alt) {
+cellSize = cellSize || 2;
+margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+var size = _this.getModuleCount() * cellSize + margin * 2;
+var img = '';
+img += '<img';
+img += '\u0020src="';
+img += _this.createDataURL(cellSize, margin);
+img += '"';
+img += '\u0020width="';
+img += size;
+img += '"';
+img += '\u0020height="';
+img += size;
+img += '"';
+if (alt) {
+img += '\u0020alt="';
+img += escapeXml(alt);
+img += '"';
+}
+img += '/>';
+return img;
+};
+var escapeXml = function(s) {
+var escaped = '';
+for (var i = 0; i < s.length; i += 1) {
+var c = s.charAt(i);
+switch(c) {
+case '<': escaped += '&lt;'; break;
+case '>': escaped += '&gt;'; break;
+case '&': escaped += '&amp;'; break;
+case '"': escaped += '&quot;'; break;
+default : escaped += c; break;
+}
+}
+return escaped;
+};
+var _createHalfASCII = function(margin) {
+var cellSize = 1;
+margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+var size = _this.getModuleCount() * cellSize + margin * 2;
+var min = margin;
+var max = size - margin;
+var y, x, r1, r2, p;
+var blocks = {
+'██': '█',
+'█ ': '▀',
+' █': '▄',
+'  ': ' '
+};
+var blocksLastLineNoMargin = {
+'██': '▀',
+'█ ': '▀',
+' █': ' ',
+'  ': ' '
+};
+var ascii = '';
+for (y = 0; y < size; y += 2) {
+r1 = Math.floor((y - min) / cellSize);
+r2 = Math.floor((y + 1 - min) / cellSize);
+for (x = 0; x < size; x += 1) {
+p = '█';
+if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+p = ' ';
+}
+if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+p += ' ';
+}
+else {
+p += '█';
+}
+ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+}
+ascii += '\n';
+}
+if (size % 2 && margin > 0) {
+return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+}
+return ascii.substring(0, ascii.length-1);
+};
+_this.createASCII = function(cellSize, margin) {
+cellSize = cellSize || 1;
+if (cellSize < 2) {
+return _createHalfASCII(margin);
+}
+cellSize -= 1;
+margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+var size = _this.getModuleCount() * cellSize + margin * 2;
+var min = margin;
+var max = size - margin;
+var y, x, r, p;
+var white = Array(cellSize+1).join('██');
+var black = Array(cellSize+1).join('  ');
+var ascii = '';
+var line = '';
+for (y = 0; y < size; y += 1) {
+r = Math.floor( (y - min) / cellSize);
+line = '';
+for (x = 0; x < size; x += 1) {
+p = 1;
+if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+p = 0;
+}
+line += p ? white : black;
+}
+for (r = 0; r < cellSize; r += 1) {
+ascii += line + '\n';
+}
+}
+return ascii.substring(0, ascii.length-1);
+};
+_this.renderTo2dContext = function(context, cellSize) {
+cellSize = cellSize || 2;
+var length = _this.getModuleCount();
+for (var row = 0; row < length; row++) {
+for (var col = 0; col < length; col++) {
+context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+context.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
+}
+}
+}
+return _this;
+};
+qrcode.stringToBytesFuncs = {
+'default' : function(s) {
+var bytes = [];
+for (var i = 0; i < s.length; i += 1) {
+var c = s.charCodeAt(i);
+bytes.push(c & 0xff);
+}
+return bytes;
+}
+};
+qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+qrcode.createStringToBytes = function(unicodeData, numChars) {
+var unicodeMap = function() {
+var bin = base64DecodeInputStream(unicodeData);
+var read = function() {
+var b = bin.read();
+if (b == -1) throw 'eof';
+return b;
+};
+var count = 0;
+var unicodeMap = {};
+while (true) {
+var b0 = bin.read();
+if (b0 == -1) break;
+var b1 = read();
+var b2 = read();
+var b3 = read();
+var k = String.fromCharCode( (b0 << 8) | b1);
+var v = (b2 << 8) | b3;
+unicodeMap[k] = v;
+count += 1;
+}
+if (count != numChars) {
+throw count + ' != ' + numChars;
+}
+return unicodeMap;
+}();
+var unknownChar = '?'.charCodeAt(0);
+return function(s) {
+var bytes = [];
+for (var i = 0; i < s.length; i += 1) {
+var c = s.charCodeAt(i);
+if (c < 128) {
+bytes.push(c);
+} else {
+var b = unicodeMap[s.charAt(i)];
+if (typeof b == 'number') {
+if ( (b & 0xff) == b) {
+bytes.push(b);
+} else {
+bytes.push(b >>> 8);
+bytes.push(b & 0xff);
+}
+} else {
+bytes.push(unknownChar);
+}
+}
+}
+return bytes;
+};
+};
+var QRMode = {
+MODE_NUMBER :    1 << 0,
+MODE_ALPHA_NUM : 1 << 1,
+MODE_8BIT_BYTE : 1 << 2,
+MODE_KANJI :     1 << 3
+};
+var QRErrorCorrectionLevel = {
+L : 1,
+M : 0,
+Q : 3,
+H : 2
+};
+var QRMaskPattern = {
+PATTERN000 : 0,
+PATTERN001 : 1,
+PATTERN010 : 2,
+PATTERN011 : 3,
+PATTERN100 : 4,
+PATTERN101 : 5,
+PATTERN110 : 6,
+PATTERN111 : 7
+};
+var QRUtil = function() {
+var PATTERN_POSITION_TABLE = [
+[],
+[6, 18],
+[6, 22],
+[6, 26],
+[6, 30],
+[6, 34],
+[6, 22, 38],
+[6, 24, 42],
+[6, 26, 46],
+[6, 28, 50],
+[6, 30, 54],
+[6, 32, 58],
+[6, 34, 62],
+[6, 26, 46, 66],
+[6, 26, 48, 70],
+[6, 26, 50, 74],
+[6, 30, 54, 78],
+[6, 30, 56, 82],
+[6, 30, 58, 86],
+[6, 34, 62, 90],
+[6, 28, 50, 72, 94],
+[6, 26, 50, 74, 98],
+[6, 30, 54, 78, 102],
+[6, 28, 54, 80, 106],
+[6, 32, 58, 84, 110],
+[6, 30, 58, 86, 114],
+[6, 34, 62, 90, 118],
+[6, 26, 50, 74, 98, 122],
+[6, 30, 54, 78, 102, 126],
+[6, 26, 52, 78, 104, 130],
+[6, 30, 56, 82, 108, 134],
+[6, 34, 60, 86, 112, 138],
+[6, 30, 58, 86, 114, 142],
+[6, 34, 62, 90, 118, 146],
+[6, 30, 54, 78, 102, 126, 150],
+[6, 24, 50, 76, 102, 128, 154],
+[6, 28, 54, 80, 106, 132, 158],
+[6, 32, 58, 84, 110, 136, 162],
+[6, 26, 54, 82, 110, 138, 166],
+[6, 30, 58, 86, 114, 142, 170]
+];
+var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+var _this = {};
+var getBCHDigit = function(data) {
+var digit = 0;
+while (data != 0) {
+digit += 1;
+data >>>= 1;
+}
+return digit;
+};
+_this.getBCHTypeInfo = function(data) {
+var d = data << 10;
+while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+}
+return ( (data << 10) | d) ^ G15_MASK;
+};
+_this.getBCHTypeNumber = function(data) {
+var d = data << 12;
+while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+}
+return (data << 12) | d;
+};
+_this.getPatternPosition = function(typeNumber) {
+return PATTERN_POSITION_TABLE[typeNumber - 1];
+};
+_this.getMaskFunction = function(maskPattern) {
+switch (maskPattern) {
+case QRMaskPattern.PATTERN000 :
+return function(i, j) { return (i + j) % 2 == 0; };
+case QRMaskPattern.PATTERN001 :
+return function(i, j) { return i % 2 == 0; };
+case QRMaskPattern.PATTERN010 :
+return function(i, j) { return j % 3 == 0; };
+case QRMaskPattern.PATTERN011 :
+return function(i, j) { return (i + j) % 3 == 0; };
+case QRMaskPattern.PATTERN100 :
+return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+case QRMaskPattern.PATTERN101 :
+return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+case QRMaskPattern.PATTERN110 :
+return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+case QRMaskPattern.PATTERN111 :
+return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+default :
+throw 'bad maskPattern:' + maskPattern;
+}
+};
+_this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+var a = qrPolynomial([1], 0);
+for (var i = 0; i < errorCorrectLength; i += 1) {
+a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+}
+return a;
+};
+_this.getLengthInBits = function(mode, type) {
+if (1 <= type && type < 10) {
+switch(mode) {
+case QRMode.MODE_NUMBER    : return 10;
+case QRMode.MODE_ALPHA_NUM : return 9;
+case QRMode.MODE_8BIT_BYTE : return 8;
+case QRMode.MODE_KANJI     : return 8;
+default :
+throw 'mode:' + mode;
+}
+} else if (type < 27) {
+switch(mode) {
+case QRMode.MODE_NUMBER    : return 12;
+case QRMode.MODE_ALPHA_NUM : return 11;
+case QRMode.MODE_8BIT_BYTE : return 16;
+case QRMode.MODE_KANJI     : return 10;
+default :
+throw 'mode:' + mode;
+}
+} else if (type < 41) {
+switch(mode) {
+case QRMode.MODE_NUMBER    : return 14;
+case QRMode.MODE_ALPHA_NUM : return 13;
+case QRMode.MODE_8BIT_BYTE : return 16;
+case QRMode.MODE_KANJI     : return 12;
+default :
+throw 'mode:' + mode;
+}
+} else {
+throw 'type:' + type;
+}
+};
+_this.getLostPoint = function(qrcode) {
+var moduleCount = qrcode.getModuleCount();
+var lostPoint = 0;
+for (var row = 0; row < moduleCount; row += 1) {
+for (var col = 0; col < moduleCount; col += 1) {
+var sameCount = 0;
+var dark = qrcode.isDark(row, col);
+for (var r = -1; r <= 1; r += 1) {
+if (row + r < 0 || moduleCount <= row + r) {
+continue;
+}
+for (var c = -1; c <= 1; c += 1) {
+if (col + c < 0 || moduleCount <= col + c) {
+continue;
+}
+if (r == 0 && c == 0) {
+continue;
+}
+if (dark == qrcode.isDark(row + r, col + c) ) {
+sameCount += 1;
+}
+}
+}
+if (sameCount > 5) {
+lostPoint += (3 + sameCount - 5);
+}
+}
+};
+for (var row = 0; row < moduleCount - 1; row += 1) {
+for (var col = 0; col < moduleCount - 1; col += 1) {
+var count = 0;
+if (qrcode.isDark(row, col) ) count += 1;
+if (qrcode.isDark(row + 1, col) ) count += 1;
+if (qrcode.isDark(row, col + 1) ) count += 1;
+if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+if (count == 0 || count == 4) {
+lostPoint += 3;
+}
+}
+}
+for (var row = 0; row < moduleCount; row += 1) {
+for (var col = 0; col < moduleCount - 6; col += 1) {
+if (qrcode.isDark(row, col)
+&& !qrcode.isDark(row, col + 1)
+&&  qrcode.isDark(row, col + 2)
+&&  qrcode.isDark(row, col + 3)
+&&  qrcode.isDark(row, col + 4)
+&& !qrcode.isDark(row, col + 5)
+&&  qrcode.isDark(row, col + 6) ) {
+lostPoint += 40;
+}
+}
+}
+for (var col = 0; col < moduleCount; col += 1) {
+for (var row = 0; row < moduleCount - 6; row += 1) {
+if (qrcode.isDark(row, col)
+&& !qrcode.isDark(row + 1, col)
+&&  qrcode.isDark(row + 2, col)
+&&  qrcode.isDark(row + 3, col)
+&&  qrcode.isDark(row + 4, col)
+&& !qrcode.isDark(row + 5, col)
+&&  qrcode.isDark(row + 6, col) ) {
+lostPoint += 40;
+}
+}
+}
+var darkCount = 0;
+for (var col = 0; col < moduleCount; col += 1) {
+for (var row = 0; row < moduleCount; row += 1) {
+if (qrcode.isDark(row, col) ) {
+darkCount += 1;
+}
+}
+}
+var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+lostPoint += ratio * 10;
+return lostPoint;
+};
+return _this;
+}();
+var QRMath = function() {
+var EXP_TABLE = new Array(256);
+var LOG_TABLE = new Array(256);
+for (var i = 0; i < 8; i += 1) {
+EXP_TABLE[i] = 1 << i;
+}
+for (var i = 8; i < 256; i += 1) {
+EXP_TABLE[i] = EXP_TABLE[i - 4]
+^ EXP_TABLE[i - 5]
+^ EXP_TABLE[i - 6]
+^ EXP_TABLE[i - 8];
+}
+for (var i = 0; i < 255; i += 1) {
+LOG_TABLE[EXP_TABLE[i] ] = i;
+}
+var _this = {};
+_this.glog = function(n) {
+if (n < 1) {
+throw 'glog(' + n + ')';
+}
+return LOG_TABLE[n];
+};
+_this.gexp = function(n) {
+while (n < 0) {
+n += 255;
+}
+while (n >= 256) {
+n -= 255;
+}
+return EXP_TABLE[n];
+};
+return _this;
+}();
+function qrPolynomial(num, shift) {
+if (typeof num.length == 'undefined') {
+throw num.length + '/' + shift;
+}
+var _num = function() {
+var offset = 0;
+while (offset < num.length && num[offset] == 0) {
+offset += 1;
+}
+var _num = new Array(num.length - offset + shift);
+for (var i = 0; i < num.length - offset; i += 1) {
+_num[i] = num[i + offset];
+}
+return _num;
+}();
+var _this = {};
+_this.getAt = function(index) {
+return _num[index];
+};
+_this.getLength = function() {
+return _num.length;
+};
+_this.multiply = function(e) {
+var num = new Array(_this.getLength() + e.getLength() - 1);
+for (var i = 0; i < _this.getLength(); i += 1) {
+for (var j = 0; j < e.getLength(); j += 1) {
+num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+}
+}
+return qrPolynomial(num, 0);
+};
+_this.mod = function(e) {
+if (_this.getLength() - e.getLength() < 0) {
+return _this;
+}
+var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+var num = new Array(_this.getLength() );
+for (var i = 0; i < _this.getLength(); i += 1) {
+num[i] = _this.getAt(i);
+}
+for (var i = 0; i < e.getLength(); i += 1) {
+num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+}
+return qrPolynomial(num, 0).mod(e);
+};
+return _this;
+};
+var QRRSBlock = function() {
+var RS_BLOCK_TABLE = [
+[1, 26, 19],
+[1, 26, 16],
+[1, 26, 13],
+[1, 26, 9],
+[1, 44, 34],
+[1, 44, 28],
+[1, 44, 22],
+[1, 44, 16],
+[1, 70, 55],
+[1, 70, 44],
+[2, 35, 17],
+[2, 35, 13],
+[1, 100, 80],
+[2, 50, 32],
+[2, 50, 24],
+[4, 25, 9],
+[1, 134, 108],
+[2, 67, 43],
+[2, 33, 15, 2, 34, 16],
+[2, 33, 11, 2, 34, 12],
+[2, 86, 68],
+[4, 43, 27],
+[4, 43, 19],
+[4, 43, 15],
+[2, 98, 78],
+[4, 49, 31],
+[2, 32, 14, 4, 33, 15],
+[4, 39, 13, 1, 40, 14],
+[2, 121, 97],
+[2, 60, 38, 2, 61, 39],
+[4, 40, 18, 2, 41, 19],
+[4, 40, 14, 2, 41, 15],
+[2, 146, 116],
+[3, 58, 36, 2, 59, 37],
+[4, 36, 16, 4, 37, 17],
+[4, 36, 12, 4, 37, 13],
+[2, 86, 68, 2, 87, 69],
+[4, 69, 43, 1, 70, 44],
+[6, 43, 19, 2, 44, 20],
+[6, 43, 15, 2, 44, 16],
+[4, 101, 81],
+[1, 80, 50, 4, 81, 51],
+[4, 50, 22, 4, 51, 23],
+[3, 36, 12, 8, 37, 13],
+[2, 116, 92, 2, 117, 93],
+[6, 58, 36, 2, 59, 37],
+[4, 46, 20, 6, 47, 21],
+[7, 42, 14, 4, 43, 15],
+[4, 133, 107],
+[8, 59, 37, 1, 60, 38],
+[8, 44, 20, 4, 45, 21],
+[12, 33, 11, 4, 34, 12],
+[3, 145, 115, 1, 146, 116],
+[4, 64, 40, 5, 65, 41],
+[11, 36, 16, 5, 37, 17],
+[11, 36, 12, 5, 37, 13],
+[5, 109, 87, 1, 110, 88],
+[5, 65, 41, 5, 66, 42],
+[5, 54, 24, 7, 55, 25],
+[11, 36, 12, 7, 37, 13],
+[5, 122, 98, 1, 123, 99],
+[7, 73, 45, 3, 74, 46],
+[15, 43, 19, 2, 44, 20],
+[3, 45, 15, 13, 46, 16],
+[1, 135, 107, 5, 136, 108],
+[10, 74, 46, 1, 75, 47],
+[1, 50, 22, 15, 51, 23],
+[2, 42, 14, 17, 43, 15],
+[5, 150, 120, 1, 151, 121],
+[9, 69, 43, 4, 70, 44],
+[17, 50, 22, 1, 51, 23],
+[2, 42, 14, 19, 43, 15],
+[3, 141, 113, 4, 142, 114],
+[3, 70, 44, 11, 71, 45],
+[17, 47, 21, 4, 48, 22],
+[9, 39, 13, 16, 40, 14],
+[3, 135, 107, 5, 136, 108],
+[3, 67, 41, 13, 68, 42],
+[15, 54, 24, 5, 55, 25],
+[15, 43, 15, 10, 44, 16],
+[4, 144, 116, 4, 145, 117],
+[17, 68, 42],
+[17, 50, 22, 6, 51, 23],
+[19, 46, 16, 6, 47, 17],
+[2, 139, 111, 7, 140, 112],
+[17, 74, 46],
+[7, 54, 24, 16, 55, 25],
+[34, 37, 13],
+[4, 151, 121, 5, 152, 122],
+[4, 75, 47, 14, 76, 48],
+[11, 54, 24, 14, 55, 25],
+[16, 45, 15, 14, 46, 16],
+[6, 147, 117, 4, 148, 118],
+[6, 73, 45, 14, 74, 46],
+[11, 54, 24, 16, 55, 25],
+[30, 46, 16, 2, 47, 17],
+[8, 132, 106, 4, 133, 107],
+[8, 75, 47, 13, 76, 48],
+[7, 54, 24, 22, 55, 25],
+[22, 45, 15, 13, 46, 16],
+[10, 142, 114, 2, 143, 115],
+[19, 74, 46, 4, 75, 47],
+[28, 50, 22, 6, 51, 23],
+[33, 46, 16, 4, 47, 17],
+[8, 152, 122, 4, 153, 123],
+[22, 73, 45, 3, 74, 46],
+[8, 53, 23, 26, 54, 24],
+[12, 45, 15, 28, 46, 16],
+[3, 147, 117, 10, 148, 118],
+[3, 73, 45, 23, 74, 46],
+[4, 54, 24, 31, 55, 25],
+[11, 45, 15, 31, 46, 16],
+[7, 146, 116, 7, 147, 117],
+[21, 73, 45, 7, 74, 46],
+[1, 53, 23, 37, 54, 24],
+[19, 45, 15, 26, 46, 16],
+[5, 145, 115, 10, 146, 116],
+[19, 75, 47, 10, 76, 48],
+[15, 54, 24, 25, 55, 25],
+[23, 45, 15, 25, 46, 16],
+[13, 145, 115, 3, 146, 116],
+[2, 74, 46, 29, 75, 47],
+[42, 54, 24, 1, 55, 25],
+[23, 45, 15, 28, 46, 16],
+[17, 145, 115],
+[10, 74, 46, 23, 75, 47],
+[10, 54, 24, 35, 55, 25],
+[19, 45, 15, 35, 46, 16],
+[17, 145, 115, 1, 146, 116],
+[14, 74, 46, 21, 75, 47],
+[29, 54, 24, 19, 55, 25],
+[11, 45, 15, 46, 46, 16],
+[13, 145, 115, 6, 146, 116],
+[14, 74, 46, 23, 75, 47],
+[44, 54, 24, 7, 55, 25],
+[59, 46, 16, 1, 47, 17],
+[12, 151, 121, 7, 152, 122],
+[12, 75, 47, 26, 76, 48],
+[39, 54, 24, 14, 55, 25],
+[22, 45, 15, 41, 46, 16],
+[6, 151, 121, 14, 152, 122],
+[6, 75, 47, 34, 76, 48],
+[46, 54, 24, 10, 55, 25],
+[2, 45, 15, 64, 46, 16],
+[17, 152, 122, 4, 153, 123],
+[29, 74, 46, 14, 75, 47],
+[49, 54, 24, 10, 55, 25],
+[24, 45, 15, 46, 46, 16],
+[4, 152, 122, 18, 153, 123],
+[13, 74, 46, 32, 75, 47],
+[48, 54, 24, 14, 55, 25],
+[42, 45, 15, 32, 46, 16],
+[20, 147, 117, 4, 148, 118],
+[40, 75, 47, 7, 76, 48],
+[43, 54, 24, 22, 55, 25],
+[10, 45, 15, 67, 46, 16],
+[19, 148, 118, 6, 149, 119],
+[18, 75, 47, 31, 76, 48],
+[34, 54, 24, 34, 55, 25],
+[20, 45, 15, 61, 46, 16]
+];
+var qrRSBlock = function(totalCount, dataCount) {
+var _this = {};
+_this.totalCount = totalCount;
+_this.dataCount = dataCount;
+return _this;
+};
+var _this = {};
+var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+switch(errorCorrectionLevel) {
+case QRErrorCorrectionLevel.L :
+return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+case QRErrorCorrectionLevel.M :
+return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+case QRErrorCorrectionLevel.Q :
+return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+case QRErrorCorrectionLevel.H :
+return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+default :
+return undefined;
+}
+};
+_this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+if (typeof rsBlock == 'undefined') {
+throw 'bad rs block @ typeNumber:' + typeNumber +
+'/errorCorrectionLevel:' + errorCorrectionLevel;
+}
+var length = rsBlock.length / 3;
+var list = [];
+for (var i = 0; i < length; i += 1) {
+var count = rsBlock[i * 3 + 0];
+var totalCount = rsBlock[i * 3 + 1];
+var dataCount = rsBlock[i * 3 + 2];
+for (var j = 0; j < count; j += 1) {
+list.push(qrRSBlock(totalCount, dataCount) );
+}
+}
+return list;
+};
+return _this;
+}();
+var qrBitBuffer = function() {
+var _buffer = [];
+var _length = 0;
+var _this = {};
+_this.getBuffer = function() {
+return _buffer;
+};
+_this.getAt = function(index) {
+var bufIndex = Math.floor(index / 8);
+return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+};
+_this.put = function(num, length) {
+for (var i = 0; i < length; i += 1) {
+_this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+}
+};
+_this.getLengthInBits = function() {
+return _length;
+};
+_this.putBit = function(bit) {
+var bufIndex = Math.floor(_length / 8);
+if (_buffer.length <= bufIndex) {
+_buffer.push(0);
+}
+if (bit) {
+_buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+}
+_length += 1;
+};
+return _this;
+};
+var qrNumber = function(data) {
+var _mode = QRMode.MODE_NUMBER;
+var _data = data;
+var _this = {};
+_this.getMode = function() {
+return _mode;
+};
+_this.getLength = function(buffer) {
+return _data.length;
+};
+_this.write = function(buffer) {
+var data = _data;
+var i = 0;
+while (i + 2 < data.length) {
+buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+i += 3;
+}
+if (i < data.length) {
+if (data.length - i == 1) {
+buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+} else if (data.length - i == 2) {
+buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+}
+}
+};
+var strToNum = function(s) {
+var num = 0;
+for (var i = 0; i < s.length; i += 1) {
+num = num * 10 + chatToNum(s.charAt(i) );
+}
+return num;
+};
+var chatToNum = function(c) {
+if ('0' <= c && c <= '9') {
+return c.charCodeAt(0) - '0'.charCodeAt(0);
+}
+throw 'illegal char :' + c;
+};
+return _this;
+};
+var qrAlphaNum = function(data) {
+var _mode = QRMode.MODE_ALPHA_NUM;
+var _data = data;
+var _this = {};
+_this.getMode = function() {
+return _mode;
+};
+_this.getLength = function(buffer) {
+return _data.length;
+};
+_this.write = function(buffer) {
+var s = _data;
+var i = 0;
+while (i + 1 < s.length) {
+buffer.put(
+getCode(s.charAt(i) ) * 45 +
+getCode(s.charAt(i + 1) ), 11);
+i += 2;
+}
+if (i < s.length) {
+buffer.put(getCode(s.charAt(i) ), 6);
+}
+};
+var getCode = function(c) {
+if ('0' <= c && c <= '9') {
+return c.charCodeAt(0) - '0'.charCodeAt(0);
+} else if ('A' <= c && c <= 'Z') {
+return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+} else {
+switch (c) {
+case ' ' : return 36;
+case '$' : return 37;
+case '%' : return 38;
+case '*' : return 39;
+case '+' : return 40;
+case '-' : return 41;
+case '.' : return 42;
+case '/' : return 43;
+case ':' : return 44;
+default :
+throw 'illegal char :' + c;
+}
+}
+};
+return _this;
+};
+var qr8BitByte = function(data) {
+var _mode = QRMode.MODE_8BIT_BYTE;
+var _data = data;
+var _bytes = qrcode.stringToBytes(data);
+var _this = {};
+_this.getMode = function() {
+return _mode;
+};
+_this.getLength = function(buffer) {
+return _bytes.length;
+};
+_this.write = function(buffer) {
+for (var i = 0; i < _bytes.length; i += 1) {
+buffer.put(_bytes[i], 8);
+}
+};
+return _this;
+};
+var qrKanji = function(data) {
+var _mode = QRMode.MODE_KANJI;
+var _data = data;
+var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+if (!stringToBytes) {
+throw 'sjis not supported.';
+}
+!function(c, code) {
+var test = stringToBytes(c);
+if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+throw 'sjis not supported.';
+}
+}('\u53cb', 0x9746);
+var _bytes = stringToBytes(data);
+var _this = {};
+_this.getMode = function() {
+return _mode;
+};
+_this.getLength = function(buffer) {
+return ~~(_bytes.length / 2);
+};
+_this.write = function(buffer) {
+var data = _bytes;
+var i = 0;
+while (i + 1 < data.length) {
+var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+if (0x8140 <= c && c <= 0x9FFC) {
+c -= 0x8140;
+} else if (0xE040 <= c && c <= 0xEBBF) {
+c -= 0xC140;
+} else {
+throw 'illegal char at ' + (i + 1) + '/' + c;
+}
+c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+buffer.put(c, 13);
+i += 2;
+}
+if (i < data.length) {
+throw 'illegal char at ' + (i + 1);
+}
+};
+return _this;
+};
+var byteArrayOutputStream = function() {
+var _bytes = [];
+var _this = {};
+_this.writeByte = function(b) {
+_bytes.push(b & 0xff);
+};
+_this.writeShort = function(i) {
+_this.writeByte(i);
+_this.writeByte(i >>> 8);
+};
+_this.writeBytes = function(b, off, len) {
+off = off || 0;
+len = len || b.length;
+for (var i = 0; i < len; i += 1) {
+_this.writeByte(b[i + off]);
+}
+};
+_this.writeString = function(s) {
+for (var i = 0; i < s.length; i += 1) {
+_this.writeByte(s.charCodeAt(i) );
+}
+};
+_this.toByteArray = function() {
+return _bytes;
+};
+_this.toString = function() {
+var s = '';
+s += '[';
+for (var i = 0; i < _bytes.length; i += 1) {
+if (i > 0) {
+s += ',';
+}
+s += _bytes[i];
+}
+s += ']';
+return s;
+};
+return _this;
+};
+var base64EncodeOutputStream = function() {
+var _buffer = 0;
+var _buflen = 0;
+var _length = 0;
+var _base64 = '';
+var _this = {};
+var writeEncoded = function(b) {
+_base64 += String.fromCharCode(encode(b & 0x3f) );
+};
+var encode = function(n) {
+if (n < 0) {
+} else if (n < 26) {
+return 0x41 + n;
+} else if (n < 52) {
+return 0x61 + (n - 26);
+} else if (n < 62) {
+return 0x30 + (n - 52);
+} else if (n == 62) {
+return 0x2b;
+} else if (n == 63) {
+return 0x2f;
+}
+throw 'n:' + n;
+};
+_this.writeByte = function(n) {
+_buffer = (_buffer << 8) | (n & 0xff);
+_buflen += 8;
+_length += 1;
+while (_buflen >= 6) {
+writeEncoded(_buffer >>> (_buflen - 6) );
+_buflen -= 6;
+}
+};
+_this.flush = function() {
+if (_buflen > 0) {
+writeEncoded(_buffer << (6 - _buflen) );
+_buffer = 0;
+_buflen = 0;
+}
+if (_length % 3 != 0) {
+var padlen = 3 - _length % 3;
+for (var i = 0; i < padlen; i += 1) {
+_base64 += '=';
+}
+}
+};
+_this.toString = function() {
+return _base64;
+};
+return _this;
+};
+var base64DecodeInputStream = function(str) {
+var _str = str;
+var _pos = 0;
+var _buffer = 0;
+var _buflen = 0;
+var _this = {};
+_this.read = function() {
+while (_buflen < 8) {
+if (_pos >= _str.length) {
+if (_buflen == 0) {
+return -1;
+}
+throw 'unexpected end of file./' + _buflen;
+}
+var c = _str.charAt(_pos);
+_pos += 1;
+if (c == '=') {
+_buflen = 0;
+return -1;
+} else if (c.match(/^\s$/) ) {
+continue;
+}
+_buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+_buflen += 6;
+}
+var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+_buflen -= 8;
+return n;
+};
+var decode = function(c) {
+if (0x41 <= c && c <= 0x5a) {
+return c - 0x41;
+} else if (0x61 <= c && c <= 0x7a) {
+return c - 0x61 + 26;
+} else if (0x30 <= c && c <= 0x39) {
+return c - 0x30 + 52;
+} else if (c == 0x2b) {
+return 62;
+} else if (c == 0x2f) {
+return 63;
+} else {
+throw 'c:' + c;
+}
+};
+return _this;
+};
+var gifImage = function(width, height) {
+var _width = width;
+var _height = height;
+var _data = new Array(width * height);
+var _this = {};
+_this.setPixel = function(x, y, pixel) {
+_data[y * _width + x] = pixel;
+};
+_this.write = function(out) {
+out.writeString('GIF87a');
+out.writeShort(_width);
+out.writeShort(_height);
+out.writeByte(0x80); // 2bit
+out.writeByte(0);
+out.writeByte(0);
+out.writeByte(0x00);
+out.writeByte(0x00);
+out.writeByte(0x00);
+out.writeByte(0xff);
+out.writeByte(0xff);
+out.writeByte(0xff);
+out.writeString(',');
+out.writeShort(0);
+out.writeShort(0);
+out.writeShort(_width);
+out.writeShort(_height);
+out.writeByte(0);
+var lzwMinCodeSize = 2;
+var raster = getLZWRaster(lzwMinCodeSize);
+out.writeByte(lzwMinCodeSize);
+var offset = 0;
+while (raster.length - offset > 255) {
+out.writeByte(255);
+out.writeBytes(raster, offset, 255);
+offset += 255;
+}
+out.writeByte(raster.length - offset);
+out.writeBytes(raster, offset, raster.length - offset);
+out.writeByte(0x00);
+out.writeString(';');
+};
+var bitOutputStream = function(out) {
+var _out = out;
+var _bitLength = 0;
+var _bitBuffer = 0;
+var _this = {};
+_this.write = function(data, length) {
+if ( (data >>> length) != 0) {
+throw 'length over';
+}
+while (_bitLength + length >= 8) {
+_out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+length -= (8 - _bitLength);
+data >>>= (8 - _bitLength);
+_bitBuffer = 0;
+_bitLength = 0;
+}
+_bitBuffer = (data << _bitLength) | _bitBuffer;
+_bitLength = _bitLength + length;
+};
+_this.flush = function() {
+if (_bitLength > 0) {
+_out.writeByte(_bitBuffer);
+}
+};
+return _this;
+};
+var getLZWRaster = function(lzwMinCodeSize) {
+var clearCode = 1 << lzwMinCodeSize;
+var endCode = (1 << lzwMinCodeSize) + 1;
+var bitLength = lzwMinCodeSize + 1;
+var table = lzwTable();
+for (var i = 0; i < clearCode; i += 1) {
+table.add(String.fromCharCode(i) );
+}
+table.add(String.fromCharCode(clearCode) );
+table.add(String.fromCharCode(endCode) );
+var byteOut = byteArrayOutputStream();
+var bitOut = bitOutputStream(byteOut);
+bitOut.write(clearCode, bitLength);
+var dataIndex = 0;
+var s = String.fromCharCode(_data[dataIndex]);
+dataIndex += 1;
+while (dataIndex < _data.length) {
+var c = String.fromCharCode(_data[dataIndex]);
+dataIndex += 1;
+if (table.contains(s + c) ) {
+s = s + c;
+} else {
+bitOut.write(table.indexOf(s), bitLength);
+if (table.size() < 0xfff) {
+if (table.size() == (1 << bitLength) ) {
+bitLength += 1;
+}
+table.add(s + c);
+}
+s = c;
+}
+}
+bitOut.write(table.indexOf(s), bitLength);
+bitOut.write(endCode, bitLength);
+bitOut.flush();
+return byteOut.toByteArray();
+};
+var lzwTable = function() {
+var _map = {};
+var _size = 0;
+var _this = {};
+_this.add = function(key) {
+if (_this.contains(key) ) {
+throw 'dup key:' + key;
+}
+_map[key] = _size;
+_size += 1;
+};
+_this.size = function() {
+return _size;
+};
+_this.indexOf = function(key) {
+return _map[key];
+};
+_this.contains = function(key) {
+return typeof _map[key] != 'undefined';
+};
+return _this;
+};
+return _this;
+};
+var createDataURL = function(width, height, getPixel) {
+var gif = gifImage(width, height);
+for (var y = 0; y < height; y += 1) {
+for (var x = 0; x < width; x += 1) {
+gif.setPixel(x, y, getPixel(x, y) );
+}
+}
+var b = byteArrayOutputStream();
+gif.write(b);
+var base64 = base64EncodeOutputStream();
+var bytes = b.toByteArray();
+for (var i = 0; i < bytes.length; i += 1) {
+base64.writeByte(bytes[i]);
+}
+base64.flush();
+return 'data:image/gif;base64,' + base64;
+};
+return qrcode;
+}();
+!function() {
+qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+function toUTF8Array(str) {
+var utf8 = [];
+for (var i=0; i < str.length; i++) {
+var charcode = str.charCodeAt(i);
+if (charcode < 0x80) utf8.push(charcode);
+else if (charcode < 0x800) {
+utf8.push(0xc0 | (charcode >> 6),
+0x80 | (charcode & 0x3f));
+}
+else if (charcode < 0xd800 || charcode >= 0xe000) {
+utf8.push(0xe0 | (charcode >> 12),
+0x80 | ((charcode>>6) & 0x3f),
+0x80 | (charcode & 0x3f));
+}
+else {
+i++;
+charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+| (str.charCodeAt(i) & 0x3ff));
+utf8.push(0xf0 | (charcode >>18),
+0x80 | ((charcode>>12) & 0x3f),
+0x80 | ((charcode>>6) & 0x3f),
+0x80 | (charcode & 0x3f));
+}
+}
+return utf8;
+}
+return toUTF8Array(s);
+};
+}();
+(function (factory) {
+if (typeof define === 'function' && define.amd) {
+define([], factory);
+} else if (typeof exports === 'object') {
+module.exports = factory();
+}
+}(function () {
+return qrcode;
+}));
+var LEX={"resemble":["v. 像","538"],"recognize":["v. 认出","538"],"adjust":["调整","179"],"approach":["方法","179"],"fundamental":["adj. 基本的","538"],"rely on":["依靠","179"],"domestic":["adj. 家庭的","538"],"measure":["v. 测量","538"],"trait":["n. 特性","538"],"coin":["v. 创造","538"],"artificial":["adj. 人造的","538"],"prompt":["v. 促进","538"],"exchange":["v. 交换","538"],"underlie":["v. 成为……基础","538"],"ignore":["v. 忽视","538"],"fertiliser":["n. 化肥","538"],"that*":["pron . 那","538"],"and*":["conj . 和","538"],"rather than*":["而非","538"],"thanks to*":["由于","538"],"diversity":["多样性","179"],"detect":["v. 查明","538"],"isolate":["v. 使隔离","538"],"avoid":["v. 避免","538"],"budget":["n. 预算","538"],"adapt to":["使适应","538"],"alternative":["adj. 供替代的","538"],"compensate":["n. 补偿","538"],"component":["n. 成分","538"],"military":["军事的","179"],"criteria":["n. 标准","538"],"curriculum":["n. 课程","538"],"feasible":["adj. 可行的","538"],"constrain":["v. 束缚","538"],"deficiency":["n. 缺陷","538"],"supplement":["v. 补充","538"],"distinguish":["v. 区别","538"],"analyze":["v. 分析","538"],"emphasize":["v. 强调","538"],"enormous":["adj. 庞大的","538"],"imitate":["v. 模仿","538"],"impair":["v. 削弱","538"],"hinder":["v. 阻碍","538"],"legitimate":["adj. 合法的","538"],"limitation":["n. 限制","538"],"convention":["n. 手法","538"],"demanding":["adj. 苛求的","538"],"determine":["v. 决定","538"],"accelerate":["v. 加速","538"],"ancient":["古老的","179"],"beneficial":["adj. 有益的","538"],"chronic":["adj. 慢性的","538"],"conscious":["adj. 有意识的","538"],"minimize":["v. 最小化","538"],"immunity":["n. 免疫力","538"],"imperative":["adj. 必要的","538"],"secrete":["v. 分泌","538"],"exaggerate":["v. 夸大","538"],"transmit":["v. 传达","538"],"extinct":["v. 灭绝","538"],"exclusive":["adj. 独有的","538"],"guarantee":["v. 保证","538"],"inherit":["v. 继承","538"],"witness":["n. 见证","538"],"magnetic":["adj. 有磁性的","538"],"loss":["n. 减少","538"],"option":["n. 选择","538"],"prefer to":["更喜欢","538"],"priority":["n. 优先权","538"],"primary":["adj. 主要的","538"],"principle":["n. 原理","538"],"potential":["n. 潜能 adj. 潜在的","538"],"quantity":["n. 量","538"],"settle":["v. 解决","538"],"sophisticate":["v. 使复杂","538"],"specific":["具体的","179"],"survive":["v. 存活","538"],"swift":["adj. 迅速的","538"],"unexpectedly":["adv. 出乎意料的","538"],"surrounding":["n. 环境","538"],"attempt":["n. 试图","538"],"expertise":["能力","179"],"faculty":["n. 能力","538"],"donate":["捐赠","179"],"dynamics":["n. 动力学","538"],"incentive":["n. 刺激","538"],"mortality":["n. 死亡率","538"],"peripheral":["adj. 外围的","538"],"vicinity":["n. 邻近","538"],"threaten":["v. 威胁","538"],"practice":["n. 实行","538"],"bacteria":["n. 细菌","538"],"be subject to":["受…... 支配","538"],"be liable to":["易于……","538"],"innate":["adj. 天生的","538"],"pattern":["n. 模式","538"],"therapy":["n. 治疗","538"],"original":["adj. 原始的","538"],"confidential":["adj. 机密的","538"],"cognitive":["adj. 认知的","538"],"comply with":["照做","538"],"consult":["v. 查阅","538"],"superior":["adj.. 上级的","538"],"co-operation":["n. 合作","538"],"co-ordinate":["v. 使……协调","538"],"differ":["v. 使……相异","538"],"cue":["n. 线索","538"],"signal":["n. 信号","538"],"abandon":["v. 放弃","538"],"halt":["n. 停止","538"],"fragile":["adj. 脆弱的","538"],"retain":["v. 记住","538"],"vanish":["n. 消失","538"],"delivery":["n. 递送","538"],"erode":["v. 侵蚀","538"],"induce":["v. 引起","538"],"stable":["adj. 稳定的","538"],"integrate":["v. 使……成整体","538"],"equal":["adj. 平等的","538"],"grant":["v. 拨款","538"],"accumulate":["v. 积累","538"],"addictive":["adj. 上瘾的","538"],"adversity":["n. 逆境","538"],"aggression":["n. 侵犯","538"],"agreeable":["adj. 令人愉快的","538"],"aid":["n. 援助","538"],"allergic":["过敏的","179"],"altitude":["n. 高度","538"],"application":["n. 应用","538"],"approve":["v. 批准","538"],"array":["n. 排列","538"],"assign":["v. 分配","538"],"association":["n. 协会","538"],"attitude":["n. 看法","538"],"authority":["n. 当局","538"],"be consistent with":["与……一致","538"],"bear":["v. 承担","538"],"blight":["v. 损害","538"],"boundary":["n. 边界","538"],"bungle":["v. 搞糟","538"],"burden":["n. 负担","538"],"calamity":["n. 灾难","538"],"capacity":["容量","179"],"catastrophic":["adj. 灾难的","538"],"cater":["v. 迎合","538"],"certify":["v. 证明","538"],"civic":["adj. 实名的","538"],"comment":["n. 评论","538"],"commitment":["n. 承诺","538"],"communal":["adj. 公共的","538"],"commute":["v. 通勤","538"],"compare":["v. 与……相比较","538"],"conceal":["v. 隐藏","538"],"concentrate":["v. 专心于","538"],"concur":["v. 同意","538"],"confer":["v. 授予","538"],"conflict":["n. 冲突","538"],"confuse":["v. 使混乱","538"],"conservative":["adj. 保守的","538"],"considerable":["adj. 相当大的","538"],"contingent":["adj. 因情况而异的","538"],"controversial":["adj. 有争论的","538"],"correlation":["n. 相关","538"],"courtship":["n. 求爱（时期）","538"],"crash":["n. 碰撞","538"],"credibility":["n. 可信性","538"],"criminal":["n. 罪犯","538"],"crisis":["n. 危机","538"],"criticism":["n. 评论","538"],"curb":["v. 限制","538"],"damp":["adj. 潮湿的","538"],"dazzle":["v. 使目眩","538"],"deadline":["截止时间","179"],"delay":["n. 延期","538"],"democratic":["adj. 民主的","538"],"demographic":["adj. 人口统计学的","538"],"dental":["adj. 牙科的","538"],"depression":["n. 抑郁","538"],"designate":["n. 指定","538"],"detain":["v. 留住","538"],"devastate":["v. 毁坏","538"],"disclose":["v. 公开","538"],"disparate":["adj. 不同的","538"],"display":["n. 显示","538"],"disrupt":["v. 破坏","538"],"distract":["v. 转移","538"],"distribute":["v. 分配","538"],"documentation":["n. 文件","538"],"domain":["n. 领域","538"],"dominant":["adj. 占优势的","538"],"dramatic":["adj. 戏剧化的","538"],"drought":["n. 干旱","538"],"durable":["耐用的","179"],"eco-friendly":["adj. 生态有好的","538"],"elaborate":["v. 详细阐述","538"],"elderly":["adj. 高龄的","538"],"eliminate":["v. 消除","538"],"elusive":["adj. 难懂的","538"],"encyclopaedia":["n. 百科全书","538"],"entrepreneur":["n. 企业家","538"],"equator":["n. 赤道","538"],"erratically":["adv. 不定的","538"],"established":["adj. 确定的","538"],"estate":["n. 房地产","538"],"ethical":["adj. 道德的","538"],"eventually":["adv. 最后","538"],"evidence":["n. 迹象","538"],"evolve":["v. 进化","538"],"exhausted":["adj. 疲惫的","538"],"experiment":["n. 试验","538"],"exceptional":["adj. 异常的","538"],"explicit":["adj. 明确的","538"],"exploit":["v. 开发","538"],"extend":["v. 扩展","538"],"extract":["n. 摘录 v. 提取","538"],"famine":["n. 饥荒","538"],"finite":["adj. 有限的","538"],"fitness":["健康","179"],"foe":["n. 敌人","538"],"format":["n. 格式","538"],"fragment":["n. 碎片","538"],"freeze":["结冰","179"],"fulfill":["v. 满足","538"],"gene":["n. 基因","538"],"gifted":["adj. 有天赋的","538"],"graphic":["adj. 形象的","538"],"habitat":["栖息地","179"],"harbor":["v. 怀有 n. 海港","538"],"hardship":["n. 困苦","538"],"harsh":["adj. 艰难的","538"],"hypothesis":["n. 假设","538"],"impact":["n. 影响","538"],"impressive":["adj. 感人的","538"],"in accordance with":["依照","538"],"inaccurate":["adj. 错误的","538"],"inactive":["adj. 不活跃的","538"],"inappropriate":["adj. 不适当的","538"],"indulge":["v. 沉溺（于）","538"],"infest":["v. 侵害","538"],"installment":["n. 安装","538"],"intelligence":["n. 智力","538"],"intense":["adj. 强烈的","538"],"interaction":["n. 相互作用","538"],"interference":["n. 干涉","538"],"interior":["n. 内部 adj. 内部的","538"],"interrupt":["v. 中断","538"],"introverted":["adj. 内向的","538"],"involve":["v. 包含","538"],"keen":["adj. 热切的","538"],"label":["v. 打上标签","538"],"lack":["/ v. 缺乏","179"],"landscape":["n. 风景","538"],"likelihood":["n. 可能性","538"],"limb":["n. 四肢","538"],"linguistic":["adj. 语言(学) 的","538"],"log":["v. 记录 n. 原木","538"],"look-in":["n. 成功的机会","538"],"lopsided":["adj. 不平衡的","538"],"mainly":["adv. 主要的","538"],"malfunction":["v. 发生故障","538"],"mammal":["n. 哺乳动物","538"],"mange to do":["设法完成某事","538"],"manifest":["v. 出现","538"],"manufacture":["n. 生产","538"],"marine":["adj. 海产的","538"],"mate":["伙伴","179"],"mechanism":["n. 机制","538"],"mental":["adj. 精神的","538"],"mercury":["n. 汞","538"],"meteorological":["adj. 气象学的","538"],"migrate":["v. 转移","538"],"moisture":["n. 水分","538"],"monitor":["v. 监控","538"],"motif":["n. 主题","538"],"mould":["v. 模压","538"],"native":["adj. 本国的","538"],"nocturnal":["adj. 夜间的","538"],"norm":["n. 规范","538"],"notoriety":["n. 名声","538"],"objective":["n. 目标","538"],"obligation":["n. 义务","538"],"obscure":["v. 掩盖","538"],"obtain":["v. 获得","538"],"odd":["adj. 古怪的","538"],"odour":["n. 气味","538"],"offensive":["adj. 冒犯的","538"],"official":["n. 官员 adj. 官方的","538"],"optimum":["n. 最佳效果 adj. 最适宜","538"],"ordinary":["adj. 普通的","538"],"organ":["n. 器官","538"],"out of the question":["不可能","538"],"overcome":["v. 克服","538"],"overtake":["v. 赶上","538"],"paralyse":["v. 使……麻痹","538"],"paramount":["adj. 最重要的","538"],"participate":["v. 参加","538"],"patient":["adj. 有耐性的","538"],"peak":["n. 最高峰","538"],"permit":["n. 许可证","538"],"persuade":["v. 说服","538"],"pessimistic":["adj. 悲观的","538"],"phase":["n. 阶段","538"],"physical":["adj. 身体上的","538"],"plagiarise":["v. 抄袭","538"],"plenty of":["大量的","538"],"plot":["v. 密谋","538"],"pose":["v. 提出","538"],"portable":["adj. 可携带的","538"],"poverty":["n. 贫穷","538"],"praise":["n. 赞扬","538"],"predict":["v. 预测","538"],"pressing":["adj. 迫切的","538"],"private":["adj. 私人的","538"],"prohibit":["v. 禁止的","538"],"prolong":["v. 拉长","538"],"promote":["v. 促进","538"],"prosper":["v. 使成功","538"],"purify":["v. 净化","538"],"qualify":["v. 取得资格","538"],"radical":["adj. 彻底的","538"],"range":["n. 范围","538"],"rare":["adj. 稀有的","538"],"rate":["n. 等级 v. 评估","538"],"react":["v. 反应","538"],"recreation":["n. 娱乐","538"],"reduction":["n. 下降","538"],"refer to":["指(的是)","538"],"rehearsal":["n. 排演","538"],"reject":["v. 拒绝","538"],"relevant":["adj. 相关的","538"],"religious":["adj. 宗教的","538"],"reluctant":["adj. 不情愿的","538"],"reproduce":["v. 繁殖","538"],"responsible":["adj. 负责的","538"],"revision":["n. 修正","538"],"revive":["v. 使复苏","538"],"ruin":["v. 毁灭","538"],"scenic":["adj. 风景优美的","538"],"shade":["n. 遮阳","538"],"skepticism":["n. 怀疑","538"],"soar":["v. 激增","538"],"solely":["adv. 唯一地","538"],"solicitor":["n. 律师","538"],"steer":["v. 控制","538"],"stimulate":["v. 刺激","538"],"stride":["n. 进展","538"],"succumb":["vi. 屈服","538"],"subdivide":["v. 把……细分","538"],"subtle":["adj. 微妙的","538"],"substance":["n. 物质","538"],"sufficiency":["n. 足量","538"],"supersede":["v. 取代","538"],"suppress":["v. 抑制","538"],"supremacy":["n. 至高无上","538"],"suspicious":["adj. 可疑的","538"],"sustainable":["adj. 可持续的","538"],"symptom":["n. 症状","538"],"tension":["n. 紧张","538"],"term":["n. 术语","538"],"throughout":["adv. 自始至终","538"],"toll":["n. 通行费 v. 征收","538"],"trace":["n. 追溯","538"],"transcend":["v. 胜过","538"],"transit":["n. 运输","538"],"tremendous":["adj. 巨大的","538"],"trigger":["n. 触发","538"],"tropical":["adj. 热带的","538"],"unbiased":["adj. 公正的","538"],"uniform":["adj. 始终如一的","538"],"valuable":["adj. 宝贵的","538"],"versatile":["adj. 多功能","538"],"view":["v. 看","538"],"violent":["adj. 暴力的","538"],"visible":["adj. 明显的","538"],"visual":["adj. 是觉得","538"],"well-being":["n. 健康","538"],"reserve":["预订","179"],"in advance":["提前","179"],"have to":["必须","179"],"and":["和","179"],"but":["但是","179"],"because":["因为","179"],"fee":["费用","179"],"establish":["建造","179"],"transfer":["搬","179"],"international":["国际的","179"],"export":["出口","179"],"vegetation":["植被","179"],"animal":["动物","179"],"feature":["特点","179"],"emigrate":["迁徙","179"],"food":["食物","179"],"tradition":["传统","179"],"entertainment":["娱乐","179"],"press":["媒体","179"],"online":["网络","179"],"publicity":["宣传","179"],"picture":["照片","179"],"jewellery":["珠宝","179"],"artwork":["艺术品","179"],"statue":["雕像","179"],"movie":["电影","179"],"geology":["地质学","179"],"countryside":["乡村的","179"],"urban":["城市的","179"],"coastline":["海岸线","179"],"environment":["周围环境","179"],"noisy":["吵闹的","179"],"outdoor":["户外的","179"],"accommodation":["住宿","179"],"place":["地点","179"],"near":["附近的","179"],"remote":["偏远的","179"],"advantage":["优点","179"],"disadvantage":["缺点","179"],"education":["教育","179"],"ordinary people":["公众","179"],"student":["学生","179"],"purpose":["目标","179"],"learn":["学习","179"],"structure":["结构大纲","179"],"reference materials":["参考资料","179"],"extensive":["广泛","179"],"group":["团队","179"],"associate":["与……相关","179"],"motivate":["鼓励","179"],"improve":["提升","179"],"overlook":["低估","179"],"omit":["省掉","179"],"find":["发现","179"],"opportunity":["机会","179"],"difficult":["困难的","179"],"prevent":["阻止","179"],"misunderstand":["理解错误","179"],"try hard":["努力","179"],"feedback":["反馈","179"],"affect":["影响","179"],"analysis":["分析","179"],"result":["结果","179"],"handle":["处理","179"],"support":["帮助","179"],"ideal":["完美的","179"],"rigorous":["严格的","179"],"restrict":["限制","179"],"similar":["相似的","179"],"particular":["特别的","179"],"copy":["重复","179"],"statistics":["统计学","179"],"maximum":["最大值","179"],"minimum":["最小值","179"],"initial":["最初的","179"],"limited":["少量的","179"],"shorten":["截短","179"],"decrease":["降低","179"],"large":["大的","179"],"amount of":["大量","179"],"majority":["绝大部分","179"],"double":["两倍","179"],"more than":["超过","179"],"at present":["当前","179"],"update":["更新","179"],"newest":["最新的","179"],"soon":["将来","179"],"out of date":["过时的","179"],"temporary":["暂时的","179"],"permanent":["长久的","179"],"more often":["频繁","179"],"annual":["年度的","179"],"every month":["每个月","179"],"every day":["每天","179"],"classify":["分类","179"],"entrance":["入口","179"],"behind":["在……后面","179"],"below":["在……下面","179"],"beside":["在……旁边","179"],"available":["可用的","179"],"boring":["无趣的","179"],"trend":["倾向","179"],"risky":["危险的","179"],"poisonous":["有毒的","179"],"warning":["警报","179"],"care":["谨慎","179"],"steal":["偷窃","179"],"protect":["保护","179"],"injury":["伤害","179"],"tactics":["策略","179"],"travel":["旅行","179"],"space travel":["空间旅行","179"],"transport":["交通","179"],"request":["询问","179"],"clear":["清晰地","179"],"organization":["公司","179"],"organize":["组织","179"],"produce":["产生","179"],"administer":["管理","179"],"occupation":["职位","179"],"all ages":["所有年龄的人","179"],"youth":["年轻","179"],"staff":["员工","179"],"sale":["销售","179"],"cheap":["便宜的","179"],"discount":["打折","179"],"round":["圆","179"],"order":["顺序","179"],"renovate":["修理","179"],"alone":["单独的","179"],"hospitality":["招待","179"],"shape like":["像","179"],"depress":["失望","179"],"well-known":["有名的","179"],"specialize in":["专注于","179"],"part":["部分","179"],"typical":["典型的","179"],"uncommon":["特别的","179"],"accurately":["精确地","179"],"expand":["扩建","179"],"climb":["上升","179"],"enhance":["增强","179"],"power":["力量","179"],"fuel":["燃料","179"],"refurbish":["重新装修","179"],"preference":["偏爱","179"],"trust":["信任","179"],"computer":["电脑","179"],"handy":["方便的","179"],"demonstrate":["展示","179"],"important":["主要的","179"],"straightforward":["简单直接的","179"],"disused":["废弃的","179"],"work":["作品","179"],"turn":["转动","179"],"information":["信息","179"],"visualize":["想象","179"],"repetition":["重复","179"],"poor":["弱的","179"],"pollutant":["污染物","179"],"continue":["继续","179"]};
+
+/* ================= 扫码搬生词本（合并，不替换）================= */
+var SH=(function(){
+ var BK='kd-book', RK='kd-rec', SITE='kd', ACC='#0f766e';
+ var FR=1400, root=null, tab='send', fi=0, timer=null, fr=null;
+ function J(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d }catch(e){ return d } }
+ function S2(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)) }catch(e){} }
+ function isMobi(){ return /Mobi|Android|iPhone|iPad|iPod|HarmonyOS/i.test(navigator.userAgent) }
+
+ /* 本地现有的词（生词本 + 背诵记录，取较优的一份） */
+ function gather(){
+  var bk=J(BK,{}), rc=J(RK,{}), out={}, w, o, e;
+  for(w in bk){ o=bk[w]||{}; out[w]={lv:o.lv||0,due:o.due||o.t||0,wr:o.wr||0} }
+  for(w in rc){ o=rc[w]||{}; e=out[w]||{lv:0,due:0,wr:0};
+   e.lv=Math.max(e.lv,o.lv||0); e.due=Math.max(e.due,o.due||0); e.wr=Math.max(e.wr,o.wr||0); out[w]=e }
+  return out;
+ }
+ function encode(){
+  var o=gather(), now=Date.now(), a=[], w;
+  for(w in o) a.push(w+','+o[w].lv+','+Math.round(((o[w].due||0)-now)/864e5)+','+o[w].wr);
+  return a.join(';');
+ }
+ function frames(){
+  var s=encode(); if(!s) return null;
+  var n=Math.ceil(s.length/FR), out=[], i;
+  for(i=0;i<n;i++) out.push('IJ01|'+SITE+'|'+(i+1)+'/'+n+'|'+s.slice(i*FR,(i+1)*FR));
+  return {list:out, n:Object.keys(gather()).length};
+ }
+ function decode(txt){
+  var t=String(txt||'').trim();
+  var m=/^IJ\d\d\|[a-zA-Z]+\|\d+\/\d+\|/.exec(t);
+  if(!m) m=/^IJ\d\d\|[a-zA-Z]+\|/.exec(t);
+  if(m) t=t.slice(m[0].length);
+  var a=t.split(';'), out=[], i, p, w;
+  for(i=0;i<a.length;i++){
+   p=a[i].split(','); if(p.length<2) continue;
+   w=(p[0]||'').trim().toLowerCase();
+   if(!/^[a-z][a-z'\-]*$/.test(w)) continue;
+   out.push({w:w, lv:Math.min(7,parseInt(p[1],10)||0), dd:parseInt(p[2],10)||0, wr:parseInt(p[3],10)||0});
+  }
+  return out;
+ }
+ /* 合并：并集 + 取更靠后的进度，绝不删除本地已有的词 */
+ function merge(list){
+  var bk=J(BK,{}), rc=J(RK,{}), now=Date.now(), add=0, upd=0, same=0, i, x, e, due, le;
+  for(i=0;i<list.length;i++){
+   x=list[i]; due=now+x.dd*864e5; e=bk[x.w];
+   if(!e){
+    le=LEX[x.w]||['',''];
+    bk[x.w]={w:x.w, m:le[0]||'', c:le[1]||'', lv:x.lv, due:due, wr:x.wr, t:now};
+    add++;
+   }else{
+    var b4=(e.lv||0)+'|'+Math.round((e.due||0)/6e4)+'|'+(e.wr||0);
+    e.lv=Math.max(e.lv||0,x.lv);
+    e.due=Math.max(e.due||0,due);
+    e.wr=Math.max(e.wr||0,x.wr);
+    if(!e.m&&LEX[x.w]) e.m=LEX[x.w][0];
+    if(!e.c&&LEX[x.w]) e.c=LEX[x.w][1];
+    if(b4!==(e.lv||0)+'|'+Math.round((e.due||0)/6e4)+'|'+(e.wr||0)) upd++; else same++;
+   }
+   if(rc[x.w]){ var r=rc[x.w]; r.lv=Math.max(r.lv||0,x.lv); r.due=Math.max(r.due||0,due) }
+  }
+  S2(BK,bk); S2(RK,rc);
+  return {add:add, upd:upd, same:same, total:Object.keys(bk).length};
+ }
+
+ /* ---------- 界面 ---------- */
+ function css(){
+  if(document.getElementById('shrstyle')) return;
+  var s=document.createElement('style'); s.id='shrstyle'; s.textContent="\n#shrroot{position:fixed;inset:0;z-index:340;display:none;background:rgba(0,0,0,.42);\n -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}\n#shrroot.on{display:flex;align-items:center;justify-content:center;padding:16px}\n.shr-card{background:var(--panel,#fff);color:var(--ink,#1f2328);border:1px solid var(--line,#e6e2da);\n border-radius:18px;width:100%;max-width:420px;max-height:92vh;overflow:auto;\n box-shadow:0 18px 50px rgba(0,0,0,.28);font-size:14px}\n.shr-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px}\n.shr-head b{font-size:15.5px}\n.shr-head .x{margin-left:auto;border:0;background:transparent;font-size:22px;line-height:1;\n color:var(--ink2,#5b6470);cursor:pointer;padding:0 4px}\n.shr-tabs{display:flex;gap:6px;padding:0 16px 10px}\n.shr-tabs button{flex:1;font:inherit;font-size:12.5px;font-weight:650;padding:7px 6px;border-radius:9px;\n border:1px solid var(--line,#e6e2da);background:transparent;color:var(--ink2,#5b6470);cursor:pointer}\n.shr-tabs button.on{background:var(--accent,#b4442e);border-color:var(--accent,#b4442e);color:#fff}\n.shr-body{padding:0 16px 16px}\n.shr-p{display:none}\n.shr-p.on{display:block}\n.shr-qr{background:#fff;border:1px solid var(--line,#e6e2da);border-radius:12px;padding:8px;\n display:flex;align-items:center;justify-content:center;min-height:120px}\n.shr-qr svg{display:block;width:100%;height:auto;max-width:330px}\n.shr-meta{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink2,#5b6470);margin:9px 0 4px}\n.shr-meta .sp{flex:1}\n.shr-meta b{color:var(--accent,#b4442e);font-variant-numeric:tabular-nums}\n.shr-row{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}\n.shr-row button{flex:1;font:inherit;font-size:13px;font-weight:650;padding:8px 10px;border-radius:10px;\n border:1px solid var(--line,#e6e2da);background:var(--panel,#fff);color:var(--ink,#1f2328);cursor:pointer;white-space:nowrap}\n.shr-row button:hover{border-color:var(--accent,#b4442e);color:var(--accent,#b4442e)}\n.shr-row button.pri{background:var(--accent,#b4442e);border-color:var(--accent,#b4442e);color:#fff}\n.shr-row button.pri:hover{color:#fff;filter:brightness(1.05)}\n.shr-note{font-size:12px;line-height:1.75;color:var(--ink2,#5b6470);margin-top:10px;\n background:var(--bg,#f7f6f3);border-radius:9px;padding:9px 11px}\n.shr-note b{color:var(--accent,#b4442e)}\n#shrta{width:100%;min-height:130px;resize:vertical;font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;\n color:var(--ink,#1f2328);background:var(--bg,#f7f6f3);border:1px solid var(--line,#e6e2da);\n border-radius:10px;padding:9px 11px;outline:none;word-break:break-all}\n#shrta:focus{border-color:var(--accent,#b4442e)}\n.shr-res{margin-top:9px;font-size:13px;line-height:1.8;display:none}\n.shr-res.on{display:block}\n.shr-res b{color:var(--accent,#b4442e)}\n.shr-res .ok{color:var(--green,#2f7d4f);font-weight:700}\n";
+  document.head.appendChild(s);
+ }
+ function build(){
+  if(root) return;
+  css();
+  root=document.createElement('div'); root.id='shrroot';
+  root.innerHTML='<div class="shr-card">'
+   +'<div class="shr-head"><b>搬生词本</b><button class="x" id="shrx">×</button></div>'
+   +'<div class="shr-tabs"><button id="shrt-s" data-t="send">电脑：显示二维码</button>'
+   +'<button id="shrt-r" data-t="recv">手机：扫码后合并</button></div>'
+   +'<div class="shr-body">'
+   +'<div class="shr-p" id="shrp-s">'
+    +'<div class="shr-meta"><span id="shr-cnt">—</span><span class="sp"></span><span id="shr-fr"></span></div>'
+    +'<div class="shr-qr" id="shrqr"></div>'
+    +'<div class="shr-row"><button id="shr-prev">‹ 上一帧</button><button id="shr-next">下一帧 ›</button>'
+    +'<button class="pri" id="shr-copy">复制这一帧</button></div>'
+    +'<div class="shr-note">手机打开本站的<b>生词本</b> → 点「搬生词本」→ 手机那一栏，用相机/微信扫这个码，'
+    +'把扫出来的文字粘进去，点「合并到本地」。<b>只会新增和更新，不会清掉手机上原有</b>。'
+    +'词多的时候会分成几帧自动轮播，扫一帧合一次也行。</div>'
+   +'</div>'
+   +'<div class="shr-p" id="shrp-r">'
+    +'<div class="shr-meta"><span>把电脑上扫到的文字粘到这里</span></div>'
+    +'<textarea id="shrta" placeholder="粘贴形如 IJ01|vj|1/1|resemble,3,12,1;… 的一整串文字"></textarea>'
+    +'<div class="shr-row"><button class="pri" id="shr-merge">合并到本地</button>'
+    +'<button id="shr-paste">从剪贴板粘贴</button></div>'
+    +'<div class="shr-res" id="shr-res"></div>'
+    +'<div class="shr-note">合并规则：同一个词取<b>进度更靠后</b>的那份（复习次数、到期时间、错误次数取较大值）；'
+    +'本地没有的词会<b>新增</b>进来；本地的词一个都不会被删。</div>'
+   +'</div>'
+   +'</div></div>';
+  document.body.appendChild(root);
+  root.querySelector('#shrx').onclick=close;
+  root.querySelector('#shrt-s').onclick=function(){ go('send') };
+  root.querySelector('#shrt-r').onclick=function(){ go('recv') };
+  root.querySelector('#shr-prev').onclick=function(){ turn(-1) };
+  root.querySelector('#shr-next').onclick=function(){ turn(1) };
+  root.querySelector('#shr-copy').onclick=copyFrame;
+  root.querySelector('#shr-merge').onclick=doMerge;
+  root.querySelector('#shr-paste').onclick=pasteIn;
+  root.addEventListener('click',function(e){ if(e.target===root) close() });
+ }
+ function go(t){
+  tab=t;
+  root.querySelector('#shrt-s').className = t==='send'?'on':'';
+  root.querySelector('#shrt-r').className = t==='recv'?'on':'';
+  document.getElementById('shrp-s').className = 'shr-p'+(t==='send'?' on':'');
+  document.getElementById('shrp-r').className = 'shr-p'+(t==='recv'?' on':'');
+  if(t==='send'){ refresh(); startTimer(); stopTimerIfRecv() }
+  else { stopTimer() }
+ }
+ function stopTimer(){ if(timer){ clearInterval(timer); timer=null } }
+ function stopTimerIfRecv(){ if(tab==='recv') stopTimer() }
+ function startTimer(){ stopTimer(); if(fr && fr.list.length>1){ timer=setInterval(function(){ turn(1) },1500) } }
+ function refresh(){
+  fr=frames();
+  var cnt=document.getElementById('shr-cnt');
+  if(!fr){ cnt.textContent='本地还没有词'; document.getElementById('shrqr').innerHTML=''; 
+   document.getElementById('shr-fr').textContent=''; return }
+  cnt.innerHTML='共 <b>'+fr.n+'</b> 个词';
+  fi=0; paint();
+  startTimer();
+ }
+ function paint(){
+  if(!fr) return;
+  var n=fr.list.length, t=fr.list[fi];
+  document.getElementById('shr-fr').textContent = n>1 ? ('第 '+(fi+1)+' / '+n+' 帧') : '';
+  var pv=document.getElementById('shr-prev'), nx=document.getElementById('shr-next');
+  if(pv) pv.style.display = n>1?'':'none';
+  if(nx) nx.style.display = n>1?'':'none';
+  var box=document.getElementById('shrqr');
+  try{
+   var qr=qrcode(0,'L'); qr.addData(t); qr.make();
+   var size=qr.getModuleCount(), cell=Math.max(2,Math.floor(300/size));
+   box.innerHTML=qr.createSvgTag({cellSize:cell, margin:2, scalable:true});
+   var sv=box.querySelector('svg');
+   if(sv){ sv.style.width='100%'; sv.style.height='auto'; sv.style.maxWidth='330px'; sv.removeAttribute('height') }
+  }catch(e){ box.innerHTML='<span style="color:#c0392b;font-size:12.5px">词太多，这一帧装不下二维码，请改用「复制这一帧」</span>' }
+ }
+ function turn(d){
+  if(!fr) return;
+  var n=fr.list.length; if(n<2) return;
+  fi=(fi+d+n)%n; paint();
+ }
+ function copyFrame(){
+  if(!fr) return;
+  copyText(fr.list[fi]);
+ }
+ function copyText(t){
+  try{
+   if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t); toast('已复制'); return }
+  }catch(e){}
+  var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.left='-9999px';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); toast('已复制') }catch(e){ toast('复制失败，请手动选中') }
+  document.body.removeChild(ta);
+ }
+ function pasteIn(){
+  var ta=document.getElementById('shrta');
+  try{
+   navigator.clipboard.readText().then(function(t){ if(t) ta.value=t },function(){ ta.focus() });
+  }catch(e){ ta.focus() }
+ }
+ function doMerge(){
+  var ta=document.getElementById('shrta'), res=document.getElementById('shr-res');
+  var list=decode(ta.value);
+  if(!list.length){ res.className='shr-res on'; res.innerHTML='<span style="color:#c0392b">没识别到词</span>，检查一下粘的内容是不是完整的一串'; return }
+  var r=merge(list);
+  res.className='shr-res on';
+  res.innerHTML='<span class="ok">合并完成</span>：新增 <b>'+r.add+'</b> 词 · 更新 <b>'+r.upd+'</b> 词'
+   +(r.same?(' · '+r.same+' 词本地已经更靠后'):'')+' · 现在共 <b>'+r.total+'</b> 词'
+   +'<div style="margin-top:8px"><button id="shr-refresh" style="font:inherit;font-size:13px;font-weight:650;'
+   +'border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:7px 14px;cursor:pointer">'
+   +'刷新列表</button></div>';
+  var b=document.getElementById('shr-refresh');
+  if(b) b.onclick=function(){ location.reload() };
+  ta.value='';
+ }
+ function toast(t){
+  var d=document.createElement('div');
+  d.textContent=t;
+  d.style.cssText='position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:400;'
+   +'background:rgba(0,0,0,.82);color:#fff;font-size:13px;padding:8px 16px;border-radius:999px';
+  document.body.appendChild(d);
+  setTimeout(function(){ if(d.parentNode) d.parentNode.removeChild(d) },1400);
+ }
+ function open(){
+  build(); root.classList.add('on');
+  go(isMobi()?'recv':'send');
+ }
+ function close(){ if(root) root.classList.remove('on'); stopTimer() }
+ return {open:open,close:close,encode:encode,decode:decode,merge:merge};
+})();
+(function(){
+ function mount(){
+  var imp=document.getElementById('imp');
+  if(!imp||document.getElementById('shrbtn')) return;
+  var b=document.createElement('button');
+  b.type='button'; b.id='shrbtn'; b.className=imp.className||'';
+  b.textContent='搬生词本';
+  b.title='电脑显示二维码，手机扫码后合并（不会替换）';
+  if(imp.getAttribute('style')) b.setAttribute('style',imp.getAttribute('style'));
+  b.addEventListener('click',function(){ SH.open() });
+  imp.parentNode.insertBefore(b, imp.nextSibling);
+  var st=document.getElementById('shrstyle');
+  if(!st){ var s=document.createElement('style'); s.id='shrstyle'; s.textContent="\n#shrroot{position:fixed;inset:0;z-index:340;display:none;background:rgba(0,0,0,.42);\n -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}\n#shrroot.on{display:flex;align-items:center;justify-content:center;padding:16px}\n.shr-card{background:var(--panel,#fff);color:var(--ink,#1f2328);border:1px solid var(--line,#e6e2da);\n border-radius:18px;width:100%;max-width:420px;max-height:92vh;overflow:auto;\n box-shadow:0 18px 50px rgba(0,0,0,.28);font-size:14px}\n.shr-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px}\n.shr-head b{font-size:15.5px}\n.shr-head .x{margin-left:auto;border:0;background:transparent;font-size:22px;line-height:1;\n color:var(--ink2,#5b6470);cursor:pointer;padding:0 4px}\n.shr-tabs{display:flex;gap:6px;padding:0 16px 10px}\n.shr-tabs button{flex:1;font:inherit;font-size:12.5px;font-weight:650;padding:7px 6px;border-radius:9px;\n border:1px solid var(--line,#e6e2da);background:transparent;color:var(--ink2,#5b6470);cursor:pointer}\n.shr-tabs button.on{background:var(--accent,#b4442e);border-color:var(--accent,#b4442e);color:#fff}\n.shr-body{padding:0 16px 16px}\n.shr-p{display:none}\n.shr-p.on{display:block}\n.shr-qr{background:#fff;border:1px solid var(--line,#e6e2da);border-radius:12px;padding:8px;\n display:flex;align-items:center;justify-content:center;min-height:120px}\n.shr-qr svg{display:block;width:100%;height:auto;max-width:330px}\n.shr-meta{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink2,#5b6470);margin:9px 0 4px}\n.shr-meta .sp{flex:1}\n.shr-meta b{color:var(--accent,#b4442e);font-variant-numeric:tabular-nums}\n.shr-row{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}\n.shr-row button{flex:1;font:inherit;font-size:13px;font-weight:650;padding:8px 10px;border-radius:10px;\n border:1px solid var(--line,#e6e2da);background:var(--panel,#fff);color:var(--ink,#1f2328);cursor:pointer;white-space:nowrap}\n.shr-row button:hover{border-color:var(--accent,#b4442e);color:var(--accent,#b4442e)}\n.shr-row button.pri{background:var(--accent,#b4442e);border-color:var(--accent,#b4442e);color:#fff}\n.shr-row button.pri:hover{color:#fff;filter:brightness(1.05)}\n.shr-note{font-size:12px;line-height:1.75;color:var(--ink2,#5b6470);margin-top:10px;\n background:var(--bg,#f7f6f3);border-radius:9px;padding:9px 11px}\n.shr-note b{color:var(--accent,#b4442e)}\n#shrta{width:100%;min-height:130px;resize:vertical;font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;\n color:var(--ink,#1f2328);background:var(--bg,#f7f6f3);border:1px solid var(--line,#e6e2da);\n border-radius:10px;padding:9px 11px;outline:none;word-break:break-all}\n#shrta:focus{border-color:var(--accent,#b4442e)}\n.shr-res{margin-top:9px;font-size:13px;line-height:1.8;display:none}\n.shr-res.on{display:block}\n.shr-res b{color:var(--accent,#b4442e)}\n.shr-res .ok{color:var(--green,#2f7d4f);font-weight:700}\n"; document.head.appendChild(s) }
+  if(b.className&&b.className.indexOf('btn')<0&&imp.parentNode.className){
+   var pc=imp.parentNode.className;
+   if(/acts|tools|toolbar|row/i.test(pc)) b.className=imp.className||'';
+  }
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mount); else mount();
+})();
+</script>
 </body></html>

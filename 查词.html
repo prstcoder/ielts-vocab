@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原文查词 · 雅思考点词</title>
+<style>
+:root{--bg:#f7f6f3;--panel:#fff;--ink:#1f2328;--ink2:#5b6470;--line:#e6e2da;--chip:#efece6;
+ --accent:#0f766e;--acc-soft:#e6f4f2;--mark:#fff3c4;--green:#2f7d4f}
+html.dark{color-scheme:dark;--bg:#16181c;--panel:#1d2025;--ink:#e8eaed;--ink2:#9aa3ad;--line:#2c3037;
+ --chip:#242830;--acc-soft:#2a211f;--mark:#4a3f1a;--green:#6cc38b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,
+ "PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;padding-bottom:70px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+header{padding:28px 0 16px}
+h1{margin:0;font-size:24px;font-weight:700}
+.sub{color:var(--ink2);font-size:13px;margin-top:6px}
+.back{display:inline-block;font-size:13px;color:var(--ink2);text-decoration:none;border:1px solid var(--line);
+ border-radius:999px;padding:3px 12px;margin-bottom:14px;background:var(--panel)}
+.back:hover{color:var(--accent);border-color:var(--accent)}
+.pane{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+textarea{width:100%;min-height:170px;resize:vertical;font:inherit;font-size:14.5px;line-height:1.75;
+ color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px;outline:none}
+textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--acc-soft)}
+.acts{display:flex;gap:9px;margin-top:11px;flex-wrap:wrap;align-items:center}
+.acts button{font:inherit;font-size:13.5px;font-weight:650;border-radius:9px;cursor:pointer;
+ border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 15px}
+.acts button:hover{border-color:var(--accent);color:var(--accent)}
+.acts .pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.acts .pri:hover{color:#fff;filter:brightness(1.06)}
+.acts .tip{font-size:12px;color:var(--ink2);margin-left:auto}
+.res{margin-top:16px;display:none}
+.res.on{display:block}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:12.5px;border-radius:999px;padding:3px 11px;background:var(--chip);color:var(--ink2)}
+.chip b{color:var(--accent);font-variant-numeric:tabular-nums}
+.pass{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+ font-size:15.5px;line-height:2.05;white-space:pre-wrap;word-break:break-word}
+mark.lk{background:var(--mark);color:inherit;border-radius:4px;padding:0 2px;cursor:pointer;
+ box-shadow:inset 0 -2px 0 color-mix(in srgb,var(--accent) 55%,transparent)}
+mark.lk:hover{background:color-mix(in srgb,var(--accent) 18%,var(--mark))}
+mark.lk.on{background:var(--accent);color:#fff}
+mark.lk.syn{background:transparent;box-shadow:none;border-bottom:2px dotted var(--accent);border-radius:0}
+body.onlyd mark.lk.syn{background:transparent;box-shadow:none;border-bottom:0;cursor:auto}
+body.onlyd .hit.syn{display:none}
+.tgx{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);cursor:pointer;user-select:none}
+.tgx input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer;margin:0}
+.list{margin-top:14px}
+.grp{margin-top:14px}
+.gh{display:flex;align-items:baseline;gap:9px;font-size:13px;color:var(--ink2);margin-bottom:7px}
+.gh b{font-size:13.5px;color:var(--ink)}
+.gh a{color:var(--accent);text-decoration:none;font-size:12.5px}
+.hit{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.hit:last-child{border-bottom:0}
+.hit .w{font-weight:650;font-family:ui-serif,Georgia,serif;min-width:130px}
+.hit .m{color:var(--ink2);font-size:13px;flex:1}
+.hit .st{font-size:11px;border-radius:99px;padding:1px 8px;background:var(--chip);color:var(--ink2);flex:none}
+.hit .st.good{background:color-mix(in srgb,var(--green) 16%,var(--panel));color:var(--green)}
+.hit .st.new{background:color-mix(in srgb,var(--accent) 14%,var(--panel));color:var(--accent)}
+.empty{padding:26px;text-align:center;color:var(--ink2);font-size:13.5px}
+@media (max-width:620px){.wrap{padding:0 12px}h1{font-size:20px}.pass{font-size:15px;line-height:1.95}
+ .hit .w{min-width:0}.acts .tip{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <a class="back" href="index.html">← 回首页</a>
+ <h1>原文查词 · 雅思考点词</h1>
+ <p class="sub">粘一段阅读或听力原文，标出命中的考点词——连同义替换一起认出来。（比如原文写 like，会标到 resemble）</p>
+</header>
+<div class="pane">
+ <textarea id="tx" placeholder="把一篇雅思阅读原文粘进来（也可以粘某一段），点「查一下」。"></textarea>
+ <div class="acts">
+  <button class="pri" id="go">查一下</button>
+  <button id="clr">清空</button>
+  <label class="tgx" title="只看原文里直接出现的词，不看同义替换"><input type="checkbox" id="onlyd">只看直接命中</label>
+  <span class="tip">不联网 · 只在本机匹配</span>
+ </div>
+</div>
+<div class="res" id="res">
+ <div class="chips" id="chips"></div>
+ <div class="pass" id="pass"></div>
+ <div class="list" id="list"></div>
+</div>
+<footer style="margin-top:34px;color:var(--ink2);font-size:12px;line-height:1.8">
+ 词库取自阅读 538 + 听力 179，含 881 条同义替换。
+</footer>
+</div>
+<script>
+var LEX={"resemble":["v. 像","538"],"recognize":["v. 认出","538"],"adjust":["调整","179"],"approach":["方法","179"],"fundamental":["adj. 基本的","538"],"rely on":["依靠","179"],"domestic":["adj. 家庭的","538"],"measure":["v. 测量","538"],"trait":["n. 特性","538"],"coin":["v. 创造","538"],"artificial":["adj. 人造的","538"],"prompt":["v. 促进","538"],"exchange":["v. 交换","538"],"underlie":["v. 成为……基础","538"],"ignore":["v. 忽视","538"],"fertiliser":["n. 化肥","538"],"that*":["pron . 那","538"],"and*":["conj . 和","538"],"rather than*":["而非","538"],"thanks to*":["由于","538"],"diversity":["多样性","179"],"detect":["v. 查明","538"],"isolate":["v. 使隔离","538"],"avoid":["v. 避免","538"],"budget":["n. 预算","538"],"adapt to":["使适应","538"],"alternative":["adj. 供替代的","538"],"compensate":["n. 补偿","538"],"component":["n. 成分","538"],"military":["军事的","179"],"criteria":["n. 标准","538"],"curriculum":["n. 课程","538"],"feasible":["adj. 可行的","538"],"constrain":["v. 束缚","538"],"deficiency":["n. 缺陷","538"],"supplement":["v. 补充","538"],"distinguish":["v. 区别","538"],"analyze":["v. 分析","538"],"emphasize":["v. 强调","538"],"enormous":["adj. 庞大的","538"],"imitate":["v. 模仿","538"],"impair":["v. 削弱","538"],"hinder":["v. 阻碍","538"],"legitimate":["adj. 合法的","538"],"limitation":["n. 限制","538"],"convention":["n. 手法","538"],"demanding":["adj. 苛求的","538"],"determine":["v. 决定","538"],"accelerate":["v. 加速","538"],"ancient":["古老的","179"],"beneficial":["adj. 有益的","538"],"chronic":["adj. 慢性的","538"],"conscious":["adj. 有意识的","538"],"minimize":["v. 最小化","538"],"immunity":["n. 免疫力","538"],"imperative":["adj. 必要的","538"],"secrete":["v. 分泌","538"],"exaggerate":["v. 夸大","538"],"transmit":["v. 传达","538"],"extinct":["v. 灭绝","538"],"exclusive":["adj. 独有的","538"],"guarantee":["v. 保证","538"],"inherit":["v. 继承","538"],"witness":["n. 见证","538"],"magnetic":["adj. 有磁性的","538"],"loss":["n. 减少","538"],"option":["n. 选择","538"],"prefer to":["更喜欢","538"],"priority":["n. 优先权","538"],"primary":["adj. 主要的","538"],"principle":["n. 原理","538"],"potential":["n. 潜能 adj. 潜在的","538"],"quantity":["n. 量","538"],"settle":["v. 解决","538"],"sophisticate":["v. 使复杂","538"],"specific":["具体的","179"],"survive":["v. 存活","538"],"swift":["adj. 迅速的","538"],"unexpectedly":["adv. 出乎意料的","538"],"surrounding":["n. 环境","538"],"attempt":["n. 试图","538"],"expertise":["能力","179"],"faculty":["n. 能力","538"],"donate":["捐赠","179"],"dynamics":["n. 动力学","538"],"incentive":["n. 刺激","538"],"mortality":["n. 死亡率","538"],"peripheral":["adj. 外围的","538"],"vicinity":["n. 邻近","538"],"threaten":["v. 威胁","538"],"practice":["n. 实行","538"],"bacteria":["n. 细菌","538"],"be subject to":["受…... 支配","538"],"be liable to":["易于……","538"],"innate":["adj. 天生的","538"],"pattern":["n. 模式","538"],"therapy":["n. 治疗","538"],"original":["adj. 原始的","538"],"confidential":["adj. 机密的","538"],"cognitive":["adj. 认知的","538"],"comply with":["照做","538"],"consult":["v. 查阅","538"],"superior":["adj.. 上级的","538"],"co-operation":["n. 合作","538"],"co-ordinate":["v. 使……协调","538"],"differ":["v. 使……相异","538"],"cue":["n. 线索","538"],"signal":["n. 信号","538"],"abandon":["v. 放弃","538"],"halt":["n. 停止","538"],"fragile":["adj. 脆弱的","538"],"retain":["v. 记住","538"],"vanish":["n. 消失","538"],"delivery":["n. 递送","538"],"erode":["v. 侵蚀","538"],"induce":["v. 引起","538"],"stable":["adj. 稳定的","538"],"integrate":["v. 使……成整体","538"],"equal":["adj. 平等的","538"],"grant":["v. 拨款","538"],"accumulate":["v. 积累","538"],"addictive":["adj. 上瘾的","538"],"adversity":["n. 逆境","538"],"aggression":["n. 侵犯","538"],"agreeable":["adj. 令人愉快的","538"],"aid":["n. 援助","538"],"allergic":["过敏的","179"],"altitude":["n. 高度","538"],"application":["n. 应用","538"],"approve":["v. 批准","538"],"array":["n. 排列","538"],"assign":["v. 分配","538"],"association":["n. 协会","538"],"attitude":["n. 看法","538"],"authority":["n. 当局","538"],"be consistent with":["与……一致","538"],"bear":["v. 承担","538"],"blight":["v. 损害","538"],"boundary":["n. 边界","538"],"bungle":["v. 搞糟","538"],"burden":["n. 负担","538"],"calamity":["n. 灾难","538"],"capacity":["容量","179"],"catastrophic":["adj. 灾难的","538"],"cater":["v. 迎合","538"],"certify":["v. 证明","538"],"civic":["adj. 实名的","538"],"comment":["n. 评论","538"],"commitment":["n. 承诺","538"],"communal":["adj. 公共的","538"],"commute":["v. 通勤","538"],"compare":["v. 与……相比较","538"],"conceal":["v. 隐藏","538"],"concentrate":["v. 专心于","538"],"concur":["v. 同意","538"],"confer":["v. 授予","538"],"conflict":["n. 冲突","538"],"confuse":["v. 使混乱","538"],"conservative":["adj. 保守的","538"],"considerable":["adj. 相当大的","538"],"contingent":["adj. 因情况而异的","538"],"controversial":["adj. 有争论的","538"],"correlation":["n. 相关","538"],"courtship":["n. 求爱（时期）","538"],"crash":["n. 碰撞","538"],"credibility":["n. 可信性","538"],"criminal":["n. 罪犯","538"],"crisis":["n. 危机","538"],"criticism":["n. 评论","538"],"curb":["v. 限制","538"],"damp":["adj. 潮湿的","538"],"dazzle":["v. 使目眩","538"],"deadline":["截止时间","179"],"delay":["n. 延期","538"],"democratic":["adj. 民主的","538"],"demographic":["adj. 人口统计学的","538"],"dental":["adj. 牙科的","538"],"depression":["n. 抑郁","538"],"designate":["n. 指定","538"],"detain":["v. 留住","538"],"devastate":["v. 毁坏","538"],"disclose":["v. 公开","538"],"disparate":["adj. 不同的","538"],"display":["n. 显示","538"],"disrupt":["v. 破坏","538"],"distract":["v. 转移","538"],"distribute":["v. 分配","538"],"documentation":["n. 文件","538"],"domain":["n. 领域","538"],"dominant":["adj. 占优势的","538"],"dramatic":["adj. 戏剧化的","538"],"drought":["n. 干旱","538"],"durable":["耐用的","179"],"eco-friendly":["adj. 生态有好的","538"],"elaborate":["v. 详细阐述","538"],"elderly":["adj. 高龄的","538"],"eliminate":["v. 消除","538"],"elusive":["adj. 难懂的","538"],"encyclopaedia":["n. 百科全书","538"],"entrepreneur":["n. 企业家","538"],"equator":["n. 赤道","538"],"erratically":["adv. 不定的","538"],"established":["adj. 确定的","538"],"estate":["n. 房地产","538"],"ethical":["adj. 道德的","538"],"eventually":["adv. 最后","538"],"evidence":["n. 迹象","538"],"evolve":["v. 进化","538"],"exhausted":["adj. 疲惫的","538"],"experiment":["n. 试验","538"],"exceptional":["adj. 异常的","538"],"explicit":["adj. 明确的","538"],"exploit":["v. 开发","538"],"extend":["v. 扩展","538"],"extract":["n. 摘录 v. 提取","538"],"famine":["n. 饥荒","538"],"finite":["adj. 有限的","538"],"fitness":["健康","179"],"foe":["n. 敌人","538"],"format":["n. 格式","538"],"fragment":["n. 碎片","538"],"freeze":["结冰","179"],"fulfill":["v. 满足","538"],"gene":["n. 基因","538"],"gifted":["adj. 有天赋的","538"],"graphic":["adj. 形象的","538"],"habitat":["栖息地","179"],"harbor":["v. 怀有 n. 海港","538"],"hardship":["n. 困苦","538"],"harsh":["adj. 艰难的","538"],"hypothesis":["n. 假设","538"],"impact":["n. 影响","538"],"impressive":["adj. 感人的","538"],"in accordance with":["依照","538"],"inaccurate":["adj. 错误的","538"],"inactive":["adj. 不活跃的","538"],"inappropriate":["adj. 不适当的","538"],"indulge":["v. 沉溺（于）","538"],"infest":["v. 侵害","538"],"installment":["n. 安装","538"],"intelligence":["n. 智力","538"],"intense":["adj. 强烈的","538"],"interaction":["n. 相互作用","538"],"interference":["n. 干涉","538"],"interior":["n. 内部 adj. 内部的","538"],"interrupt":["v. 中断","538"],"introverted":["adj. 内向的","538"],"involve":["v. 包含","538"],"keen":["adj. 热切的","538"],"label":["v. 打上标签","538"],"lack":["/ v. 缺乏","179"],"landscape":["n. 风景","538"],"likelihood":["n. 可能性","538"],"limb":["n. 四肢","538"],"linguistic":["adj. 语言(学) 的","538"],"log":["v. 记录 n. 原木","538"],"look-in":["n. 成功的机会","538"],"lopsided":["adj. 不平衡的","538"],"mainly":["adv. 主要的","538"],"malfunction":["v. 发生故障","538"],"mammal":["n. 哺乳动物","538"],"mange to do":["设法完成某事","538"],"manifest":["v. 出现","538"],"manufacture":["n. 生产","538"],"marine":["adj. 海产的","538"],"mate":["伙伴","179"],"mechanism":["n. 机制","538"],"mental":["adj. 精神的","538"],"mercury":["n. 汞","538"],"meteorological":["adj. 气象学的","538"],"migrate":["v. 转移","538"],"moisture":["n. 水分","538"],"monitor":["v. 监控","538"],"motif":["n. 主题","538"],"mould":["v. 模压","538"],"native":["adj. 本国的","538"],"nocturnal":["adj. 夜间的","538"],"norm":["n. 规范","538"],"notoriety":["n. 名声","538"],"objective":["n. 目标","538"],"obligation":["n. 义务","538"],"obscure":["v. 掩盖","538"],"obtain":["v. 获得","538"],"odd":["adj. 古怪的","538"],"odour":["n. 气味","538"],"offensive":["adj. 冒犯的","538"],"official":["n. 官员 adj. 官方的","538"],"optimum":["n. 最佳效果 adj. 最适宜","538"],"ordinary":["adj. 普通的","538"],"organ":["n. 器官","538"],"out of the question":["不可能","538"],"overcome":["v. 克服","538"],"overtake":["v. 赶上","538"],"paralyse":["v. 使……麻痹","538"],"paramount":["adj. 最重要的","538"],"participate":["v. 参加","538"],"patient":["adj. 有耐性的","538"],"peak":["n. 最高峰","538"],"permit":["n. 许可证","538"],"persuade":["v. 说服","538"],"pessimistic":["adj. 悲观的","538"],"phase":["n. 阶段","538"],"physical":["adj. 身体上的","538"],"plagiarise":["v. 抄袭","538"],"plenty of":["大量的","538"],"plot":["v. 密谋","538"],"pose":["v. 提出","538"],"portable":["adj. 可携带的","538"],"poverty":["n. 贫穷","538"],"praise":["n. 赞扬","538"],"predict":["v. 预测","538"],"pressing":["adj. 迫切的","538"],"private":["adj. 私人的","538"],"prohibit":["v. 禁止的","538"],"prolong":["v. 拉长","538"],"promote":["v. 促进","538"],"prosper":["v. 使成功","538"],"purify":["v. 净化","538"],"qualify":["v. 取得资格","538"],"radical":["adj. 彻底的","538"],"range":["n. 范围","538"],"rare":["adj. 稀有的","538"],"rate":["n. 等级 v. 评估","538"],"react":["v. 反应","538"],"recreation":["n. 娱乐","538"],"reduction":["n. 下降","538"],"refer to":["指(的是)","538"],"rehearsal":["n. 排演","538"],"reject":["v. 拒绝","538"],"relevant":["adj. 相关的","538"],"religious":["adj. 宗教的","538"],"reluctant":["adj. 不情愿的","538"],"reproduce":["v. 繁殖","538"],"responsible":["adj. 负责的","538"],"revision":["n. 修正","538"],"revive":["v. 使复苏","538"],"ruin":["v. 毁灭","538"],"scenic":["adj. 风景优美的","538"],"shade":["n. 遮阳","538"],"skepticism":["n. 怀疑","538"],"soar":["v. 激增","538"],"solely":["adv. 唯一地","538"],"solicitor":["n. 律师","538"],"steer":["v. 控制","538"],"stimulate":["v. 刺激","538"],"stride":["n. 进展","538"],"succumb":["vi. 屈服","538"],"subdivide":["v. 把……细分","538"],"subtle":["adj. 微妙的","538"],"substance":["n. 物质","538"],"sufficiency":["n. 足量","538"],"supersede":["v. 取代","538"],"suppress":["v. 抑制","538"],"supremacy":["n. 至高无上","538"],"suspicious":["adj. 可疑的","538"],"sustainable":["adj. 可持续的","538"],"symptom":["n. 症状","538"],"tension":["n. 紧张","538"],"term":["n. 术语","538"],"throughout":["adv. 自始至终","538"],"toll":["n. 通行费 v. 征收","538"],"trace":["n. 追溯","538"],"transcend":["v. 胜过","538"],"transit":["n. 运输","538"],"tremendous":["adj. 巨大的","538"],"trigger":["n. 触发","538"],"tropical":["adj. 热带的","538"],"unbiased":["adj. 公正的","538"],"uniform":["adj. 始终如一的","538"],"valuable":["adj. 宝贵的","538"],"versatile":["adj. 多功能","538"],"view":["v. 看","538"],"violent":["adj. 暴力的","538"],"visible":["adj. 明显的","538"],"visual":["adj. 是觉得","538"],"well-being":["n. 健康","538"],"reserve":["预订","179"],"in advance":["提前","179"],"have to":["必须","179"],"and":["和","179"],"but":["但是","179"],"because":["因为","179"],"fee":["费用","179"],"establish":["建造","179"],"transfer":["搬","179"],"international":["国际的","179"],"export":["出口","179"],"vegetation":["植被","179"],"animal":["动物","179"],"feature":["特点","179"],"emigrate":["迁徙","179"],"food":["食物","179"],"tradition":["传统","179"],"entertainment":["娱乐","179"],"press":["媒体","179"],"online":["网络","179"],"publicity":["宣传","179"],"picture":["照片","179"],"jewellery":["珠宝","179"],"artwork":["艺术品","179"],"statue":["雕像","179"],"movie":["电影","179"],"geology":["地质学","179"],"countryside":["乡村的","179"],"urban":["城市的","179"],"coastline":["海岸线","179"],"environment":["周围环境","179"],"noisy":["吵闹的","179"],"outdoor":["户外的","179"],"accommodation":["住宿","179"],"place":["地点","179"],"near":["附近的","179"],"remote":["偏远的","179"],"advantage":["优点","179"],"disadvantage":["缺点","179"],"education":["教育","179"],"ordinary people":["公众","179"],"student":["学生","179"],"purpose":["目标","179"],"learn":["学习","179"],"structure":["结构大纲","179"],"reference materials":["参考资料","179"],"extensive":["广泛","179"],"group":["团队","179"],"associate":["与……相关","179"],"motivate":["鼓励","179"],"improve":["提升","179"],"overlook":["低估","179"],"omit":["省掉","179"],"find":["发现","179"],"opportunity":["机会","179"],"difficult":["困难的","179"],"prevent":["阻止","179"],"misunderstand":["理解错误","179"],"try hard":["努力","179"],"feedback":["反馈","179"],"affect":["影响","179"],"analysis":["分析","179"],"result":["结果","179"],"handle":["处理","179"],"support":["帮助","179"],"ideal":["完美的","179"],"rigorous":["严格的","179"],"restrict":["限制","179"],"similar":["相似的","179"],"particular":["特别的","179"],"copy":["重复","179"],"statistics":["统计学","179"],"maximum":["最大值","179"],"minimum":["最小值","179"],"initial":["最初的","179"],"limited":["少量的","179"],"shorten":["截短","179"],"decrease":["降低","179"],"large":["大的","179"],"amount of":["大量","179"],"majority":["绝大部分","179"],"double":["两倍","179"],"more than":["超过","179"],"at present":["当前","179"],"update":["更新","179"],"newest":["最新的","179"],"soon":["将来","179"],"out of date":["过时的","179"],"temporary":["暂时的","179"],"permanent":["长久的","179"],"more often":["频繁","179"],"annual":["年度的","179"],"every month":["每个月","179"],"every day":["每天","179"],"classify":["分类","179"],"entrance":["入口","179"],"behind":["在……后面","179"],"below":["在……下面","179"],"beside":["在……旁边","179"],"available":["可用的","179"],"boring":["无趣的","179"],"trend":["倾向","179"],"risky":["危险的","179"],"poisonous":["有毒的","179"],"warning":["警报","179"],"care":["谨慎","179"],"steal":["偷窃","179"],"protect":["保护","179"],"injury":["伤害","179"],"tactics":["策略","179"],"travel":["旅行","179"],"space travel":["空间旅行","179"],"transport":["交通","179"],"request":["询问","179"],"clear":["清晰地","179"],"organization":["公司","179"],"organize":["组织","179"],"produce":["产生","179"],"administer":["管理","179"],"occupation":["职位","179"],"all ages":["所有年龄的人","179"],"youth":["年轻","179"],"staff":["员工","179"],"sale":["销售","179"],"cheap":["便宜的","179"],"discount":["打折","179"],"round":["圆","179"],"order":["顺序","179"],"renovate":["修理","179"],"alone":["单独的","179"],"hospitality":["招待","179"],"shape like":["像","179"],"depress":["失望","179"],"well-known":["有名的","179"],"specialize in":["专注于","179"],"part":["部分","179"],"typical":["典型的","179"],"uncommon":["特别的","179"],"accurately":["精确地","179"],"expand":["扩建","179"],"climb":["上升","179"],"enhance":["增强","179"],"power":["力量","179"],"fuel":["燃料","179"],"refurbish":["重新装修","179"],"preference":["偏爱","179"],"trust":["信任","179"],"computer":["电脑","179"],"handy":["方便的","179"],"demonstrate":["展示","179"],"important":["主要的","179"],"straightforward":["简单直接的","179"],"disused":["废弃的","179"],"work":["作品","179"],"turn":["转动","179"],"information":["信息","179"],"visualize":["想象","179"],"repetition":["重复","179"],"poor":["弱的","179"],"pollutant":["污染物","179"],"continue":["继续","179"]}, SYN={"like":["resemble","similar","preference"],"look":["resemble"],"be similar to":["resemble"],"perceive":["recognize","analysis"],"acknowledge":["recognize"],"realize":["recognize"],"appreciate":["recognize"],"admit":["recognize"],"identify":["recognize"],"comprehend":["recognize"],"understand know":["recognize"],"change":["adjust"],"modify":["adjust"],"shift":["adjust"],"alter":["adjust"],"method":["approach","convention","practice","mechanism","tactics"],"way":["approach"],"rudimentary":["fundamental"],"preliminary":["fundamental"],"basic":["fundamental"],"depend on":["rely on"],"home":["domestic"],"local":["domestic"],"national":["domestic"],"calculate":["measure"],"assess":["measure"],"evaluate":["measure"],"characteristic":["trait","feature"],"feature":["trait"],"property":["trait","estate","feature"],"first used":["coin"],"invent":["coin"],"synthetic":["artificial"],"man-made":["artificial"],"initiate":["prompt"],"immediately":["prompt"],"share":["exchange"],"apply a to b":["exchange"],"based on":["underlie"],"ground":["underlie"],"root":["underlie"],"neglect":["ignore","overlook"],"overlook":["ignore","view"],"underestimate":["ignore","overlook"],"chemical":["fertiliser"],"toxic":["fertiliser","poisonous"],"unnatural":["fertiliser"],"this":["that*"],"it":["that*"],"they":["that*"],"those":["that*"],"these":["that*"],"such":["that*"],"or":["and*"],"as well as":["and*","and"],"both…and":["and*"],"not only…but also…":["and*"],"other than":["and*"],"in addition":["and*","and"],"besides":["and*"],"on the one hand…on the other hand…":["and*"],"neither…nor…":["and*"],"but":["rather than*"],"yet":["rather than*","but"],"however":["rather than*","but"],"whereas":["rather than*"],"nonetheless":["rather than*"],"nevertheless":["rather than*"],"although":["rather than*"],"notwithstanding though":["rather than*"],"instead":["rather than*","but"],"stem from":["thanks to*"],"derive":["thanks to*"],"owing to":["thanks to*"],"due to":["thanks to*"],"according to":["thanks to*"],"because of":["thanks to*"],"on account of":["thanks to*"],"as a result of":["thanks to*"],"leading to":["thanks to*"],"because":["thanks to*"],"since":["thanks to*"],"for":["thanks to*"],"in that":["thanks to*"],"as":["thanks to*"],"therefore":["thanks to*","because"],"hence":["thanks to*"],"variety":["diversity"],"difference":["diversity"],"find":["detect"],"look for":["detect"],"seek":["detect"],"search":["detect"],"inaccessible":["isolate"],"escape":["avoid","prevent"],"evitable":["avoid"],"fund":["budget","fee"],"financial":["budget","fee"],"fit":["adapt to"],"suit":["adapt to"],"substitute":["alternative"],"make up":["compensate"],"offset":["compensate"],"proportion":["component","part"],"weapon":["military"],"army":["military"],"standard":["criteria"],"syllabus":["curriculum"],"course of study":["curriculum"],"realistic":["feasible"],"viable":["feasible"],"stop":["constrain","halt","interrupt","prevent"],"control":["constrain"],"shortage":["deficiency","lack"],"defect":["deficiency"],"weakness":["deficiency"],"provision":["supplement"],"separate":["distinguish"],"differentiate":["distinguish"],"examine":["analyze"],"diagnose":["analyze"],"focus on":["emphasize"],"stress":["emphasize"],"massive":["enormous"],"large":["enormous"],"mimic":["imitate"],"copy":["imitate","plagiarise"],"damage":["impair","erode","injury"],"diminish":["impair"],"decrease":["impair","reduction"],"impede":["hinder"],"prevent":["hinder"],"deter":["hinder"],"obstacle":["hinder"],"legal":["legitimate"],"restriction":["limitation"],"tradition":["convention"],"troublesome":["demanding"],"decide":["determine"],"speed up":["accelerate"],"aged":["ancient","elderly"],"old":["ancient"],"helpful":["beneficial"],"advantageous":["beneficial"],"wholesome":["beneficial"],"lasting":["chronic","durable"],"aware":["conscious"],"knowing":["conscious"],"reduce":["minimize","decrease"],"lessen":["minimize"],"resistance":["immunity"],"compelling":["imperative"],"necessary":["imperative","have to"],"urgent":["imperative","pressing"],"discharge":["secrete"],"exude":["secrete"],"overstate":["exaggerate"],"pass":["transmit"],"send":["transmit","delivery","transit"],"transfer":["transmit"],"die out":["extinct"],"lost":["extinct"],"only":["exclusive"],"assure":["guarantee"],"receive":["inherit"],"view":["witness"],"see":["witness","visible","find"],"attractive":["magnetic"],"waste":["loss"],"gone":["loss"],"choice":["option"],"rather":["prefer to"],"preference":["priority"],"preferential":["priority"],"principle":["primary"],"main":["primary","important"],"rule":["principle"],"possibility":["potential","trend"],"number":["quantity"],"fix":["settle","renovate"],"figure out":["settle","handle"],"complicate":["sophisticate"],"detailed":["specific"],"particular":["specific"],"remain":["survive"],"quick":["swift"],"rapid":["swift"],"surprising":["unexpectedly"],"setting":["surrounding"],"environment":["surrounding"],"try":["attempt"],"test":["attempt","experiment"],"knowledge":["expertise"],"skill":["expertise"],"ability":["faculty","expertise"],"contribute":["donate"],"energy":["dynamics","power"],"force":["dynamics","power"],"move":["dynamics","migrate","transfer","emigrate"],"motive":["incentive"],"stimulus":["incentive"],"death":["mortality"],"unimportant":["peripheral"],"minor":["peripheral"],"neighbourhood":["vicinity","environment"],"nearby":["vicinity","near"],"endanger":["threaten"],"jeopardize":["threaten"],"risk":["threaten","crisis"],"hazard":["threaten","risky"],"exercise":["practice"],"virus":["bacteria"],"germ":["bacteria"],"microbe":["bacteria"],"face":["be subject to"],"potential":["be liable to"],"built-in":["innate"],"inborn":["innate"],"formation":["pattern"],"treatment":["therapy","hospitality"],"initial":["original"],"fist":["original"],"undisclosed":["confidential"],"secret":["confidential"],"hidden":["confidential"],"mental":["cognitive"],"obey":["comply with"],"ask for advice":["consult"],"higher":["superior"],"upper":["superior"],"support":["co-operation"],"work together":["co-operation"],"organize":["co-ordinate"],"harmonize":["co-ordinate"],"vary":["differ"],"hint":["cue"],"clue":["cue"],"symbol":["signal"],"mark":["signal"],"sign":["signal","symptom"],"quit":["abandon","halt"],"give up":["abandon"],"forsake":["abandon"],"derelict":["abandon"],"vulnerable":["fragile"],"maintain":["retain"],"disappear":["vanish"],"rust":["erode"],"cause":["induce","pose","because"],"lead to":["induce"],"constant":["stable"],"unchanged":["stable"],"combine":["integrate"],"whole":["integrate"],"fair":["equal","unbiased"],"even":["equal"],"offer":["grant"],"gather":["accumulate"],"habit":["addictive"],"trouble":["adversity"],"attack":["aggression"],"pleasant":["agreeable"],"help":["aid","motivate","support"],"irritate":["allergic"],"height":["altitude"],"utilization":["application"],"agree":["approve","concur"],"order":["array","have to"],"allocate":["assign"],"union":["association"],"opinion":["attitude"],"government":["authority"],"compatible":["be consistent with"],"tolerate":["bear"],"destroy":["blight","disrupt","ruin"],"barrier":["boundary"],"mishandle":["bungle"],"load":["burden"],"disaster":["calamity"],"volume":["capacity"],"disastrous":["catastrophic"],"serve":["cater"],"verify":["certify"],"municipal":["civic"],"remark":["comment"],"engagement":["commitment"],"public":["communal"],"travel":["commute"],"contrast":["compare"],"hide":["conceal","obscure"],"focus":["concentrate","specialize in"],"grant":["confer"],"unharmonious":["conflict"],"puzzle":["confuse","misunderstand"],"traditional":["conservative"],"significant":["considerable","important"],"uncertain":["contingent"],"disputable":["controversial"],"link":["correlation","associate"],"mate":["courtship"],"collapse":["crash"],"reliance":["credibility"],"conviction":["criminal"],"condemn":["criticism"],"restrict":["curb"],"wet":["damp"],"flash":["dazzle"],"limit":["deadline","restrict"],"postpone":["delay"],"republic":["democratic"],"population statistic":["demographic"],"teeth":["dental"],"frustration":["depression"],"appoint":["designate"],"hold":["detain","harbor","suppress"],"wreck":["devastate"],"expose":["disclose"],"different":["disparate","diversity"],"show":["display","demonstrate"],"divert":["distract"],"spread":["distribute"],"record":["documentation","log"],"field":["domain"],"overbearing":["dominant"],"striking":["dramatic"],"dry":["drought"],"environmentally-friendly":["eco-friendly"],"illustrate":["elaborate"],"dispose":["eliminate"],"hard":["elusive","inappropriate","difficult"],"entire range of knowledge":["encyclopaedia"],"boss":["entrepreneur"],"geography":["equator"],"unpredictably":["erratically"],"built":["established"],"moral":["ethical"],"finally":["eventually"],"proof":["evidence"],"develop":["evolve","improve"],"fatigue":["exhausted"],"extreme":["exceptional"],"utmost":["exceptional","radical"],"clear":["explicit"],"use":["exploit"],"expand":["extend"],"quotation":["extract"],"hunger":["famine"],"limited":["finite"],"health":["fitness","well-being"],"enemy":["foe"],"structure":["format"],"piece":["fragment"],"chill":["freeze"],"execute":["fulfill"],"factor":["gene"],"talented":["gifted"],"picture":["graphic"],"residence":["habitat"],"difficult":["hardship"],"rough":["harsh"],"assumption":["hypothesis"],"influence":["impact","persuade","affect"],"touching":["impressive"],"conform":["in accordance with"],"incorrect":["inaccurate"],"passive":["inactive"],"spoil":["indulge"],"plague":["infest"],"payment on its completion":["installment"],"mind":["intelligence"],"strong":["intense","keen"],"social activities":["interaction"],"interdependence":["interference"],"inner":["interior"],"shyness":["introverted"],"associate":["involve"],"display":["label","demonstrate"],"scene":["landscape"],"chance":["likelihood","look-in","opportunity"],"arm or leg":["limb"],"language":["linguistic"],"opportunity":["look-in"],"uneven":["lopsided"],"primarily":["mainly"],"breakdown":["malfunction"],"creature":["mammal","animal"],"success":["mange to do","prosper"],"obvious":["manifest"],"produce":["manufacture"],"sea":["marine"],"spouse":["mate"],"intelligent":["mental"],"liquid metal":["mercury"],"weather":["meteorological"],"humidity":["moisture"],"surveillance":["monitor"],"theme":["motif"],"form":["mould"],"original":["native"],"night":["nocturnal"],"regulation":["norm"],"famous":["notoriety","well-known"],"goal":["objective","purpose"],"responsibility":["obligation"],"get":["obtain","learn"],"strange":["odd"],"smell":["odour"],"hostile":["offensive"],"authority":["official"],"best":["optimum"],"common":["ordinary","typical"],"a part of a body":["organ"],"impossible":["out of the question"],"defeat":["overcome"],"surpass":["overtake"],"cannot move":["paralyse"],"principal":["paramount"],"join":["participate"],"repetitive":["patient"],"top":["peak"],"allow":["permit"],"negative":["pessimistic","disadvantage"],"process":["phase"],"body":["physical"],"many":["plenty of","extensive"],"plan":["plot","organize"],"conveyable":["portable"],"poor":["poverty"],"commend":["praise"],"expect":["predict"],"personal":["private"],"not allowed":["prohibit"],"extend":["prolong"],"improve":["promote","enhance"],"clean":["purify"],"fulfill":["qualify"],"scope":["range"],"unusual":["rare","uncommon"],"rank":["rate"],"measure":["rate"],"respond":["react"],"entertainment":["recreation"],"talk about":["refer to"],"preparation":["rehearsal"],"exclude":["reject"],"relative":["relevant"],"sacred":["religious"],"unwilling":["reluctant"],"breed":["reproduce"],"liable":["responsible"],"editing":["revision"],"renaissance":["revive"],"beautiful":["scenic"],"shelter":["shade","protect"],"doubt":["skepticism"],"increase":["soar","climb","enhance"],"alone":["solely"],"lawyer":["solicitor"],"manage":["steer","administer"],"motivate":["stimulate"],"progress":["stride"],"yield":["succumb"],"break down":["subdivide"],"delicate":["subtle"],"matter":["substance"],"enough":["sufficiency"],"replace":["supersede"],"priority":["supremacy","preference"],"odd":["suspicious"],"long-term":["sustainable"],"upset":["tension"],"word":["term"],"anywhere":["throughout"],"charge":["toll"],"track":["trace"],"excel":["transcend"],"vast":["tremendous"],"begin":["trigger","initial"],"hot":["tropical"],"consistent":["uniform"],"benefit":["valuable","advantage"],"all-around":["versatile"],"fierce":["violent"],"image":["visual","picture"],"book":["reserve"],"ahead":["in advance","continue"],"before":["in advance"],"must":["have to"],"should":["have to"],"need":["have to"],"require":["have to"],"be supposed to":["have to"],"demand":["have to"],"revert":["adjust"],"and also":["and"],"with":["and"],"why":["because"],"as a result":["because"],"a variety of":["diversity"],"a number of":["diversity"],"a range of":["diversity"],"various":["diversity"],"money":["fee"],"cost":["fee"],"price":["fee"],"expense":["fee"],"budget":["fee"],"economic":["fee"],"build":["establish"],"create":["establish"],"construct":["establish"],"set up":["establish"],"install":["establish"],"relocate":["transfer"],"live":["habitat"],"territory":["habitat"],"countries":["international"],"continents":["international"],"global":["international"],"abroad":["export"],"overseas":["export"],"plant":["vegetation"],"tree":["vegetation"],"forest":["vegetation"],"botanic":["vegetation"],"mammal":["animal"],"wildlife":["animal"],"species":["animal"],"trait":["feature"],"go away":["emigrate"],"feed on":["food"],"eat":["food"],"can’t eat":["allergic"],"medical":["fitness"],"sickness":["fitness"],"illness":["fitness"],"gym":["fitness"],"custom":["tradition"],"convention":["tradition"],"local culture":["tradition"],"lifestyle":["tradition"],"recreation":["entertainment"],"leisure":["entertainment"],"media":["press","publicity"],"tv":["press"],"newspaper":["press"],"radio":["press"],"internet":["online"],"website":["online","publicity"],"news":["publicity"],"marketing":["publicity"],"photo":["picture"],"photograph":["picture"],"camera":["picture"],"rings":["jewellery"],"bracelets":["jewellery"],"necklaces":["jewellery"],"precious stones":["jewellery"],"gem":["jewellery"],"diamond":["jewellery"],"luxurious":["jewellery"],"painting":["artwork"],"drawing":["artwork"],"craft":["artwork"],"sculpture":["statue"],"carving":["statue"],"film":["movie"],"documentary":["movie"],"cinema":["movie"],"cliff":["geology"],"fossil":["geology"],"rock":["geology"],"landscape":["geology"],"rural area":["countryside"],"city":["urban"],"metropolitan":["urban"],"shore":["coastline"],"seaside":["coastline"],"surrounding":["environment"],"disturbing":["noisy"],"not quiet":["noisy"],"room":["capacity"],"space":["capacity"],"size":["capacity"],"gardens":["outdoor"],"park":["outdoor"],"open air":["outdoor"],"living":["accommodation"],"dwelling":["accommodation"],"dorm":["accommodation"],"where":["place"],"spot":["place","find"],"location":["place"],"area":["place"],"close":["near"],"not far from":["near"],"isolated":["remote"],"distant":["remote"],"positive":["advantage"],"good thing":["advantage"],"strength":["advantage"],"drawback":["disadvantage"],"shortcoming":["disadvantage"],"problem":["disadvantage","difficult"],"schools":["education"],"colleges":["education"],"institution":["education"],"people":["ordinary people"],"inhabitants":["ordinary people"],"the public":["ordinary people"],"men and women":["ordinary people"],"pupil":["student"],"undergraduate":["student"],"postgraduate":["student"],"aim":["purpose"],"target":["purpose"],"key areas":["purpose"],"acquire":["learn"],"obtain":["learn"],"outline":["structure"],"framework":["structure"],"books":["reference materials"],"journals":["reference materials"],"magazines":["reference materials"],"comprehensive":["extensive"],"a lot of":["extensive"],"team":["group"],"relate to":["associate"],"connect":["associate"],"how":["approach"],"encourage":["motivate"],"stimulate":["motivate"],"keep active":["motivate"],"boost":["motivate"],"promote":["improve"],"leave out":["omit"],"cancel":["omit"],"discover":["find"],"detect":["find"],"sight":["find"],"odds":["opportunity"],"hope":["opportunity"],"not easy":["difficult"],"not simple":["difficult"],"avoid":["prevent"],"forbid":["prevent"],"out of bounds":["prevent"],"wrong idea":["misunderstand"],"confuse":["misunderstand"],"perplex":["misunderstand"],"make efforts":["try hard"],"hard working":["try hard"],"response":["feedback"],"reaction":["feedback"],"reply":["feedback"],"impact":["affect"],"effect":["affect"],"perspective":["analysis"],"understand":["analysis"],"know":["analysis"],"outcome":["result"],"consequence":["result"],"conclusion":["result"],"deal with":["handle"],"cope with":["handle"],"work out":["handle"],"take care of":["handle"],"assistance":["support"],"aid":["support"],"tip":["support"],"perfect":["ideal"],"strict":["rigorous"],"demanding":["rigorous"],"not permit":["restrict"],"compare":["similar"],"special":["particular","uncommon"],"in particular":["particular"],"especially":["particular"],"repeat":["copy"],"reproduce":["copy"],"data":["statistics","information"],"figure":["statistics"],"up to":["maximum"],"at most":["maximum"],"at least":["minimum"],"at first":["initial"],"start":["initial"],"early on":["initial"],"premiere":["initial"],"just a few":["limited"],"a little":["limited"],"small":["limited"],"a small number of":["limited"],"not many":["limited"],"miniature":["limited"],"cut down":["shorten"],"lower":["decrease"],"fewer":["decrease","lack"],"drop":["decrease"],"fall":["decrease"],"insufficient":["lack"],"not enough":["lack"],"big":["large"],"huge":["large"],"lots of":["amount of"],"large quantities of":["amount of"],"loads of":["amount of"],"most":["majority"],"twice":["double"],"over":["more than"],"beyond":["more than"],"exceed":["more than"],"above":["more than"],"already":["at present"],"existing":["at present"],"currently":["at present"],"nowadays":["at present"],"upgrade":["update"],"up to date":["update"],"more current":["update"],"modern":["update"],"latest":["newest"],"later":["soon"],"in the future":["soon"],"old fashioned":["out of date"],"medieval":["ancient"],"in the past":["ancient"],"once":["ancient"],"historical":["ancient"],"former":["ancient"],"a short time":["temporary"],"time pressure":["deadline"],"on time":["deadline"],"long-lasting":["permanent"],"frequent":["more often"],"every year":["annual"],"monthly":["every month"],"four weeks":["every month"],"daily":["every day"],"category":["classify"],"sort":["classify"],"type":["classify"],"kind":["classify"],"access":["entrance"],"main gate":["entrance"],"door":["entrance"],"back":["behind"],"rear":["behind"],"under":["below"],"next to":["beside"],"near":["beside"],"border":["beside"],"have":["available"],"accessible":["available"],"not close":["available"],"open":["available"],"not interesting":["boring"],"boredom":["boring"],"likely":["trend"],"tendency":["trend"],"dangerous":["risky","poisonous","injury"],"not safe":["risky"],"alarm":["warning"],"alert":["warning"],"caution":["care"],"theft":["steal"],"safeguard":["protect"],"preserve":["protect"],"harm":["injury"],"hurt":["injury"],"frighten":["injury"],"battle":["military"],"not peaceful":["military"],"strategy":["tactics"],"count on":["rely on"],"tourism":["travel"],"trip":["travel"],"passenger":["travel"],"flight":["travel"],"aircraft":["space travel"],"rocket":["space travel"],"satellite":["space travel"],"vehicle":["transport"],"bus":["transport"],"train":["transport"],"boat":["transport"],"ship":["transport"],"ferry":["transport"],"subway":["transport"],"detail":["specific"],"example":["specific"],"ask for":["request"],"inquiry":["request"],"definitive":["clear"],"froze":["freeze"],"ice":["freeze"],"cold":["freeze"],"business":["organization"],"company":["organization"],"corporation structure":["organization"],"arrange":["organize"],"generate":["produce"],"make":["produce"],"profession":["occupation"],"job":["occupation"],"young and old":["all ages"],"young":["youth"],"boy":["youth"],"child":["youth"],"teenager":["youth"],"friend":["mate"],"peer":["mate"],"recruit":["staff"],"worker":["staff"],"employee":["staff"],"retail":["sale"],"low price":["cheap"],"10% off":["discount"],"on sale":["discount"],"curve":["round"],"circle":["round"],"sequence":["order"],"repair":["renovate"],"single":["alone"],"by themselves":["alone"],"prepare refreshment":["hospitality"],"look like":["shape like"],"seem":["shape like"],"disappoint":["depress"],"dispirit":["depress"],"frustrate":["depress"],"discourage":["depress"],"fame":["well-known"],"emphasis":["specialize in"],"concentrate":["specialize in"],"component":["part"],"percent":["part"],"section":["part"],"element":["part"],"ingredient":["part"],"representative":["typical"],"average":["typical"],"unique":["uncommon"],"rare":["uncommon"],"precisely":["accurately"],"add":["expand"],"enlarge":["expand"],"increase spaces":["expand"],"go up":["climb"],"coal":["fuel"],"firewood":["fuel"],"petrol":["fuel"],"gas":["fuel"],"redecorate":["refurbish"],"less suspicious":["trust"],"believe":["trust"],"laptop":["computer"],"convenient":["handy"],"exhibition":["demonstrate"],"major":["important"],"primary":["important"],"direct":["straightforward"],"first-hand":["straightforward"],"simple":["straightforward"],"empty":["disused"],"abandoned":["disused"],"charity":["donate"],"give":["donate"],"item":["work"],"switch":["turn"],"details":["information"],"graph":["information"],"chart":["information"],"imagine":["visualize"],"over and over":["repetition"],"weak":["poor"],"stronger":["durable"],"longer":["durable"],"contaminant":["pollutant"],"go on":["continue"],"keep doing":["continue"]}, CHN={"538": "阅读 538 考点词", "179": "听力 179 考点词"}, META={"links": {"538": "雅思阅读538考点词.html", "179": "雅思听力179考点词.html"}, "unitLabel": "组"};
+var REC='kd-rec', BOOK='kd-book';
+
+var PH={};
+for(var sk in SYN){ if(sk.indexOf(' ')>-1){ var a=sk.split(/\s+/); (PH[a[0]]=PH[a[0]]||[]).push(a) } }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c] }) }
+function lemma(t){
+ var a=[];
+ if(/ies$/.test(t)) a.push(t.slice(0,-3)+'y');
+ if(/ves$/.test(t)) a.push(t.slice(0,-3)+'f',t.slice(0,-3)+'fe');
+ if(/(ses|xes|zes|ches|shes)$/.test(t)) a.push(t.slice(0,-2));
+ if(/s$/.test(t)&&!/ss$/.test(t)) a.push(t.slice(0,-1));
+ if(/ied$/.test(t)) a.push(t.slice(0,-3)+'y');
+ if(/ed$/.test(t)){ a.push(t.slice(0,-2),t.slice(0,-1)); if(/(.)\1ed$/.test(t)) a.push(t.slice(0,-3)) }
+ if(/ing$/.test(t)){ a.push(t.slice(0,-3),t.slice(0,-3)+'e'); if(/(.)\1ing$/.test(t)) a.push(t.slice(0,-4)) }
+ if(/ly$/.test(t)) a.push(t.slice(0,-2));
+ if(/er$/.test(t)) a.push(t.slice(0,-2),t.slice(0,-1));
+ if(/est$/.test(t)) a.push(t.slice(0,-3),t.slice(0,-2));
+ if(/ally$/.test(t)) a.push(t.slice(0,-4));
+ return a;
+}
+function viak(key,t){
+ var a=SYN[key];
+ if(!a||!a.length) return null;
+ for(var i=0;i<a.length;i++) if(LEX[a[i]]) return {w:a[i],e:LEX[a[i]],s:t,kind:'s'};
+ return null;
+}
+function find(t){
+ if(LEX[t]) return {w:t,e:LEX[t],kind:'d'};
+ var v=viak(t,t); if(v) return v;
+ var c=lemma(t);
+ for(var i=0;i<c.length;i++){
+  if(LEX[c[i]]) return {w:c[i],e:LEX[c[i]],kind:'d'};
+  v=viak(c[i],c[i]); if(v) return v;
+ }
+ return null;
+}
+function scan(text){
+ var re=/[A-Za-z][A-Za-z'\-]*/g, m, toks=[];
+ while((m=re.exec(text))) toks.push({s:m.index,e:m.index+m[0].length,t:m[0]});
+ var out=[], cur=0, hits=[], seen={}, i, ntok=toks.length;
+ for(i=0;i<ntok;i++){
+  var low=toks[i].t.toLowerCase(), got=null, span=1;
+  if(PH[low]){
+   for(var j=0;j<PH[low].length;j++){
+    var p=PH[low][j];
+    if(i+p.length-1>=ntok) continue;
+    var ok=true;
+    for(var q=0;q<p.length;q++){ if(toks[i+q].t.toLowerCase()!==p[q]){ ok=false; break } }
+    if(ok){ var hp=SYN[p.join(' ')]||[], hw=''; for(var z=0;z<hp.length;z++) if(LEX[hp[z]]){ hw=hp[z]; break }
+     if(!hw) continue;
+     got={w:hw,e:LEX[hw],s:p.join(' '),kind:'s'}; span=p.length; break }
+   }
+  }
+  if(!got) got=find(low);
+  if(got){
+   var et=toks[i+span-1];
+   out.push(esc(text.slice(cur,toks[i].s)));
+   out.push('<mark class="lk '+(got.kind==='s'?'syn':'')+'" data-w="'+esc(got.w)+'">'+esc(text.slice(toks[i].s,et.e))+'</mark>');
+   cur=et.e; i+=span-1;
+   if(!seen[got.w]){ seen[got.w]=1; hits.push({w:got.w,e:got.e,s:got.s,k:got.kind}) }
+  }
+ }
+ out.push(esc(text.slice(cur)));
+ return {html:out.join(''),hits:hits,words:ntok};
+}
+function state(w){
+ var rec={}, bk={};
+ try{ rec=JSON.parse(localStorage.getItem(REC)||'{}') }catch(e){}
+ try{ bk=JSON.parse(localStorage.getItem(BOOK)||'{}') }catch(e){}
+ var a=rec[w]||bk[w]||null;
+ if(!a) return ['',''];
+ if((a.lv||0)>=7) return ['good','已掌握'];
+ return ['new',(a.wr||a.lv)?'在复习':'生词本'];
+}
+function render(text){
+ var r=scan(text);
+ var box=document.getElementById('res'), pass=document.getElementById('pass'),
+     list=document.getElementById('list'), chips=document.getElementById('chips');
+ box.classList.add('on');
+ pass.innerHTML=r.html;
+ if(!r.hits.length){
+  chips.innerHTML='<span class="chip">这篇里没命中本书的词</span>';
+  list.innerHTML=''; return;
+ }
+ var byCh={}, i, h;
+ for(i=0;i<r.hits.length;i++){
+  h=r.hits[i]; var ch=h.e[1]||'';
+  (byCh[ch]=byCh[ch]||[]).push(h);
+ }
+ var keys=Object.keys(byCh).sort(), nd=0, ns=0;
+ for(i=0;i<r.hits.length;i++){ if(r.hits[i].k==='s') ns++; else nd++ }
+ chips.innerHTML='<span class="chip">直接命中 <b>'+nd+'</b> 个词</span>'
+  +(ns?'<span class="chip">同义替换 <b>'+ns+'</b> 处</span>':'')
+  +'<span class="chip">涉及 <b>'+keys.length+'</b> '+(META.unitLabel||'处')+'</span>'
+  +'<span class="chip">全文 <b>'+r.words+'</b> 词</span>';
+ var html=[];
+  keys.forEach(function(ch){
+  var arr=byCh[ch];
+  var href=META.links?(META.links[ch]||''):(META.page?META.page.replace('__CH__',ch):'');
+  html.push('<div class="grp"><div class="gh"><b>'+(CHN[ch]||ch)+'</b>'
+   +'<span>'+arr.length+' 词</span>'
+   +(href?'<a href="'+href+'">打开这一'+META.unitLabel+' →</a>':'')+'</div>');
+  arr.forEach(function(x){
+   var st=state(x.w);
+   html.push('<div class="hit'+(x.k==='s'?' syn':'')+'"><span class="w">'+esc(x.w)+'</span>'
+    +'<span class="m">'+esc(x.e[0]||'')+(x.s&&x.s!==x.w?('　← 原文里是 <b>'+esc(x.s)+'</b>'):'')+'</span>'
+    +(st[1]?'<span class="st '+st[0]+'">'+st[1]+'</span>':'')+'</div>');
+  });
+  html.push('</div>');
+ });
+ list.innerHTML=html.join('');
+}
+document.getElementById('go').onclick=function(){
+ var t=document.getElementById('tx').value.trim();
+ if(!t){ alert('先把原文粘进来'); return }
+ render(t);
+};
+var od=document.getElementById('onlyd');
+if(od) od.addEventListener('change',function(){ document.body.classList.toggle('onlyd',od.checked) });
+document.getElementById('clr').onclick=function(){
+ document.getElementById('tx').value='';
+ document.getElementById('res').classList.remove('on');
+ document.getElementById('tx').focus();
+};
+document.addEventListener('click',function(e){
+ var m=e.target.closest?e.target.closest('mark.lk'):null;
+ if(!m) return;
+ var on=document.querySelectorAll('mark.lk.on');
+ for(var i=0;i<on.length;i++) on[i].classList.remove('on');
+ m.classList.add('on');
+ var w=m.getAttribute('data-w'), hs=document.querySelectorAll('.hit');
+ for(var j=0;j<hs.length;j++){
+  var el=hs[j];
+  if(el.querySelector('.w') && el.querySelector('.w').textContent===w){
+   el.scrollIntoView({block:'center',behavior:'smooth'});
+   el.style.transition='background .2s'; el.style.background='var(--mark)';
+   setTimeout(function(){el.style.background=''},900);
+   break;
+  }
+ }
+});
+document.addEventListener('keydown',function(e){
+ if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){ document.getElementById('go').click() }
+});
+
+</script>
+</body></html>

@@ -67,9 +67,55 @@ footer a{color:var(--accent);text-decoration:none}
   .eg{padding-left:10px}
   .w{font-size:15.5px}
 }
+
+/* 今日任务卡 */
+.today{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}
+.tk{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 14px;
+ text-decoration:none;color:inherit;display:block}
+.tk:hover{border-color:var(--accent)}
+.tk .lb{font-size:11.5px;color:var(--ink-2);letter-spacing:.04em;white-space:nowrap}
+.tk .v{font-size:23px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px;line-height:1.25}
+.tk .v small{font-size:11.5px;font-weight:500;color:var(--ink-2);margin-left:2px}
+.tk.hot .v{color:var(--accent)}
+.tk .sub2{font-size:11.5px;color:var(--ink-2);margin-top:2px}
+#exd{font:inherit;font-size:11.5px;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);
+ border-radius:7px;padding:2px 5px;margin-top:5px;width:100%;max-width:132px}
+/* 两本词表的进度 */
+.decks{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 16px 15px;margin-top:14px}
+.deckh{display:flex;align-items:baseline;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+.deckh b{font-size:14px}
+.deckh span{font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.dk{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:12.5px}
+.dk .dn{width:74px;color:var(--ink-2);flex:none}
+.dk .bar{flex:1;height:9px;border-radius:99px;background:var(--paper-2);display:block;overflow:hidden}
+.dk .bar u{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:.3s}
+.dk .dv{width:96px;text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums;flex:none}
+html.dark .tk,html.dark .decks{background:var(--paper-2)}
+@media (max-width:700px){
+ .today{grid-template-columns:1fr 1fr}
+ .dk .dn{width:62px}.dk .dv{width:80px}
+}
+
+
+/* 手动主题：html.dark / html.light 覆盖系统偏好 */
+html.dark{color-scheme:dark;--ink:#e8eaed; --ink-2:#9aa3ad; --ink-3:#737d88;--line:#2c3037; --line-2:#242830; --paper:#16181c; --paper-2:#1d2025;--accent:#4fd1c5; --accent-2:#38b2a5; --mark:#4a3f1a; --mark-2:#3a3215; --syn:#e0a06a;}
+html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; --line:#e6e2da; --line-2:#efece5; --paper:#fdfcf9; --paper-2:#f7f4ee; --accent:#0f766e; --accent-2:#0d5f59; --mark:#fdf6e3; --mark-2:#f6e7c8; --syn:#8a4b16;}
 </style></head>
 <body><div class="wrap">
 <header class="top"><h1>雅思考点词 · 词表</h1><div class="sub">从 PDF 转出的网页版，已去除水印与二维码</div></header>
+<div class="today">
+ <a class="tk hot" href="生词本.html"><div class="lb">今天该复习</div><div class="v" id="tkdue">0</div><div class="sub2" id="tkdsub">—</div></a>
+ <div class="tk"><div class="lb">已掌握</div><div class="v" id="tkm">0</div><div class="sub2" id="tkmr">—</div></div>
+ <div class="tk"><div class="lb">背过的词</div><div class="v" id="tkl">0</div><div class="sub2" id="tklsub">—</div></div>
+ <div class="tk"><div class="lb">连续打卡</div><div class="v" id="tks">0<small>天</small></div><div class="sub2">今天学一点就续上</div></div>
+ <div class="tk"><div class="lb">距离考试</div><div class="v" id="tkd">—</div><div class="sub2" id="tkdsub2">设置考试日期</div><input type="date" id="exd" aria-label="考试日期"></div>
+</div>
+<div class="decks">
+ <div class="deckh"><b>两本词表的进度</b><span id="dksum">—</span></div>
+ <div class="dk"><span class="dn">阅读 538</span><span class="bar"><u id="d538"></u></span><span class="dv" id="d538t">—</span></div>
+ <div class="dk"><span class="dn">听力 179</span><span class="bar"><u id="d179"></u></span><span class="dv" id="d179t">—</span></div>
+</div>
+<!-- TODAY-CARDS-END -->
 <div class="grid"><a href="雅思阅读538考点词.html" class="card">
   <div class="tag">READING</div>
   <div class="ct">雅思阅读考点词 538</div>
@@ -86,6 +132,10 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="tag">LISTENING</div>
   <div class="ct">剑桥雅思听力考点词 179 · 例句版</div>
   <div class="cd">卡片版：179 条，每词配中英例句，中文可全部隐藏（默写模式），也支持逐词背诵。</div>
+</a><a href="查词.html" class="card" style="border-color:var(--accent)">
+  <div class="tag">TOOL</div>
+  <div class="ct">原文查词</div>
+  <div class="cd">粘一段阅读或听力原文，标出命中的考点词——连同义替换一起认出来（原文写 like，也能标到 resemble）。</div>
 </a><a href="生词本.html" class="card" style="border-color:var(--accent)">
   <div class="tag">NOTEBOOK</div>
   <div class="ct">我的生词本 · <span id="nbn">0</span> 词</div>
@@ -172,6 +222,184 @@ footer a{color:var(--accent);text-decoration:none}
  for(var w in rec){ rc++; if((rec[w].due||0)<=now && (rec[w].lv||0)<7) rcd++; }
  var ft=document.querySelector('footer span');
  if(ft && rc) ft.textContent += '　已背诵 '+rc+' 词'+(rcd?('，其中 '+rcd+' 个到期待复习'):'')+'。';
+})();
+</script>
+
+<script>
+/* ================= 今日任务卡 + 两本词表进度 ================= */
+(function(){
+ function J(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d }catch(e){ return d } }
+ function pad(n){ return n<10?'0'+n:''+n }
+ function pct1(v){ return (v>0&&v<10? v.toFixed(1) : Math.round(v))+'%' }
+ function set(id,t){ var e=document.getElementById(id); if(e) e.textContent=t }
+ var rec=J('kd-rec',{}), book=J('kd-book',{}), now=Date.now();
+ var TOT={538:376,179:179}, ALL=555;
+ var dm={538:0,179:0}, learn=0, master=0, due=0, seen={}, w, o;
+
+ for(w in rec){
+  o=rec[w]||{}; learn++;
+  if((o.lv||0)>=7){ master++; if(dm[o.ch]!=null) dm[o.ch]++ }
+  else if((o.due||0)<=now) due++;
+ }
+ for(w in book){
+  o=book[w]||{};
+  if(!rec[w]){ learn++; if((o.lv||0)>=7) master++ }
+  if(!rec[w] && (o.lv||0)<7 && (o.due||o.t||0)<=now) due++;
+ }
+ set('tkdue',due); set('tkdsub',due?'点这里开始复习':'今天没有到期的词');
+ set('tkm',master); set('tkmr','共 '+ALL+' 词 · '+pct1(master*100/ALL));
+ set('tkl',learn); set('tklsub',learn?('占全站 '+pct1(learn*100/ALL)):'还没开始背');
+
+ /* 连续打卡：从 kd-stat 里数连续有记录的天数 */
+ var st=J('kd-stat',{}), n=0, d=new Date();
+ function dk(x){ return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate()) }
+ if(!(st[dk(d)] && (st[dk(d)].r||st[dk(d)].a))) d.setDate(d.getDate()-1);
+ for(var i=0;i<400;i++){ var k=dk(d); if(st[k]&&(st[k].r||st[k].a)){ n++; d.setDate(d.getDate()-1) } else break }
+ var stEl=document.getElementById('tks'); if(stEl) stEl.innerHTML=n+'<small>天</small>';
+
+ /* 考试倒计时 */
+ var EX='kd-exam';
+ function exState(){
+  var v=document.getElementById('tkd'), s=document.getElementById('tkdsub2'), inp=document.getElementById('exd');
+  var ds=''; try{ ds=localStorage.getItem(EX)||'' }catch(e){}
+  if(inp) inp.value=ds;
+  if(!v) return;
+  if(!ds){ v.innerHTML='—'; if(s) s.textContent='设置考试日期'; return }
+  var days=Math.ceil((new Date(ds+'T00:00:00').getTime()-Date.now())/864e5);
+  if(days>0){ v.innerHTML=days+'<small>天</small>'; if(s) s.textContent=ds+' 考试' }
+  else if(days===0){ v.innerHTML='今天'; if(s) s.textContent='考试日，加油' }
+  else { v.innerHTML=Math.abs(days)+'<small>天前</small>'; if(s) s.textContent=ds+' 已考' }
+ }
+ var exd=document.getElementById('exd');
+ if(exd) exd.addEventListener('change',function(){
+  try{ if(exd.value) localStorage.setItem(EX,exd.value); else localStorage.removeItem(EX) }catch(e){}
+  exState();
+ });
+ exState();
+
+ /* 两本词表的进度条 */
+ [[538,'d538','d538t'],[179,'d179','d179t']].forEach(function(x){
+  var ch=x[0], m=dm[ch]||0, t=TOT[ch];
+  var bar=document.getElementById(x[1]); if(bar) bar.style.width=(m?Math.max(2,Math.round(m*100/t)):0)+'%';
+  set(x[2],m+' / '+t);
+ });
+ set('dksum','已掌握 '+master+' / '+ALL+'（'+pct1(master*100/ALL)+'）');
+})();
+</script>
+<script>
+/* ================= 阅读工具：字号 / 主题 / 连播 ================= */
+var FT=(function(){
+ var FS='ft-fs', TH='ft-th', SIZES=[1,1.14,1.28];
+ function get(k,d){ try{var v=localStorage.getItem(k); return v==null?d:v}catch(e){ return d } }
+ function set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
+ function style(){
+  if(document.getElementById('ftstyle')) return;
+  var s=document.createElement('style'); s.id='ftstyle'; s.textContent="\n#ftui{position:fixed;left:14px;bottom:14px;z-index:70;display:flex;align-items:center;gap:2px;\n background:var(--panel,#fff);border:1px solid var(--line,#e6e2da);border-radius:999px;padding:4px 5px;\n box-shadow:0 6px 18px rgba(0,0,0,.10);font:12px/1 -apple-system,BlinkMacSystemFont,'PingFang SC',system-ui,sans-serif}\n#ftui button{font:inherit;font-size:12px;font-weight:600;color:var(--ink2,#5b6470);background:transparent;\n border:0;border-radius:999px;padding:6px 8px;cursor:pointer;min-width:25px;line-height:1}\n#ftui button:hover{background:var(--accent-soft,#fdf1ec);color:var(--accent,#b4442e)}\n#ftui button.on{background:var(--accent,#b4442e);color:#fff}\n.ftbtn{font:inherit;font-size:12.5px;font-weight:650;color:var(--accent,#b4442e);background:var(--accent-soft,#fdf1ec);\n border:1px solid color-mix(in srgb,var(--accent,#b4442e) 30%,transparent);border-radius:999px;\n padding:5px 13px;cursor:pointer;white-space:nowrap}\n.ftbtn:hover{filter:brightness(.97)}\n.ftbtn.on{background:var(--accent,#b4442e);color:#fff;border-color:var(--accent,#b4442e)}\n[data-w].ft-speaking{outline:2px solid var(--accent,#b4442e);outline-offset:2px;border-radius:6px;\n background:var(--accent-soft,#fdf1ec)}\n#czroot{position:fixed;inset:0;z-index:330;display:none;background:var(--bg,#f7f6f3);overflow:auto}\n#czroot.on{display:block}\n.cz-wrap{max-width:720px;margin:0 auto;padding:22px 18px 70px}\n.cz-bar{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink2,#5b6470);margin-bottom:14px}\n.cz-bar .sp{flex:1}\n.cz-bar button,.cz-acts button{font:inherit;font-size:13px;font-weight:650;border-radius:10px;cursor:pointer;\n border:1px solid var(--line,#e6e2da);background:var(--panel,#fff);color:var(--ink,#1f2328);padding:8px 14px}\n.cz-card{background:var(--panel,#fff);border:1px solid var(--line,#e6e2da);border-radius:16px;padding:22px 22px 18px}\n.cz-w{font-size:22px;font-weight:700;letter-spacing:.2px}\n.cz-m{font-size:13.5px;color:var(--ink2,#5b6470);margin-top:6px;line-height:1.7}\n.cz-sen{font-size:16.5px;line-height:2.15;margin-top:16px}\n.cz-sen input{font:inherit;font-size:16px;font-weight:650;color:var(--accent,#b4442e);\n background:var(--accent-soft,#fdf1ec);border:1px dashed var(--accent,#b4442e);border-radius:8px;\n padding:2px 8px;width:9.5em;text-align:center;outline:none}\n.cz-sen input:focus{border-style:solid}\n.cz-sen input.ok{background:rgba(47,125,79,.12);border-color:var(--green,#2f7d4f);color:var(--green,#2f7d4f);border-style:solid}\n.cz-sen input.no{background:rgba(192,57,43,.10);border-color:#c0392b;color:#c0392b;border-style:solid}\n.cz-acts{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap}\n.cz-acts .pri{background:var(--accent,#b4442e);border-color:var(--accent,#b4442e);color:#fff}\n.cz-res{margin-top:16px;font-size:14px;line-height:1.9;display:none}\n.cz-res.on{display:block}\n.cz-res b{color:var(--green,#2f7d4f)}\n.cz-res .bad{color:#c0392b;font-weight:700}\n.cz-zh{margin-top:6px;font-size:13px;color:var(--ink2,#5b6470)}\n@media (max-width:600px){.cz-card{padding:18px 16px 14px}.cz-sen{font-size:15.5px;line-height:2}#ftui{bottom:78px}}\n";
+  document.head.appendChild(s);
+ }
+ function fs(){ var n=parseInt(get(FS,'0'),10); return isNaN(n)?0:Math.min(2,Math.max(0,n)) }
+ function applyFS(){ try{ document.body.style.zoom=SIZES[fs()] }catch(e){} }
+ function tmode(){ return get(TH,'') }
+ function applyTH(){
+  var t=tmode(), h=document.documentElement;
+  h.classList.toggle('dark',t==='dark');
+  h.classList.toggle('light',t==='light');
+  paint();
+ }
+ function paint(){
+  var b=document.getElementById('ftth'); if(!b) return;
+  var t=tmode();
+  b.textContent = t==='dark'?'深':(t==='light'?'浅':'自');
+  b.className = t?'on':'';
+  b.title = t==='dark'?'主题：深色 · 点一下切浅色':(t==='light'?'主题：浅色 · 点一下回跟随系统':'主题：跟随系统 · 点一下切深色');
+ }
+ function cycleTH(){ var t=tmode(); set(TH, t===''?'dark':(t==='dark'?'light':'')); applyTH() }
+
+ /* ---- 连播 ---- */
+ var P={on:false,i:0,list:[],btn:null};
+ function canSpeak(){ return typeof speechSynthesis!=='undefined' && typeof SpeechSynthesisUtterance!=='undefined' }
+ function voice(){
+  try{
+   var vs=speechSynthesis.getVoices()||[], en=[];
+   for(var i=0;i<vs.length;i++) if(/^en/i.test(vs[i].lang||'')) en.push(vs[i]);
+   for(var j=0;j<en.length;j++) if(/en-GB/i.test(en[j].lang)) return en[j];
+   return en[0]||null;
+  }catch(e){ return null }
+ }
+ function unmark(){ var a=document.querySelectorAll('.ft-speaking'); for(var i=0;i<a.length;i++) a[i].classList.remove('ft-speaking') }
+ function stopPlay(){
+  P.on=false; try{ speechSynthesis.cancel() }catch(e){}
+  unmark(); if(P.btn){ P.btn.textContent='连播'; P.btn.classList.remove('on') }
+ }
+ function step(){
+  if(!P.on) return;
+  if(P.i>=P.list.length){ stopPlay(); return }
+  var el=P.list[P.i++]; unmark();
+  el.classList.add('ft-speaking');
+  try{ el.scrollIntoView({block:'center',behavior:'smooth'}) }catch(e){}
+  var w=el.getAttribute('data-w')||'';
+  try{
+   speechSynthesis.cancel();
+   var u=new SpeechSynthesisUtterance(w), v=voice();
+   if(v){ u.voice=v; u.lang=v.lang } else u.lang='en-GB';
+   u.rate=0.9;
+   var adv=false, go=function(){ if(adv) return; adv=true; setTimeout(step,200) };
+   u.onend=go; u.onerror=go;
+   speechSynthesis.speak(u);
+   setTimeout(go, 1500 + w.length*140);   /* 没有语音时也能自动往下走 */
+  }catch(e){ stopPlay() }
+ }
+ function play(btn){
+  if(P.on){ stopPlay(); return }
+  var pools=document.querySelectorAll('[data-w]'), list=[];
+  for(var i=0;i<pools.length;i++){
+   var el=pools[i];
+   if(!el.getAttribute('data-w')) continue;
+   if(el.offsetParent===null) continue;
+   list.push(el);
+  }
+  if(!list.length){ alert('这一页没有可朗读的词'); return }
+  P.list=list; P.i=0; P.on=true; P.btn=btn;
+  btn.textContent='停止'; btn.classList.add('on');
+  step();
+ }
+
+ /* ---- 挂载 ---- */
+ function mount(){
+  style(); applyFS(); applyTH();
+  var bar=document.createElement('div'); bar.id='ftui';
+  bar.innerHTML='<button data-a="fs-" title="字号小一点">A−</button>'
+   +'<button data-a="fs+" title="字号大一点">A+</button>'
+   +'<button data-a="th" id="ftth"></button>';
+  document.body.appendChild(bar);
+  bar.addEventListener('click',function(e){
+   var a=e.target&&e.target.getAttribute?e.target.getAttribute('data-a'):null;
+   if(!a) return;
+   if(a==='fs-'){ set(FS,String(Math.max(0,fs()-1))); applyFS() }
+   if(a==='fs+'){ set(FS,String(Math.min(2,fs()+1))); applyFS() }
+   if(a==='th'){ cycleTH() }
+  });
+  paint();
+  document.addEventListener('keydown',function(e){
+   if(e.target&&/input|textarea/i.test(e.target.tagName)) return;
+   if(e.key==='['){ set(FS,String(Math.max(0,fs()-1))); applyFS() }
+   if(e.key===']'){ set(FS,String(Math.min(2,fs()+1))); applyFS() }
+  });
+ }
+ function host(){ return document.querySelector('.toolbar')||document.querySelector('.acts')||document.querySelector('.top') }
+ function btn(label,fn,title){
+  var h=host(); if(!h) return null;
+  var b=document.createElement('button'); b.type='button'; b.className='ftbtn';
+  b.textContent=label; if(title) b.title=title;
+  b.addEventListener('click',function(){ fn(b) });
+  h.appendChild(b); return b;
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mount); else mount();
+ return {btn:btn,play:play,stop:stopPlay,fs:fs,theme:tmode,setTheme:function(t){ set(TH,t); applyTH() }};
+})();
+
+/* 工具按钮 */
+(function(){
 })();
 </script>
 </body></html>

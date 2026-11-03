@@ -115,7 +115,7 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
 html.dark{color-scheme:dark;--ink:#e8eaed; --ink-2:#9aa3ad; --ink-3:#737d88;--line:#2c3037; --line-2:#242830; --paper:#16181c; --paper-2:#1d2025;--accent:#4fd1c5; --accent-2:#38b2a5; --mark:#4a3f1a; --mark-2:#3a3215; --syn:#e0a06a;}
 html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; --line:#e6e2da; --line-2:#efece5; --paper:#fdfcf9; --paper-2:#f7f4ee; --accent:#0f766e; --accent-2:#0d5f59; --mark:#fdf6e3; --mark-2:#f6e7c8; --syn:#8a4b16;}
 </style></head>
-<body><div class="wrap">
+<body data-ch="179"><div class="wrap">
 <header class="top"><h1>剑桥雅思听力考点词 179 · 例句版</h1><div class="sub">共 179 个考点词，含音标与中英例句。点「默写模式」隐藏全部中文；也可分开隐藏词义、替换释义、例句译文。</div></header>
 <div class="toolbar">
   <div class="search">
@@ -336,6 +336,7 @@ window.NB=NB;
 /* ================= 背诵模式（独立功能）================= */
 var REC=(function(){
  var KEY='kd-rec', ACC='#0f766e';
+ var CH=(document.body.dataset.ch||'');   /* 章节号：首页热力图按章汇总 */
  var INT=[0,1,2,4,8,15,30,90];
  var mem=null, root=null, queue=[], idx=0, onlyDue=false, yes=0, no=0, waiting=false;
 
@@ -583,7 +584,7 @@ var REC=(function(){
   var r=queue[idx], m=read(), o=m[r.w]||{lv:0,rv:0,wr:0};
   if(ok){ o.lv=Math.min(7,(o.lv||0)+1); o.due=Date.now()+INT[o.lv]*864e5; }
   else  { o.lv=0; o.due=Date.now()+10*6e4; o.wr=(o.wr||0)+1; toBook(r); }
-  o.rv=(o.rv||0)+1; o.lrt=Date.now();
+  o.rv=(o.rv||0)+1; o.lrt=Date.now(); if(CH) o.ch=CH;
   m[r.w]=o; save();
   if(ok) yes++; else no++;
   if(window.NB&&NB.bump) NB.bump('r');
