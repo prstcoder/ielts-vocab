@@ -118,6 +118,7 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
 
 
 
+
 /* 手动主题：html.dark / html.light 覆盖系统偏好 */
 html.dark{color-scheme:dark;--ink:#e8eaed; --ink-2:#9aa3ad; --ink-3:#737d88;--line:#2c3037; --line-2:#242830; --paper:#16181c; --paper-2:#1d2025;--accent:#4fd1c5; --accent-2:#38b2a5; --mark:#4a3f1a; --mark-2:#3a3215; --syn:#e0a06a;}
 html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; --line:#e6e2da; --line-2:#efece5; --paper:#fdfcf9; --paper-2:#f7f4ee; --accent:#0f766e; --accent-2:#0d5f59; --mark:#fdf6e3; --mark-2:#f6e7c8; --syn:#8a4b16;}
@@ -1127,6 +1128,7 @@ window.SYNC=SYNC;
 
 
 
+
 <script>
 /* ================= 阅读工具：字号 / 主题 / 连播 ================= */
 var FT=(function(){
@@ -1298,7 +1300,11 @@ var FT=(function(){
    if(e.key===']'){ set(FS,String(Math.min(2,fs()+1))); applyFS() }
   });
  }
- function host(){ return document.querySelector('.toolbar')||document.querySelector('.acts')||document.querySelector('.top') }
+ function host(){ return document.querySelector('.toolbar .tools')
+  ||document.querySelector('.tools')
+  ||document.querySelector('.acts')
+  ||document.querySelector('.toolbar')
+  ||document.querySelector('.top') }
  function group(){
   var h=host(); if(!h) return null;
   if(document.getElementById('ftgroup')) return document.getElementById('ftgroup');
