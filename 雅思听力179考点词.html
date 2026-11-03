@@ -177,6 +177,11 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
 #nbfab.wiggle{animation:wig .4s}
 @keyframes wig{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
 
+
+/* 默写模式：一键隐藏所有中文 */
+body.hide-zh td.m,body.hide-zh .mean,body.hide-zh .syn i{visibility:hidden}
+body.hide-zh .cls-desc{display:none}
+.toggle.master{border:1px solid var(--accent);color:var(--accent);font-weight:700;padding:4px 11px;border-radius:999px;background:rgba(15,118,110,.05)}
 </style>
 </head>
 <body>
@@ -193,6 +198,7 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
     <input id="q" type="search" placeholder="搜索单词 / 中文释义 / 同义替换（按 / 聚焦）" autocomplete="off">
   </div>
+  <label class="toggle master" title="一键隐藏所有中文（词义、替换释义、分类说明），再点一下全部恢复"><input type="checkbox" id="all">默写模式</label>
   <label class="toggle"><input type="checkbox" id="mean">隐藏词义</label>
   <label class="toggle"><input type="checkbox" id="bare">隐藏替换释义</label>
   <label class="toggle" title="点 ☆ 时，连带把这个词的衍生词一起收进生词本"><input type="checkbox" id="dv" checked>☆ 带衍生</label>
@@ -936,6 +942,7 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
   var box=document.getElementById('q');
   var bare=document.getElementById('bare');
   var mean=document.getElementById('mean');
+  var all=document.getElementById('all');
   var rows=[].slice.call(document.querySelectorAll('tbody tr'));
   var counters=[].slice.call(document.querySelectorAll('section.cls'));
   function norm(s){return (s||'').toLowerCase()}
@@ -955,15 +962,18 @@ td.sv,th.svh{width:38px;text-align:center;padding-left:0;padding-right:10px}
   }
   box.addEventListener('input',run);
   function save(){
+    if(all.checked){ mean.checked=false; bare.checked=false; }
     document.body.classList.toggle('bare',bare.checked);
     document.body.classList.toggle('hide-mean',mean.checked);
-    try{localStorage.setItem('ielts-tbl',JSON.stringify({b:bare.checked,m:mean.checked}))}catch(e){}
+    document.body.classList.toggle('hide-zh',all.checked);
+    try{localStorage.setItem('ielts-tbl',JSON.stringify({b:bare.checked,m:mean.checked,a:all.checked}))}catch(e){}
   }
   bare.addEventListener('change',save);
   mean.addEventListener('change',save);
+  all.addEventListener('change',save);
   try{
     var st=JSON.parse(localStorage.getItem('ielts-tbl')||'null');
-    if(st){bare.checked=!!st.b;mean.checked=!!st.m;}
+    if(st){bare.checked=!!st.b;mean.checked=!!st.m;all.checked=!!st.a;}
   }catch(e){}
   save();
   document.addEventListener('keydown',function(e){
