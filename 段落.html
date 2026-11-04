@@ -49,12 +49,15 @@ h1{margin:0;font-size:24px;font-weight:750;letter-spacing:-.3px}
  border-radius:5px;padding:2px 6px;font-variant-numeric:tabular-nums}
 .pt{font-size:14.5px;font-weight:700}
 .ph .say{margin-left:auto}
-.sn{margin:0 0 12px;padding:1px 4px;border-radius:6px;transition:background .15s}
-.sn:last-child{margin-bottom:0}
-.sn .en{display:block;font:16.4px/1.62 var(--serif);letter-spacing:.1px;color:var(--ink)}
-.sn .zh{display:block;font-size:12.6px;line-height:1.55;color:var(--ink2);margin-top:2px}
-body.nozh .sn .zh{display:none}
-.sn.cur{background:var(--acc-soft);box-shadow:0 0 0 2px var(--acc-soft)}
+.ps{margin:0}
+.ps .pen{margin:0;font:16.4px/1.78 var(--serif);letter-spacing:.1px;color:var(--ink);text-align:justify;
+ text-justify:inter-word;hyphens:auto}
+.ps .pzh{margin:9px 0 0;font-size:13px;line-height:1.8;color:var(--ink2);text-align:justify;
+ padding-top:9px;border-top:1px dashed var(--line)}
+.sn{padding:0;border-radius:3px;transition:background .15s}
+.sn .en{color:inherit}
+body.nozh .ps .pzh{display:none}
+.sn.cur{background:var(--acc-soft);box-shadow:none;border-radius:3px}
 .sn.cur .en{color:var(--accent)}
 mark.pv{background:none;color:inherit;cursor:pointer;padding:0 1px;border-radius:2px;font-weight:680;
  box-shadow:inset 0 -2px 0 color-mix(in srgb,var(--accent) 32%,transparent)}
@@ -62,8 +65,8 @@ mark.pv:hover{background:var(--mark);box-shadow:none}
 mark.pv.on{background:var(--accent);color:#fff;box-shadow:none}
 body.blurred mark.pv{color:transparent;background:var(--chip);box-shadow:none;border-radius:3px}
 body.blurred mark.pv.on{color:inherit;background:var(--mark);box-shadow:none}
-body.blind .sn .en{filter:blur(5px);cursor:pointer;user-select:none}
-body.blind .sn.rev .en{filter:none}
+body.blind .ps .pen{filter:blur(4.5px);cursor:pointer;user-select:none}
+body.blind .ps.rev .pen{filter:none}
 .say{border:0;background:none;cursor:pointer;color:var(--ink2);padding:2px;line-height:0;border-radius:6px}
 .say:hover{color:var(--accent);background:var(--acc-soft)}
 .say svg{width:15px;height:15px}
@@ -150,7 +153,7 @@ body.blind .sn.rev .en{filter:none}
 <header>
  <a class="back" href="index.html">← 回首页</a>
  <h1>分章短文</h1>
- <p class="sub">把 538 和 179 的考点词写进三五句的小短文里，句子短、结构简单，逐句中英对照。加粗带下划线的是本组考点词，点一下看释义和<b>同义替换</b>，可一键收进生词本。每篇底下有「小测」：看句子填词、选中文释义、选英文单词，几个小题当堂检验。</p>
+ <p class="sub">把 538 和 179 的考点词写进小短文里：每篇一段英文，连着读下来是一个完整的意思，下面配一整段中文。加粗带下划线的是本组考点词，点一下看释义和<b>同义替换</b>，可一键收进生词本。每篇底下有「小测」：看句子填词、选中文释义、选英文单词，几个小题当堂检验。</p>
 </header>
 <div id="chs"></div>
 <div class="bar">
@@ -221,10 +224,12 @@ function render(){
  used={};
  for(i=0;i<ps.length;i++){
   var p=ps[i], body='', bag={};
+  var zh='';
   for(k=0;k<p.s.length;k++){
-   body+='<div class="sn"><span class="en">'+mark(p.s[k][0], r, bag)+'</span>'+
-         '<span class="zh">'+p.s[k][1]+'</span></div>';
+   body+='<span class="sn"><span class="en">'+mark(p.s[k][0], r, bag)+'</span> </span>';
+   zh+=p.s[k][1];
   }
+  body='<div class="ps"><p class="pen">'+body+'</p><p class="pzh">'+zh+'</p></div>';
   var ws=Object.keys(bag);
   h+='<div class="pass" data-i="'+i+'" data-ws="'+ws.join('|')+'"><div class="ph"><span class="pn">'+('0'+(i+1)).slice(-2)+
      '</span><span class="pt">'+p.t+'</span><button class="say" data-say="'+i+'" title="朗读这一篇">'+
@@ -343,8 +348,8 @@ document.addEventListener('click', function(e){
  if(pb){ var w=pop.getAttribute('data-cur');
   if(pb.getAttribute('data-p')==='say') sayOne(w); else { addBook(w); pb.textContent='★ 已收'; pb.classList.add('on') } return }
  var wc=t.closest('.wlist span'); if(wc){ showPop(wc, wc.getAttribute('data-ww')); return }
- var sn=t.closest('.sn');
- if(sn&&document.body.classList.contains('blind')){ sn.classList.toggle('rev'); return }
+ var ps2=t.closest('.ps');
+ if(ps2&&document.body.classList.contains('blind')){ ps2.classList.toggle('rev'); return }
  var m=t.closest('mark.pv');
  if(m){ if(document.body.classList.contains('blurred')&&!m.classList.contains('on')){ m.classList.add('on'); return }
   showPop(m); return }
