@@ -264,6 +264,8 @@ footer{margin-top:30px;color:var(--ink2);font-size:12.5px;line-height:1.8}
 .rans .rdv.syn{margin-top:10px}
 .item .tag.c{opacity:.75}
 
+.hist2{font-size:11px;color:var(--ink2);background:var(--chip);border-radius:5px;
+   padding:1px 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
 </style>
 <!-- pwa -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -489,7 +491,7 @@ window.NB=NB;
  function isDue(r){ return !mastered(r) && dueOf(r) <= Date.now() }
  function grade(r, ok){
   var now=Date.now();
-  if(ok){ r.lv=Math.min(7, lvOf(r)+1); r.due=now+INT[r.lv]*864e5; }
+  if(ok){ r.lv=Math.min(7, lvOf(r)+1); r.ok=(r.ok||0)+1; r.due=now+INT[r.lv]*864e5; }
   else  { r.lv=Math.max(0, lvOf(r)-1); r.due=now+10*6e4; r.wr=(r.wr||0)+1; }
   r.rv=(r.rv||0)+1; r.lrt=now;
   NB.save(r); NB.bump('r'); if(ok) NB.bump('c');
@@ -584,6 +586,7 @@ window.NB=NB;
     return '<div class="item"><div class="h"><span class="w">'+esc(r.w)+'</span>'+
       '<button class="spk" data-say="'+esc(r.w)+'" title="朗读">'+ICON+'</button>'+
       (r.p?'<span class="ipa">'+esc(r.p)+'</span>':'')+pvTag+tag+
+      (r.rv?'<span class="hist2" title="背诵记录：记住 / 没记住">记住 '+(r.ok!=null?r.ok:Math.max(0,(r.rv||0)-(r.wr||0)))+' · 忘 '+(r.wr||0)+'</span>':'')+
       '<span class="'+dueCls(r)+'">'+dueText(r)+'</span>'+
       '<button class="del" data-del="'+esc(r.w)+'">移出</button></div>'+
       '<div class="m">'+mean+(r.pv?'':synHtml(r.y))+(r.d?dvHtml(r.d):'')+'</div>'+ex+'</div>';
