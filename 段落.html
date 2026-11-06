@@ -269,34 +269,45 @@ function gl(ch){
  for(var i=0;i<L.length;i++){ m[L[i][0]]=glossFrags(L[i][1]); }
  GLM[ch]=m; return m;
 }
+var ZSTOP='的了着过们是在有和与而就也都又还把被对给从向跟或得地其之为以于这那不没会能要上下中里时个一';
 function zhMark(zh, hits, G){
  if(!zh||!hits||!hits.length) return zh;
- var spans=[], i, j, k;
+ var spans=[], i, j, k, n, c, p, sc, best;
  for(i=0;i<hits.length;i++){
-  var fr=G[hits[i]]||[], best=null;
+  var fr=G[hits[i]]||[];
+  best=null;
   for(j=0;j<fr.length;j++){
-   var f=fr[j], cands=[f];
-   if(f.length>2){ cands.push(f.slice(0,2)); cands.push(f.slice(-2)); }
-   for(k=0;k<cands.length;k++){
-    var c=cands[k];
-    if(c.length<2) continue;
-    var p=zh.indexOf(c);
-    if(p>=0 && (!best || c.length>best.sc)) best={s:p,e:p+c.length,sc:c.length};
+   var f=fr[j], L=f.length;
+   for(n=Math.min(4,L); n>=2; n--){
+    for(k=0;k+n<=L;k++){
+     c=f.substr(k,n);
+     if(ZSTOP.indexOf(c.charAt(0))>=0 || ZSTOP.indexOf(c.charAt(n-1))>=0) continue;
+     p=zh.indexOf(c);
+     if(p<0) continue;
+     sc=n*10+(k===0?1:0);
+     if(!best || sc>best.sc) best={s:p,e:p+n,sc:sc};
+    }
+   }
+  }
+  if(!best){
+   for(j=0;j<fr.length && !best;j++){
+    var f2=fr[j]; if(f2.length>4) continue;
+    for(k=0;k<f2.length;k++){
+     c=f2.charAt(k);
+     if(ZSTOP.indexOf(c)>=0 || zh.split(c).length!==2) continue;
+     p=zh.indexOf(c);
+     if(p>=0){ best={s:p,e:p+1,sc:5}; break }
+    }
    }
   }
   if(best) spans.push(best);
-  else if(fr.length && !/[的地性化度者]$/.test(fr[0])){
-   var ch0=fr[0].charAt(0);
-   if(ch0 && '而就都也又还在是有把被让使对给从向跟和与或的地得着了过们'.indexOf(ch0)<0
-      && zh.split(ch0).length===2){ spans.push({s:zh.indexOf(ch0),e:zh.indexOf(ch0)+1,sc:1}); }
-  }
  }
  if(!spans.length) return zh;
  spans.sort(function(x,y){ return y.sc-x.sc || x.s-y.s });
  var keep=[];
  for(i=0;i<spans.length;i++){
   var sp=spans[i], ok=1;
-  for(j=0;j<keep.length;j++){ if(sp.s<keep[j].e && keep[j].s<sp.e){ ok=0; break; } }
+  for(j=0;j<keep.length;j++){ if(sp.s<keep[j].e && keep[j].s<sp.e){ ok=0; break } }
   if(ok) keep.push(sp);
  }
  keep.sort(function(x,y){ return x.s-y.s });
@@ -531,7 +542,11 @@ function rcss(){
  +'#rcroot .rcspk:hover{opacity:1;color:'+ACC+'}'
  +'#rcroot .rcspk svg{width:18px;height:18px;display:block}'
  +'#rcroot .rcsen{margin-top:16px;font-family:ui-serif,Georgia,"Times New Roman",serif;font-size:15.5px;'
- +'line-height:1.7;color:var(--ri);background:var(--rs);border-radius:11px;padding:11px 14px;text-align:left}'
+ +'line-height:1.7;color:var(--ri);background:var(--rs);border-radius:11px;padding:11px 14px;text-align:left;'
+ +'user-select:text;-webkit-user-select:text;cursor:text}'
+ +'#rcroot .rccp{float:right;margin:0 0 4px 10px;font:inherit;font-size:11px;font-weight:600;color:var(--ri2);'
+ +'background:var(--rp);border:1px solid var(--rl);border-radius:6px;padding:1px 8px;cursor:pointer}'
+ +'#rcroot .rccp:hover{color:'+ACC+';border-color:'+ACC+'}'
  +'#rcroot .rcq{color:var(--ri2);font-size:12.5px;margin-top:16px;opacity:.9}'
  +'#rcroot .rcans{display:none;margin-top:18px;text-align:left;border-top:1px dashed var(--rl);padding-top:16px}'
  +'#rcroot .rcans.on{display:block}'
@@ -654,7 +669,13 @@ function rpaint(){
  var ans=document.getElementById('rcans'); ans.classList.remove('on');
  var q=document.getElementById('rcq'); q.style.display='';
  q.textContent=r.e?'先看下面这句英文猜一下，点卡片对答案':'看这个词，认不认识？点卡片看释义';
- var sen=document.getElementById('rcsen'); sen.textContent=r.e||''; rshow(sen,!!r.e);
+ var sen=document.getElementById('rcsen');
+ if(r.e){
+  sen.innerHTML='<button class="rccp" id="rccp" type="button" title="复制这句">复制</button>'+resc(r.e);
+  rshow(sen,true);
+  var cp=document.getElementById('rccp');
+  if(cp) cp.onclick=function(ev){ ev.stopPropagation(); rcopy(r.e) };
+ } else { sen.innerHTML=''; rshow(sen,false) }
  var def=document.getElementById('rcdef'); def.textContent=r.m||'—'; rshow(def,!!r.m);
  var zh=document.getElementById('rczh');
  zh.innerHTML=r.z?('<span class="rcbq">例句译文</span>'+resc(r.z)):'';
@@ -697,7 +718,20 @@ function rgrade(ok){
  }
  RB.idx++; rpaint();
 }
-function rtap(){ if(RB.waiting) return rnext(); rreveal() }
+function rcopy(t){
+ var ok=function(){ toast('已复制这句') };
+ var fallback=function(){
+  var ta=document.createElement('textarea');
+  ta.value=t; ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); ok() }catch(e){ toast('复制失败，请手动选择') }
+  document.body.removeChild(ta);
+ };
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(t).then(ok, fallback);
+ } else fallback();
+}
+function rtap(){ if(window.getSelection&&String(window.getSelection()).length) return; if(RB.waiting) return rnext(); rreveal() }
 function rnext(){ if(!RB.waiting) return; RB.waiting=false; RB.idx++; rpaint() }
 
 function rfmt(ms){
