@@ -103,16 +103,27 @@ html.dark .tk,html.dark .decks{background:var(--paper-2)}
 /* 手动主题：html.dark / html.light 覆盖系统偏好 */
 html.dark{color-scheme:dark;--ink:#e8eaed; --ink-2:#9aa3ad; --ink-3:#737d88;--line:#2c3037; --line-2:#242830; --paper:#16181c; --paper-2:#1d2025;--accent:#4fd1c5; --accent-2:#38b2a5; --mark:#4a3f1a; --mark-2:#3a3215; --syn:#e0a06a;}
 html.light{color-scheme:light;--ink:#1f2328; --ink-2:#57606a; --ink-3:#8b949e; --line:#e6e2da; --line-2:#efece5; --paper:#fdfcf9; --paper-2:#f7f4ee; --accent:#0f766e; --accent-2:#0d5f59; --mark:#fdf6e3; --mark-2:#f6e7c8; --syn:#8a4b16;}
+/* ---- 下载到本地（PWA 安装） ---- */
+.pwa{display:none;margin:12px 0 0;font:inherit;font-size:13.5px;font-weight:650;color:#fff;
+ background:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:8px 20px;cursor:pointer}
+.pwa.on{display:inline-block}
+.pwa:active{transform:translateY(1px)}
+.pwahint{display:none;margin-top:9px;font-size:12.2px;line-height:1.7;color:var(--ink2)}
+.pwahint.on{display:block}
 </style><!-- pwa -->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0f766e">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="icon" href="icon-192.png" sizes="192x192">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="考点词">
 </head>
 <body><div class="wrap">
-<header class="top"><h1>雅思考点词 · 词表</h1><div class="sub">从 PDF 转出的网页版，已去除水印与二维码</div></header>
+<header class="top"><h1>雅思考点词 · 词表</h1><div class="sub">从 PDF 转出的网页版，已去除水印与二维码</div>
+<button class="pwa" id="pwaBtn" type="button">下载到本地 · 安装应用</button>
+<p class="pwahint" id="pwaHint">iPhone / iPad：点浏览器底部的「分享」按钮，选「添加到主屏幕」，之后从桌面图标打开就是独立 App。</p></header>
 <div class="today">
  <a class="tk hot" href="生词本.html"><div class="lb">今天该复习</div><div class="v" id="tkdue">0</div><div class="sub2" id="tkdsub">—</div></a>
  <div class="tk"><div class="lb">已掌握</div><div class="v" id="tkm">0</div><div class="sub2" id="tkmr">—</div></div>
@@ -453,6 +464,31 @@ var FT=(function(){
 
 /* 工具按钮 */
 (function(){
+})();
+</script>
+
+<script>
+/* PWA：注册 service worker，让站点能装到桌面 / 断网可用 */
+if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) }) }
+</script>
+
+<script>
+/* ---- PWA 安装入口 ---- */
+(function(){
+ var b=document.getElementById('pwaBtn'), hint=document.getElementById('pwaHint');
+ var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone;
+ if(standalone){ if(b&&b.parentNode) b.parentNode.removeChild(b); if(hint&&hint.parentNode) hint.parentNode.removeChild(hint); return; }
+ var deferred=null;
+ window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred=e; if(b) b.classList.add('on') });
+ if(b) b.addEventListener('click', function(){
+  if(deferred){ deferred.prompt(); deferred.userChoice.then(function(){ deferred=null; b.classList.remove('on') }) }
+  else if(hint){ hint.classList.add('on') }
+ });
+ var ios=/iP(hone|ad|od)/.test(navigator.platform||'')||(/Macintosh/.test(navigator.userAgent)&&'ontouchend' in document);
+ if(ios){ if(b) b.classList.add('on'); if(hint) hint.classList.add('on') }
+ window.addEventListener('appinstalled', function(){
+  if(b&&b.parentNode) b.parentNode.removeChild(b); if(hint&&hint.parentNode) hint.parentNode.removeChild(hint);
+ });
 })();
 </script>
 </body></html>

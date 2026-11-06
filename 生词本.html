@@ -3220,4 +3220,9 @@ var SH=(function(){
  window.CONFUSE={refresh:render};
 })();
 </script>
+
+<script>
+/* PWA：注册 service worker，让站点能装到桌面 / 断网可用 */
+if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}) }) }
+</script>
 </body></html>
